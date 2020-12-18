@@ -1,5 +1,215 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | E-Shopper</title>
+    <link href="~/Customer/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Customer/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Customer/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Customer/css/price-range.css" rel="stylesheet">
+    <link href="~/Customer/css/animate.css" rel="stylesheet">
+    <link href="~/Customer/css/main.css" rel="stylesheet">
+    <link href="~/Customer/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="~/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body style="background-color:#F0F0E9">
+    <header id="header">
+        <!--header-->
+        <div class="header_top" style="background-color: #F0F0E9">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i> 0858679912</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i>thuytienpn106@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header_top-->
+
+        <div class="header-middle" style="height:80px; background-color:white">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1 clearfix">
+                        <div class="logo pull-left">
+                            <a asp-area="Customer" asp-controller="Home" asp-action="Index"><img src="/Common/logo-ptstore.png" alt="PT Store logo" width="162"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-7 clearfix">
+                        <nav class="navbar navbar-light bg-light">
+                            <div class="container-fluid">
+                                <form class="d-inline pull-right">
+                                    <input class="form-control me-2 col-sm-6" style="width:450px" type="search" placeholder="Nhập nội dung cần tìm kiếm..." aria-label="Search">
+                                    <button class="btn btn-outline-success" style="background-color:#fe980f; color:white" type="submit">Tìm Kiếm</button>
+                                </form>
+                            </div>
+                        </nav>
+
+                    </div>
+                    <div class="col-md-4 clearfix">
+                        <div class="shop-menu clearfix pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="/Customer/Home/Account"><i class="fa fa-user"></i>Tài Khoản</a></li>
+                                <li><a href="/Customer/Home/Cart"><i class="fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+                                <li><a href="#"><i class="fa fa-sign-out"></i>Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+
+        <div class="header-bottom" style="background-color: #F38A2D ; height:55px; padding-bottom:20px; padding-top:20px">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="/Customer/Home/Index" style="color:white">Trang chủ</a></li>
+                                <li class="dropdown">
+                                    <a href="#" style="color:white">Cửa hàng<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="#">Iphone</a></li>
+                                        <li><a href="#">SamSung</a></li>
+                                        <li><a href="#">Xiaomi</a></li>
+                                        <li><a href="#">Vivo</a></li>
+                                        <li><a href="#">Oppo</a></li>
+                                        <li><a href="#">Realme</a></li>
+                                        <li><a href="#">VsMart</a></li>
+                                        <li><a href="#">Nokia</a></li>
+                                        <li><a href="#">Huawei</a></li>
+                                        <li><a href="#">Mobell</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Customer/Home/Contact" style="color:white">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    @*<div class="col-sm-6">
+                            <nav class="navbar navbar-light bg-light">
+                                <div class="container-fluid">
+                                    <form class="d-inline pull-right">
+                                        <input class="form-control me-2 col-sm-6" style="width:250px" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn btn-outline-success" style="background-color:#fe980F" type="submit">Search</button>
+                                    </form>
+                                </div>
+                            </nav>
+                        </div>*@
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header-->
+
+    <div style="background-color:#F0F0E9">
+        @RenderBody()
+    </div>
+
+
+    <footer id="footer" style="background-color:white; margin-top:3%">
+        <div class="footer-widget" style="margin-bottom:0%">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Sản Phẩm</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/Customer/Home/Product">Apple</a></li>
+                                <li><a href="/Customer/Home/Product">Samsung</a></li>
+                                <li><a href="/Customer/Home/Product">Xiaomi</a></li>
+                                <li><a href="/Customer/Home/Product">Oppo</a></li>
+                                <li><a href="/Customer/Home/Product">Vivo</a></li>
+                                <li><a href="/Customer/Home/Product">Realme</a></li>
+                                <li><a href="/Customer/Home/Product">VsMart</a></li>
+                                <li><a href="/Customer/Home/Product">Nokia</a></li>
+                                <li><a href="/Customer/Home/Product">Huawei</a></li>
+                                <li><a href="/Customer/Home/Product">Mobell</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="single-widget">
+                            <h2>Thông tin cửa hàng</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li>Cửa Hàng Điện Thoại PT</li>
+                                <li>Số 1 Võ Văn Ngân phường Linh Chiểu quận Thủ Đức thành phố Hồ Chí Minh</li>
+                                <li>SĐT: 0858679912</li>
+                                <li>Email: thuytienpn106@gmail.com</li>
+                                <li>Thời gian hoạt động: 8:00AM - 10:00PM</li>
+                                <li>Tất cả các ngày trong tuần</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Theo dõi <br>chúng tôi </h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i>Google</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <div class="single-widget">
+                            <h2>Theo dõi Cửa hàng</h2>
+                            <form action="#" class="searchform">
+                                <input type="text" placeholder="Email của bạn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                <p>Nhận các cập nhật mới nhất từ của hàng<br>của chúng tôi và cập nhật bản thân của bạn</p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer><!--/Footer-->
+
+    <script src="~/Customer/js/jquery.js"></script>
+    <script src="~/Customer/js/bootstrap.min.js"></script>
+    <script src="~/Customer/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Customer/js/price-range.js"></script>
+    <script src="~/Customer/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Customer/js/main.js"></script>
+
+
+</body>
+</html>
+

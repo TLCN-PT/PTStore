@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] = "Checkout";
+    Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container" style="background-color:white; margin-top:3%">
+    @*<div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="/Home/Index">Trang Chủ</a></li>
+                <li><a href="/Home/Cart">Giỏ Hàng</a></li>
+                <li class="active">Thanh Toán</li>
+            </ol>
+        </div>*@
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="#" class="billing-form">
+                <h3 class="mb-4 billing-heading" style="color:#fe980f">Thông Tin Người Nhận</h3>
+                <div class="row align-items-end">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="lastname">Họ và Tên</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="country">Số điện thoại</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="streetaddress">Địa Chỉ Cụ Thể</label>
+                            <input type="text" class="form-control" id="diachi" placeholder="">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-8">
+            <section id="cart_items">
+                <h3 class="mb-4 billing-heading" style="color:#fe980f">Nội dung hàng</h3>
+                <div class="table-responsive cart_info">
+                    <table class="table table-condensed">
+                        <thead style="text-align:center">
+                            <tr class="cart_menu">
+                                <td class="image col-sm-2">Sản phẩm</td>
+                                <td class="description"></td>
+                                <td class="price col-sm-2">Giá</td>
+                                <td class="quantity col-sm-2">Số lượng</td>
+                                <td class="total col-sm-2">Tổng giá</td>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:center">
+                            <tr>
+                                <td class="cart_product">
+                                    <a href=""><img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="" class="imageincart"></a>
+                                </td>
+                                <td class="cart_description" style="color:#8C8C88">
+                                    <h4>Điện thoại Vivo V20</h4>
+                                </td>
+                                <td class="cart_price col-sm-offset-3">
+                                    <p>12990000</p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button col-sm-offset-3">
+                                        <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2" readonly>
+                                    </div>
+                                </td>
+                                <td class="cart_total col-sm-offset-3">
+                                    <p class="cart_total_price">12990000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="3">
+                                    <table class="table table-condensed total-result">
+                                        <tbody>
+                                            <tr>
+                                                <td>Tổng giá sản phẩm</td>
+                                                <td>12990000</td>
+                                            </tr>
+                                            <tr class="shipping-cost">
+                                                <td>Phí giao hàng</td>
+                                                <td>Free</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tổng tiền thu người nhận</td>
+                                                <td><span>12990000</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="payment-options">
+                    <span>
+                        <label><input type="checkbox" name="thanhtoan">Thanh toán khi nhận hàng</label>
+                    </span>
+                    <span>
+                        <label><input type="checkbox" name="thanhtoan"> Paypal</label>
+                    </span>
+                    <input type="submit" name="submit" class="btn btn-primary pull-right" style="width:150px; height:50px" value="Thanh toán">
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .imageincart {
+        width: 70%;
+        height: 70%;
+    }
+</style>
+

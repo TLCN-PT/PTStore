@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Home | E-Shopper</title>
+    <link href="~/Guest/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/Guest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Guest/css/prettyPhoto.css" rel="stylesheet">
+    <link href="~/Guest/css/price-range.css" rel="stylesheet">
+    <link href="~/Guest/css/animate.css" rel="stylesheet">
+    <link href="~/Guest/css/main.css" rel="stylesheet">
+    <link href="~/Guest/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+    <link rel="shortcut icon" href="~/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
+</head><!--/head-->
+
+<body style="background-color:#F0F0E9">
+    <header id="header">
+        <!--header-->
+        <div class="header_top" style="background-color: #F0F0E9">
+            <!--header_top-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="contactinfo">
+                            <ul class="nav nav-pills">
+                                <li><a href="#"><i class="fa fa-phone"></i> 0858679912</a></li>
+                                <li><a href="#"><i class="fa fa-envelope"></i>thuytienpn106@gmail.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="social-icons pull-right">
+                            <ul class="nav navbar-nav">
+                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header_top-->
+
+        <div class="header-middle" style="height:80px; background-color:white">
+            <!--header-middle-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1 clearfix">
+                        <div class="logo pull-left">
+                            <a asp-controller="Home" asp-action="Index"><img src="/Common/logo-ptstore.png" alt="PT Store logo" width="162"></a>
+                        </div>
+                    </div>
+                    <div class="col-md-7 clearfix">
+                        <nav class="navbar navbar-light bg-light">
+                            <div class="container-fluid">
+                                <form class="d-inline pull-right">
+                                    <input class="form-control me-2 col-sm-6" style="width:450px" type="search" placeholder="Nhập nội dung cần tìm kiếm..." aria-label="Search">
+                                    <button class="btn btn-outline-success" style="background-color:#fe980f; color:white" type="submit">Tìm Kiếm</button>
+                                </form>
+                            </div>
+                        </nav>
+
+                    </div>
+                    <div class="col-md-4 clearfix">
+                        <div class="shop-menu clearfix pull-right">
+                            <ul id="ulhighlight" class="nav navbar-nav">
+                                <li><a href="/Home/Cart"><i class="customLi fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#login"><i class="customLi fa fa-sign-in"></i> Đăng Nhập</a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#signup"><i class="customLi fa fa-plus"></i> Đăng Ký</a></li>
+                            </ul>
+                        </div>
+                        <style>
+                            .customLi {
+                            }
+                        </style>
+                        <script>// Add active class to the current button (highlight it)
+                            var header = document.getElementById("ulhighlight");
+                            var btns = header.getElementsByClassName("customLi");
+                            for (var i = 0; i < btns.length; i++) {
+                                btns[i].addEventListener("click", function () {
+                                    var current = document.getElementsByClassName("active");
+                                    current[0].className = current[0].className.replace(" active", "");
+                                    this.className += " active";
+                                });
+                            }</script>
+                    </div>
+                </div>
+            </div>
+        </div><!--/header-middle-->
+
+        <div class="header-bottom" style="background-color: #F38A2D; height:55px; padding-bottom:20px; padding-top:20px">
+            <!--header-bottom-->
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="mainmenu pull-left">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li><a href="/Home/Index" style="color:white">Trang chủ</a></li>
+                                <li class="dropdown">
+                                    <a href="#" style="color:white">Cửa hàng<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="#">Iphone</a></li>
+                                        <li><a href="#">SamSung</a></li>
+                                        <li><a href="#">Xiaomi</a></li>
+                                        <li><a href="#">Vivo</a></li>
+                                        <li><a href="#">Oppo</a></li>
+                                        <li><a href="#">Realme</a></li>
+                                        <li><a href="#">VsMart</a></li>
+                                        <li><a href="#">Nokia</a></li>
+                                        <li><a href="#">Huawei</a></li>
+                                        <li><a href="#">Mobell</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/Home/Contact" style="color:white">Liên hệ</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div><!--/header-bottom-->
+    </header><!--/header-->
+
+    <div style="background-color:#F0F0E9">
+        @RenderBody()
+    </div>
+    <footer id="footer" style="background-color:white; margin-top:3%">
+        <div class="footer-widget" style="margin-bottom:0%">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Sản Phẩm</h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="/Home/Productbytype">Apple</a></li>
+                                <li><a href="/Home/Productbytype">Samsung</a></li>
+                                <li><a href="/Home/Productbytype">Xiaomi</a></li>
+                                <li><a href="/Home/Productbytype">Oppo</a></li>
+                                <li><a href="/Home/Productbytype">Vivo</a></li>
+                                <li><a href="/Home/Productbytype">Realme</a></li>
+                                <li><a href="/Home/Productbytype">VsMart</a></li>
+                                <li><a href="/Home/Productbytype">Nokia</a></li>
+                                <li><a href="/Home/Productbytype">Huawei</a></li>
+                                <li><a href="/Home/Productbytype">Mobell</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="single-widget">
+                            <h2>Thông tin cửa hàng</h2>
+                            <ul class="nav nav-pills nav-stacked" style="color:#8C8C88">
+                                <li>Cửa Hàng Điện Thoại PT</li>
+                                <li>Số 1 Võ Văn Ngân phường Linh Chiểu quận Thủ Đức thành phố Hồ Chí Minh</li>
+                                <li>SĐT: 0858679912</li>
+                                <li>Email: thuytienpn106@gmail.com</li>
+                                <li>Thời gian hoạt động: 8:00AM - 10:00PM</li>
+                                <li>Tất cả các ngày trong tuần</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="single-widget">
+                            <h2>Theo dõi <br>chúng tôi </h2>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li><a href="#"><i class="fa fa-facebook"></i>Facebook</a></li>
+                                <li><a href="#"><i class="fa fa-instagram"></i>Instagram</a></li>
+                                <li><a href="#"><i class="fa fa-google-plus"></i>Google</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-sm-offset-1">
+                        <div class="single-widget">
+                            <h2>Theo dõi Cửa hàng</h2>
+                            <form action="#" class="searchform">
+                                <input type="text" placeholder="Email của bạn">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
+                                <p>Nhận các cập nhật mới nhất từ của hàng<br>của chúng tôi và cập nhật bản thân của bạn</p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </footer><!--/Footer-->
+    <div class="modal fade" id="signup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @*<div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>*@
+                <div class="modal-body">
+                    <section>
+                        <!--form-->
+                        <div class="container-fluid" style="margin-bottom: 2%">
+                            <div class="row">
+                                <div style="margin-left:5% ; margin-right:5%">
+                                    <div class="signup-form">
+                                        <!--login form-->
+                                        <h2 class="col-sm-offset-5" style="color:#fe980f ; font-weight:500 ; font-size:20px">Đăng Ký</h2>
+                                        <form action="#">
+                                            <div class="mb-3">
+                                                <label class="form-label">Họ và Tên</label>
+                                                <input type="text" class="form-control" id="inputName">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Email</label>
+                                                <input type="email" class="form-control" id="inputEmail">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Số điện thoại</label>
+                                                <input type="text" class="form-control" id="inputPhone">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Ngày sinh</label>
+                                                <input type="date" class="form-control" id="inputBirthdate">
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="form-check col-sm-4">
+                                                    <div class="col-sm-2">
+                                                        <label class="form-check-label" for="checkMale">
+                                                            Nam
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-check-input" type="radio" style="height: 20px" id="checkMale" name="gioitinh">
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-check col-sm-8">
+                                                    <div class="col-sm-1">
+                                                        <label for="checkFemale">
+                                                            Nữ
+                                                        </label>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <input class="form-check-input" type="radio" style="height: 20px" id="checkFemale" name="gioitinh" checked>
+                                                    </div>
+
+
+                                                </div>
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Mật khẩu</label>
+                                                <input type="password" class="form-control" id="inputPassword1">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Nhập lại mật khẩu</label>
+                                                <input type="password" class="form-control" id="inputPassword2">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Địa chỉ</label>
+                                                <input type="text" class="form-control" id="inputAddress">
+                                            </div>
+                                            <button type="submit" style="margin-top:5%" class="btn btn-default col-sm-offset-5">Đăng Ký</button>
+                                        </form>
+                                    </div><!--/login form-->
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                @*<div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @*<div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    </div>*@
+                <div class="modal-body">
+                    <section>
+                        <!--form-->
+                        <div class="container-fluid" style="margin-bottom: 2%">
+                            <div class="row">
+                                <div style="margin-left:5% ; margin-right:5%">
+                                    <div class="login-form ">
+                                        <!--login form-->
+                                        <h2 class="col-sm-offset-5" style="color:#fe980f ; font-weight:500 ; font-size:20px">Đăng Nhập</h2>
+                                        <form action="#">
+                                            <div class="mb-3">
+                                                <label class="form-label">Tên Đăng Nhập</label>
+                                                <input type="text" class="form-control" id="inputUsername">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label">Mật khẩu</label>
+                                                <input type="password" class="form-control" id="inputPassword">
+                                            </div>
+                                            <button type="submit" class="btn btn-default col-sm-offset-5">Đăng Nhập</button>
+                                            <div class="card-footer" style="margin-top:5%">
+                                                <div class="d-flex justify-content-center links col-sm-offset-4">
+                                                    <label style="color:#8C8C88">Chưa có tài khoản?</label> <a href="#" data-toggle="modal" data-target="#signup" style="color:#fe980f"> Đăng kí</a>
+                                                </div>
+                                                <div class="d-flex justify-content-center links col-sm-offset-5">
+                                                    <a href="~/Home/Forgetpasswork" style="color:#fe980f">Quên mật khẩu?</a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div><!--/login form-->
+                                </div>
+
+                            </div>
+                        </div>
+                    </section><!--/form-->
+                </div>
+                @*<div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>*@
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="~/Guest/js/jquery.js"></script>
+    <script src="~/Guest/js/bootstrap.min.js"></script>
+    <script src="~/Guest/js/jquery.scrollUp.min.js"></script>
+    <script src="~/Guest/js/price-range.js"></script>
+    <script src="~/Guest/js/jquery.prettyPhoto.js"></script>
+    <script src="~/Guest/js/main.js"></script>
+
+
+</body>
+</html>

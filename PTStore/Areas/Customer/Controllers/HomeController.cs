@@ -11,13 +11,40 @@ namespace PTStore.Areas.Customer.Controllers
     {
         public IActionResult Index()
         {
-            //css them vo css co san luon ha
-            //tao thu muc moi
-            //roi them vo
-            //sau khi chinh xon
-            //chay OK -> change
             return View();
             
+        }
+        public IActionResult Detail()
+        {
+            return View();
+        }
+        public IActionResult Account()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult Cart()
+        {
+            return View();
+        }
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+        public IActionResult Productbytype()
+        {
+            return View();
+        }
+        public IActionResult Manageorder()
+        {
+            return View();
+        }
+        public IActionResult Feedback()
+        {
+            return View();
         }
     }
 }

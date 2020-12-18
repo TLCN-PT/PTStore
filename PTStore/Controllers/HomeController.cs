@@ -22,9 +22,9 @@ namespace PTStore.Controllers
 
         public IActionResult Index()
         {
-            var s = context.DonHangs.Where(x => x.DonHangId == 11).FirstOrDefault();
-            ViewData["Image"] = s.Email;
-            ViewData["Name"] = s.NgayDatHang?.ToString("dd/M/yyyy");
+            //var s = context.DonHangs.Where(x => x.DonHangId == 11).FirstOrDefault();
+            //ViewData["Image"] = s.Email;
+            //ViewData["Name"] = s.NgayDatHang?.ToString("dd/M/yyyy");
             return View();
         }
 
@@ -37,6 +37,23 @@ namespace PTStore.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult Productbytype()
+        {
+            return View();
+        }
+        public IActionResult Detail()
+        {
+            return View();
+        }
+        public IActionResult Cart()
+        {
+            return View();
         }
     }
 }
