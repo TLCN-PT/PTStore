@@ -22,8 +22,17 @@ namespace PTStore.Areas.Admin.Controllers
         // GET: Admin/AccountAdmin
         public async Task<IActionResult> Index()
         {
-            var pTStoreContext = _context.Accounts.Include(a => a.User);
-            return View(await pTStoreContext.ToListAsync());
+            var pTStoreContext = _context.Accounts.Include(a => a.Users).ThenInclude(a=>a.UserRoles);
+            var query = (from acc in _context.Accounts
+                         join usr in _context.UserRoles
+             on acc.AccountId equals usr.UserId
+                         where usr.RoleId == 1
+                         select acc);
+            //into grouping;
+            //            select new { acc, acc.User, usr = grouping.Where(x => x.RoleId == 1).ToList() };
+            //List<Account> accounts = query;
+            //return View(query);
+            return View(await query.ToListAsync());
         }
 
         // GET: Admin/AccountAdmin/Details/5
