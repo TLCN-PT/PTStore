@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
-@model PTStore.Models.ThuongHieu
+@model PTStore.Models.Subcriber
 
 @{
     ViewData["Title"] = "Edit";
@@ -9,22 +9,22 @@
 
 <h2>Edit</h2>
 
-<h4>ThuongHieu</h4>
+<h4>Subcriber</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="ThuongHieuId" />
+            <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="TenThuongHieu" class="control-label"></label>
-                <input asp-for="TenThuongHieu" class="form-control" />
-                <span asp-validation-for="TenThuongHieu" class="text-danger"></span>
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HinhAnhThuongHieu" class="control-label"></label>
-                <input asp-for="HinhAnhThuongHieu" class="form-control" />
-                <span asp-validation-for="HinhAnhThuongHieu" class="text-danger"></span>
+                <label asp-for="TrangThai" class="control-label"></label>
+                <input asp-for="TrangThai" class="form-control" />
+                <span asp-validation-for="TrangThai" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />

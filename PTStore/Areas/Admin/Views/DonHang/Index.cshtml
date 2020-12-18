@@ -1,0 +1,109 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model IEnumerable<PTStore.Models.DonHang>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MaDonHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenNguoiNhan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaChi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SoDienThoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDatHang)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NgayDuKienGiao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HinhThucThanhToan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrangTrai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaDonHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoDienThoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDatHang)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgayDuKienGiao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HinhThucThanhToan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangTrai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.UserId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.DonHangId">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.DonHangId">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.DonHangId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $(document).ready(function () {
+        document.getElementById("ahome").className = "";
+        document.getElementById("abieudo").className = "";
+        document.getElementById("adienthoai").className = "";
+        document.getElementById("adonhang").className = "active";
+        document.getElementById("agopy").className = "";
+        document.getElementById("athuonghieu").className = "";
+
+        document.getElementById("ataikhoan").className = "";
+        document.getElementById("asubcriber").className = "";
+        document.getElementById("aadmin").className = "";
+        document.getElementById("acustomer").className = "";
+
+    });
+</script>
