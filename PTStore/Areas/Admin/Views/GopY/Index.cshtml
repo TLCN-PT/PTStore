@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
-@model IEnumerable<PTStore.Models.ThuongHieu>
+@model IEnumerable<PTStore.Models.GopY>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,10 +16,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TenThuongHieu)
+                @Html.DisplayNameFor(model => model.Email)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HinhAnhThuongHieu)
+                @Html.DisplayNameFor(model => model.SoDienThoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChuDe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NoiDung)
             </th>
             <th></th>
         </tr>
@@ -29,15 +35,21 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TenThuongHieu)
+                    @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.HinhAnhThuongHieu)
+                    @Html.DisplayFor(modelItem => item.SoDienThoai)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ThuongHieuId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ThuongHieuId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ThuongHieuId">Delete</a>
+                    @Html.DisplayFor(modelItem => item.ChuDe)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NoiDung)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                 </td>
             </tr>
         }
@@ -49,8 +61,8 @@
         document.getElementById("abieudo").className = "";
         document.getElementById("adienthoai").className = "";
         document.getElementById("adonhang").className = "";
-        document.getElementById("agopy").className = "";
-        document.getElementById("athuonghieu").className = "active";
+        document.getElementById("agopy").className = "active";
+        document.getElementById("athuonghieu").className = "";
 
         document.getElementById("ataikhoan").className = "";
         document.getElementById("asubcriber").className = "";

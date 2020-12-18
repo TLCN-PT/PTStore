@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
-@model PTStore.Models.ThuongHieu
+@model PTStore.Models.Subcriber
 
 @{
     ViewData["Title"] = "Delete";
@@ -11,25 +11,25 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>ThuongHieu</h4>
+    <h4>Subcriber</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TenThuongHieu)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.TenThuongHieu)
+            @Html.DisplayFor(model => model.Email)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.HinhAnhThuongHieu)
+            @Html.DisplayNameFor(model => model.TrangThai)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.HinhAnhThuongHieu)
+            @Html.DisplayFor(model => model.TrangThai)
         </dd>
     </dl>
 
     <form asp-action="Delete">
-        <input type="hidden" asp-for="ThuongHieuId" />
+        <input type="hidden" asp-for="Id" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
         <a asp-action="Index">Back to List</a>
     </form>

@@ -66,45 +66,28 @@
         <!-- LEFT SIDEBAR -->
         <div id="sidebar-nav" class="sidebar">
             <div class="sidebar-scroll">
-                <nav id="navhighlight">
-                    <ul class="nav">
-                        <li><a asp-area="Admin" asp-controller="Home" asp-action="Index" class="customLi active"><i class="lnr lnr-home"></i> <span>Trang chủ</span></a></li>
-                        <li><a href="#" class="customLi "><i class="lnr lnr-chart-bars"></i> <span>Biểu đồ</span></a></li>
-                        <li><a asp-area="Admin" asp-controller="ThuongHieu" asp-action="Index" class="customLi "><i class="lnr lnr-menu"></i> <span>Thương hiệu</span></a></li>
-                        <li><a asp-area="Admin" asp-controller="DienThoais" asp-action="Index" class="customLi "><i class="lnr lnr-smartphone"></i> <span>Điện thoại</span></a></li>
-                        <li><a href="#" class="customLi"><i class="lnr lnr-store"></i> <span>Đơn hàng</span></a></li>
+                <nav>
+                    <ul class="nav" id="navhighlight">
+                        <li><a id="ahome" asp-area="Admin" asp-controller="Home" asp-action="Index" class="active"><i class="lnr lnr-home"></i> <span>Trang chủ</span></a></li>
+                        <li><a id="abieudo" href="#" class=""><i class="lnr lnr-chart-bars"></i> <span>Biểu đồ</span></a></li>
+                        <li><a id="athuonghieu" asp-area="Admin" asp-controller="ThuongHieu" asp-action="Index" class=""><i class="lnr lnr-menu"></i> <span>Thương hiệu</span></a></li>
+                        <li><a id="adienthoai" asp-area="Admin" asp-controller="DienThoai" asp-action="Index" class=""><i class="lnr lnr-smartphone"></i> <span>Điện thoại</span></a></li>
+                        <li><a id="adonhang" asp-area="Admin" asp-controller="DonHang" asp-action="Index" class=""><i class="lnr lnr-store"></i> <span>Đơn hàng</span></a></li>
                         <li>
-                            <a href="#drr" data-toggle="collapse" class="collapsed"><i class="customLi lnr lnr-file-empty"></i> <span>Tài khoản</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
-                            <div id="drr" class="collapse ">
+                            <a id="ataikhoan" href="#dr" data-toggle="collapse" class="collapsed"><i class="customLi lnr lnr-file-empty "></i> <span>Tài khoản</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+                            <div id="dr" class="collapse ">
                                 <ul class="nav">
-                                    <li><a href="#" class="">Admin</a></li>
-                                    <li><a href="#" class="">Customer</a></li>
-                                    <li><a href="#" class="">Subcribers</a></li>
+                                    <li><a id="aadmin" asp-area="Admin" asp-controller="AccountAdmin" asp-action="Index" class="">Admin</a></li>
+                                    <li><a id="acustomer" href="#" class="">Customer</a></li>
+                                    <li><a id="asubcriber" asp-area="Admin" asp-controller="Subcriber" asp-action="Index" class="">Subcribers</a></li>
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="#" class=""><i class="lnr lnr-bookmark"></i> <span>Góp ý</span></a></li>
+                        <li><a id="agopy" asp-area="Admin" asp-controller="GopY" asp-action="Index" class=""><i class="lnr lnr-bookmark"></i> <span>Góp ý</span></a></li>
                     </ul>
                 </nav>
             </div>
         </div>
-        <style>
-            .customLi {
-
-            }
-        </style>
-        <script>
-            // Add active class to the current button (highlight it)
-            var header = document.getElementById("navhighlight");
-            var btns = header.getElementsByClassName("customLi");
-            for (var i = 0; i < btns.length; i++) {
-                btns[i].addEventListener("click", function () {
-                    var current = document.getElementsByClassName("active");
-                    current[0].className = current[0].className.replace(" active", "");
-                    this.className += " active";
-                });
-            }
-        </script>
         <!-- END LEFT SIDEBAR -->
         <!-- MAIN -->
         <div class="main">
