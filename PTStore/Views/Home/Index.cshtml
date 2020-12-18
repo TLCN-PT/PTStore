@@ -1,9 +1,354 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p style="color:purple">@ViewData["Name"]</p>
-    <img src=@ViewData["Image"] alt="dienthoai" />
+<div>
+    <section style="margin-top:2%">
+        <!--slider-->
+        <div class="container" style="background-color:white">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div id="slider-carousel" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-target="#slider-carousel" data-slide-to="0" class=""></li>
+                            <li data-target="#slider-carousel" data-slide-to="1" class="active"></li>
+                            <li data-target="#slider-carousel" data-slide-to="2" class=""></li>
+                        </ol>
+
+                        <div class="carousel-inner">
+                            <div class="item">
+                                <img src="https://didongviet.vn/blog/wp-content/uploads/2019/05/oneplus-7-va-oneplus-7-pro-xuat-hien-anh-quang-cao-didongviet.jpg" class="girl img-responsive" alt="">
+                            </div>
+                            <div class="item active">
+                                <div class="col-sm-6">
+                                    <h1><span>PT</span>-STORE</h1>
+                                    <h2>100% Điện thoại chính hãng</h2>
+                                    <p>Đến với PTStore bạn sẽ có được sản phẩm chất lượng, giá cả hợp lý và dịch vụ bảo hành trọn gói</p>
+                                    <button type="button" class="btn btn-default get">Mua ngay</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="https://image.nghenhinvietnam.vn/Uploaded/CTV/2018_12_13/Huawei_dang_hinh_anh_quang_cao_Nova_4_voi_mau_gradient_do_tim_Minh_Duc_VVYQ.png" alt="">
+
+                                </div>
+                            </div>
+
+                            <div class="item">
+                                <div class="col-sm-6">
+                                    <h1><span>PT</span>-STORE</h1>
+                                    <h2>Miễn phí ship toàn quốc</h2>
+                                    <p>Đến với PTStore bạn sẽ có được sản phẩm chất lượng, giá cả hợp lý và dịch vụ bảo hành trọn gói</p>
+                                    <button type="button" class="btn btn-default get">Mua ngày</button>
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="https://image.nghenhinvietnam.vn/Uploaded/CTV/2018_12_13/Huawei_dang_hinh_anh_quang_cao_Nova_4_voi_mau_gradient_do_tim_Minh_Duc_VVYQ.png" alt="">
+                                    @*<img src="./index_files/pricing.png" class="pricing" alt="">*@
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="left control-carousel hidden-xs" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a href="#" class="right control-carousel hidden-xs" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    @* hiển thị thương hiệu *@
+    <section style="margin-top:2%">
+        <div class="container" style="background-color:white">
+            <div class="row">
+                <div class="col-sm-12 padding-right">
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="80" data-name="iphone (apple)" class=""><img src="//cdn.tgdd.vn/Brand/1/iPhone-(Apple)42-b_52.jpg" class="thuonghieuimg"></a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="2" data-name="samsung" class=" "><img src="//cdn.tgdd.vn/Brand/1/Samsung42-b_25.jpg" class="thuonghieuimg"></a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="1971" data-name="oppo" class=" "><img src="//cdn.tgdd.vn/Brand/1/OPPO42-b_5.jpg" class="thuonghieuimg"></a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="2235" data-name="xiaomi" class=" "><img src="//cdn.tgdd.vn/Brand/1/Xiaomi42-b_45.jpg" class="thuonghieuimg"></a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="2236" data-name="vivo" class=" "><img src="//cdn.tgdd.vn/Brand/1/Vivo42-b_50.jpg" class="thuonghieuimg"></a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="17201" data-name="realme" class=" "><img src="//cdn.tgdd.vn/Brand/1/Realme42-b_37.png" class="thuonghieuimg"></a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="17566" data-name="vsmart" class=" "><img src="//cdn.tgdd.vn/Brand/1/Vsmart42-b_40.png" class="thuonghieuimg"></a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="1" data-name="nokia" class=""><img src="//cdn.tgdd.vn/Brand/1/Nokia42-b_21.jpg" style="width:184px;height:38px"></a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="104" data-name="huawei" class=""><img src="//cdn.tgdd.vn/Brand/1/Huawei42-b_30.jpg" style="width:184px;height:38px"></a>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="/Home/Productbytype" data-id="19" data-name="mobell" class=""><img src="//cdn.tgdd.vn/Brand/1/Mobell42-b_19.jpg" style="width:184px;height:38px"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @*các sản phẩm gần đây *@
+    <section style="background-color:#f0f0e9 ; margin-top:3%">
+        <div class="container" style="background-color:white">
+            <div class="row">
+                <div class="col-sm-12 padding-right">
+                    <div class="features_items">
+                        <!--features_items-->
+                        <h2 class="title text-center" style="margin-top:2%">SẢN PHẨM RA MẮT GẦN ĐÂY</h2>
+                        <div class="col-sm-3">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="">
+                                        <h2>Giá</h2>
+                                        <p>Tên điện thoại</p>
+
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>Giá</h2>
+                                            <p>Tên Điện Thoại</p>
+                                            <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                            <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div><!--features_items-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @* cac điện thoại đề xuất *@
+    <section style="background-color:#f0f0e9 ; margin-top:3%">
+        <div class="container" style="background-color:white">
+            <div class="row">
+                <div class="col-sm-12 padding-right">
+                    <div class="recommended_items" style="margin-top:3%">
+                        <h2 class="title text-center">CÁC ĐIỆN THOẠI ĐỀ XUẤT</h2>
+                        <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @*lấy cả 2 class nha :)))*@
+                                <div class="item">
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="">
+                                                    <h2>Giá</h2>
+                                                    <p>Tên điện thoại</p>
+
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>Giá</h2>
+                                                        <p>Tên Điện Thoại</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="">
+                                                    <h2>Giá</h2>
+                                                    <p>Tên điện thoại</p>
+
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>Giá</h2>
+                                                        <p>Tên Điện Thoại</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="">
+                                                    <h2>Giá</h2>
+                                                    <p>Tên điện thoại</p>
+
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>Giá</h2>
+                                                        <p>Tên Điện Thoại</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="">
+                                                    <h2>Giá</h2>
+                                                    <p>Tên điện thoại</p>
+
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>Giá</h2>
+                                                        <p>Tên Điện Thoại</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item active">
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="">
+                                                    <h2>Giá</h2>
+                                                    <p>Tên điện thoại</p>
+
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>Giá</h2>
+                                                        <p>Tên Điện Thoại</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="">
+                                                    <h2>Giá</h2>
+                                                    <p>Tên điện thoại</p>
+
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>Giá</h2>
+                                                        <p>Tên Điện Thoại</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="">
+                                                    <h2>Giá</h2>
+                                                    <p>Tên điện thoại</p>
+
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>Giá</h2>
+                                                        <p>Tên Điện Thoại</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="https://cdn.tgdd.vn/Products/Images/42/228453/vivo-v20-600-xanh-hong-2-600x600.jpg" alt="">
+                                                    <h2>Giá</h2>
+                                                    <p>Tên điện thoại</p>
+
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>Giá</h2>
+                                                        <p>Tên Điện Thoại</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="left recommended-item-control" href="/Home/Index#recommended-item-carousel" data-slide="prev">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                            <a class="right recommended-item-control" href="/Home/Index#recommended-item-carousel" data-slide="next">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
 </div>
+
+<style>
+    .khungthuonghieu {
+        border: 1px solid #eee;
+    }
+
+    .thuonghieuimg {
+        width: auto;
+        height: 38px;
+    }
+</style>
+

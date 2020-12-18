@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Contact";
+    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+}
+
+<section style="margin-top:3%">
+    <div id="contact-page" class="container" style="background-color:white">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-8" style="background-color:white">
+                    <div class="contact-form">
+                        <h2 class="title text-center">Góp Ý</h2>
+                        <div class="status alert alert-success" style="display: none"></div>
+                        <form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
+                            <div class="form-group col-md-6">
+                                <input type="text" name="name" class="form-control" required="required" placeholder="Tên khách hàng">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <input type="text" name="phone" class="form-control" required="required" placeholder="Số điện thoại">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <input type="text" name="subject" class="form-control" required="required" placeholder="Chủ đề">
+                            </div>
+                            <div class="form-group col-md-12">
+                                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Để lại lời nhắn của bạn ở đây"></textarea>
+                            </div>
+                            <div class="form-group col-md-12" style="margin-top:2%">
+                                <input type="submit" name="submit" class="btn btn-primary pull-right" style="width:100px" value="Gửi">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="contact-info">
+                        <h2 class="title text-center">Thông tin của chúng tôi</h2>
+                        <address>
+                            <p>Cửa Hàng Điện Thoại PT</p>
+                            <p>Số 1 Võ Văn Ngân phường Linh Chiểu quận Thủ Đức TPHCM</p>
+                            <p>SĐT: 0858679912</p>
+                            <p>Email: thuytienpn106@gmail.com</p>
+                            <p>Thời gian hoạt động: 8:00AM - 10:00PM</p>
+                        </address>
+                        <div class="social-networks">
+                            <h2 class="title text-center">Theo dõi chúng tôi</h2>
+                            <ul>
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
