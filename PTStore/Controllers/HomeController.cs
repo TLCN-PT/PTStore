@@ -13,6 +13,8 @@ namespace PTStore.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+        private readonly PTStoreContext context = new PTStoreContext();
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -20,6 +22,9 @@ namespace PTStore.Controllers
 
         public IActionResult Index()
         {
+            var s = context.DonHangs.Where(x => x.DonHangId == 11).FirstOrDefault();
+            ViewData["Image"] = s.Email;
+            ViewData["Name"] = s.NgayDatHang?.ToString("dd/M/yyyy");
             return View();
         }
 
