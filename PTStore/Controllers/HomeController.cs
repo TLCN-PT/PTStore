@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using PTStore.Common.ViewModels;
 using PTStore.Models;
 using System;
 using System.Collections.Generic;
@@ -13,7 +15,7 @@ namespace PTStore.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        private readonly PTStoreContext context = new PTStoreContext();
+        private readonly PTStoreContext _context = new PTStoreContext();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -53,6 +55,27 @@ namespace PTStore.Controllers
         }
         public IActionResult Cart()
         {
+            return View();
+        }
+
+        public IActionResult Login(LoginViewModel acc)
+        {
+            if (ModelState.IsValid)
+            {
+                var query = _context.Accounts.Where(s => s.TenDangNhap == acc.TenDangNhap).FirstOrDefault();
+                if (query != null)
+                {
+                    if(acc.MatKhau == query.MatKhau)
+                    {
+                        var role = _context.UserRoles.Where(x => x.UserId == query.UserId && x.RoleId==2);
+                        if(query!=null)
+                        {
+                            ViewData["MUser"] = _context.Users.Where(x => x.UserId == query.UserId).FirstOrDefault();
+                            return Redirect("/Customer");
+                        }
+                    }
+                }
+            }
             return View();
         }
     }

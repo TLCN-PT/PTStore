@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model PTStore.Common.ViewModels.LoginViewModel
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -58,12 +61,12 @@
             <!--header-middle-->
             <div class="container">
                 <div class="row">
-                    <div class="col-md-1 clearfix">
+                    <div class="col-md-2 clearfix">
                         <div class="logo pull-left">
                             <a asp-controller="Home" asp-action="Index"><img src="/Common/logo-ptstore.png" alt="PT Store logo" width="162"></a>
                         </div>
                     </div>
-                    <div class="col-md-7 clearfix">
+                    <div class="col-md-6 clearfix">
                         <nav class="navbar navbar-light bg-light">
                             <div class="container-fluid">
                                 <form class="d-inline pull-right">
@@ -86,7 +89,8 @@
                             .customLi {
                             }
                         </style>
-                        <script>// Add active class to the current button (highlight it)
+                        @*<script>
+    // Add active class to the current button (highlight it)
                             var header = document.getElementById("ulhighlight");
                             var btns = header.getElementsByClassName("customLi");
                             for (var i = 0; i < btns.length; i++) {
@@ -95,7 +99,7 @@
                                     current[0].className = current[0].className.replace(" active", "");
                                     this.className += " active";
                                 });
-                            }</script>
+                            }</script>*@
                     </div>
                 </div>
             </div>
@@ -145,7 +149,7 @@
     <div style="background-color:#F0F0E9">
         @RenderBody()
     </div>
-    <footer id="footer" style="background-color:white; margin-top:3%">
+    <footer id="footer" style="background-color:white; margin-top:2%">
         <div class="footer-widget" style="margin-bottom:0%">
             <div class="container">
                 <div class="row">
@@ -308,14 +312,14 @@
                                     <div class="login-form ">
                                         <!--login form-->
                                         <h2 class="col-sm-offset-5" style="color:#fe980f ; font-weight:500 ; font-size:20px">Đăng Nhập</h2>
-                                        <form action="#">
+                                        <form asp-controller="Home" asp-action="Login" method="post">
                                             <div class="mb-3">
                                                 <label class="form-label">Tên Đăng Nhập</label>
-                                                <input type="text" class="form-control" id="inputUsername">
+                                                <input type="text" class="form-control" asp-for="TenDangNhap" id="inputUsername">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Mật khẩu</label>
-                                                <input type="password" class="form-control" id="inputPassword">
+                                                <input type="password" class="form-control" asp-for="MatKhau" id="inputPassword">
                                             </div>
                                             <button type="submit" class="btn btn-default col-sm-offset-5">Đăng Nhập</button>
                                             <div class="card-footer" style="margin-top:5%">

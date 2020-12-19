@@ -1,4 +1,5 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_LayoutGuest.cshtml";
@@ -19,7 +20,7 @@
 
                         <div class="carousel-inner">
                             <div class="item">
-                                <img src="https://didongviet.vn/blog/wp-content/uploads/2019/05/oneplus-7-va-oneplus-7-pro-xuat-hien-anh-quang-cao-didongviet.jpg" class="girl img-responsive" alt="">
+                                <img src="https://didongviet.vn/blog/wp-content/uploads/2019/05/oneplus-7-va-oneplus-7-pro-xuat-hien-anh-quang-cao-didongviet.jpg" class="girl img-responsive" alt="" style="height:82.68%; width:82.68%">
                             </div>
                             <div class="item active">
                                 <div class="col-sm-6">
@@ -64,7 +65,7 @@
         <div class="container" style="background-color:white">
             <div class="row">
                 <div class="col-sm-12 padding-right">
-                    <div class="col-sm-2">
+                    <div class="col-sm-2 border border-dark">
                         <a href="/Home/Productbytype" data-id="80" data-name="iphone (apple)" class=""><img src="//cdn.tgdd.vn/Brand/1/iPhone-(Apple)42-b_52.jpg" class="thuonghieuimg"></a>
                     </div>
                     <div class="col-sm-2">
@@ -86,13 +87,13 @@
                         <a href="/Home/Productbytype" data-id="17566" data-name="vsmart" class=" "><img src="//cdn.tgdd.vn/Brand/1/Vsmart42-b_40.png" class="thuonghieuimg"></a>
                     </div>
                     <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="1" data-name="nokia" class=""><img src="//cdn.tgdd.vn/Brand/1/Nokia42-b_21.jpg" style="width:184px;height:38px"></a>
+                        <a href="/Home/Productbytype" data-id="1" data-name="nokia" class=""><img src="//cdn.tgdd.vn/Brand/1/Nokia42-b_21.jpg" class="thuonghieuimg"></a>
                     </div>
                     <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="104" data-name="huawei" class=""><img src="//cdn.tgdd.vn/Brand/1/Huawei42-b_30.jpg" style="width:184px;height:38px"></a>
+                        <a href="/Home/Productbytype" data-id="104" data-name="huawei" class=""><img src="//cdn.tgdd.vn/Brand/1/Huawei42-b_30.jpg" class="thuonghieuimg"></a>
                     </div>
                     <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="19" data-name="mobell" class=""><img src="//cdn.tgdd.vn/Brand/1/Mobell42-b_19.jpg" style="width:184px;height:38px"></a>
+                        <a href="/Home/Productbytype" data-id="19" data-name="mobell" class=""><img src="//cdn.tgdd.vn/Brand/1/Mobell42-b_19.jpg" class="thuonghieuimg"></a>
                     </div>
                 </div>
             </div>
@@ -100,7 +101,7 @@
     </section>
 
     @*các sản phẩm gần đây *@
-    <section style="background-color:#f0f0e9 ; margin-top:3%">
+    <section style="background-color:#f0f0e9 ; margin-top:2%">
         <div class="container" style="background-color:white">
             <div class="row">
                 <div class="col-sm-12 padding-right">
@@ -136,7 +137,7 @@
     </section>
 
     @* cac điện thoại đề xuất *@
-    <section style="background-color:#f0f0e9 ; margin-top:3%">
+    <section style="background-color:#f0f0e9 ; margin-top:2%">
         <div class="container" style="background-color:white">
             <div class="row">
                 <div class="col-sm-12 padding-right">
