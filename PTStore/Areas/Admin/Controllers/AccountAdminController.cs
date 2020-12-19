@@ -22,7 +22,7 @@ namespace PTStore.Areas.Admin.Controllers
         // GET: Admin/AccountAdmin
         public async Task<IActionResult> Index()
         {
-            var pTStoreContext = _context.Accounts.Include(a => a.Users).ThenInclude(a=>a.UserRoles);
+            //var pTStoreContext = _context.Accounts.Include(a => a.Users).ThenInclude(a=>a.UserRoles);
             var query = (from acc in _context.Accounts
                          join usr in _context.UserRoles
              on acc.AccountId equals usr.UserId
