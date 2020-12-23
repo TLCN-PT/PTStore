@@ -1,9 +1,16 @@
-﻿
+﻿@using PTStore.Models;
+@using Microsoft.AspNetCore.Http;
 @{
     ViewData["Title"] = "Account";
     Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
 }
 
+@{ 
+    PTStoreContext context = new PTStoreContext();
+    string id = Context.Session.GetString("UserId");
+    int userid = int.Parse(id);
+    User name = context.Users.Where(x => x.UserId == userid).FirstOrDefault();
+}
 <div class="container" style="background-color:white; margin-top:3%">
     <div class="row">
         <div class="col-sm-3 " style="background-color:white; text-align:center">
@@ -15,7 +22,7 @@
                         </div>
                         <div class="col-sm-8">
                             <h5>Tài khoản của</h5>
-                            <strong style="">Phan Tiên</strong>
+                            <strong style="">@name.HoVaTen</strong>
                         </div>
                     </div>
                 </li>
@@ -35,19 +42,19 @@
                             <form action="#">
                                 <div class="mb-3">
                                     <label class="form-label">Họ và Tên</label>
-                                    <input type="text" class="form-control" id="inputName">
+                                    <input type="text" value="@name.HoVaTen" class="form-control" id="inputName">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="inputEmail" readonly>
+                                    <input type="email" value="@name.Email" class="form-control" id="inputEmail" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Số điện thoại</label>
-                                    <input type="text" class="form-control" id="inputPhone" readonly>
+                                    <input type="text" value="@name.SoDienThoai" class="form-control" id="inputPhone" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Ngày sinh</label>
-                                    <input type="date" class="form-control" id="inputBirthdate">
+                                    <input value="@name.NgaySinh?.ToString("dd/M/yyyy")" type="date" class="form-control" id="inputBirthdate">
                                 </div>
                                 <div class="mb-3" style="margin-top:1%">
                                     <div class="form-check col-sm-4">

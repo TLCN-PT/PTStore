@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
 
 <html lang="en">
 <head>
@@ -53,7 +56,6 @@
                 </div>
             </div>
         </div><!--/header_top-->
-
         <div class="header-middle" style="height:80px; background-color:white">
             <!--header-middle-->
             <div class="container">
@@ -136,9 +138,9 @@
             </div>
         </div><!--/header-bottom-->
     </header><!--/header-->
-
+      
     <div style="background-color:#F0F0E9">
-        @RenderBody()
+        @RenderBody()  
     </div>
 
 

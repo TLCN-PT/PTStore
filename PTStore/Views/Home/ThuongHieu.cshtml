@@ -1,0 +1,12 @@
+﻿@using Microsoft.AspNetCore.Http;
+@{
+    if (Context.Session.GetString("UserId") != null)
+    {
+        Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+    }
+}
+@ViewData["TenThuongHieu"]

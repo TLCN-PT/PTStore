@@ -1,7 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Trang chủ";
     Layout = "~/Views/Shared/_LayoutGuest.cshtml";
 }
 
@@ -60,46 +60,8 @@
             </div>
         </div>
     </section>
-    @* hiển thị thương hiệu *@
-    <section style="margin-top:2%">
-        <div class="container" style="background-color:white">
-            <div class="row">
-                <div class="col-sm-12 padding-right">
-                    <div class="col-sm-2 border border-dark">
-                        <a href="/Home/Productbytype" data-id="80" data-name="iphone (apple)" class=""><img src="//cdn.tgdd.vn/Brand/1/iPhone-(Apple)42-b_52.jpg" class="thuonghieuimg"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="2" data-name="samsung" class=" "><img src="//cdn.tgdd.vn/Brand/1/Samsung42-b_25.jpg" class="thuonghieuimg"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="1971" data-name="oppo" class=" "><img src="//cdn.tgdd.vn/Brand/1/OPPO42-b_5.jpg" class="thuonghieuimg"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="2235" data-name="xiaomi" class=" "><img src="//cdn.tgdd.vn/Brand/1/Xiaomi42-b_45.jpg" class="thuonghieuimg"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="2236" data-name="vivo" class=" "><img src="//cdn.tgdd.vn/Brand/1/Vivo42-b_50.jpg" class="thuonghieuimg"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="17201" data-name="realme" class=" "><img src="//cdn.tgdd.vn/Brand/1/Realme42-b_37.png" class="thuonghieuimg"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="17566" data-name="vsmart" class=" "><img src="//cdn.tgdd.vn/Brand/1/Vsmart42-b_40.png" class="thuonghieuimg"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="1" data-name="nokia" class=""><img src="//cdn.tgdd.vn/Brand/1/Nokia42-b_21.jpg" class="thuonghieuimg"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="104" data-name="huawei" class=""><img src="//cdn.tgdd.vn/Brand/1/Huawei42-b_30.jpg" class="thuonghieuimg"></a>
-                    </div>
-                    <div class="col-sm-2">
-                        <a href="/Home/Productbytype" data-id="19" data-name="mobell" class=""><img src="//cdn.tgdd.vn/Brand/1/Mobell42-b_19.jpg" class="thuonghieuimg"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
+    <div id="ThuongHieuPartial"></div>
     @*các sản phẩm gần đây *@
     <section style="background-color:#f0f0e9 ; margin-top:2%">
         <div class="container" style="background-color:white">
@@ -341,15 +303,25 @@
         </div>
     </section>
 </div>
-
-<style>
-    .khungthuonghieu {
-        border: 1px solid #eee;
+<script>
+    function LoadThuongHieu() {
+        $.ajax({
+            url: "/Home/ThuongHieuPartial",
+            contentType: "application/html; charset=utf-8",
+            type: "GET",
+            cache: !0,
+            dataType: "html",
+            success: function (t) {
+                $("#ThuongHieuPartial").html(t)
+            },
+            error: function () {
+                $("#ThuongHieuPartial").html("Error when loading ThuongHieu")
+            }
+        })
     }
 
-    .thuonghieuimg {
-        width: auto;
-        height: 38px;
-    }
-</style>
+    $(document).ready(function () {
+        LoadThuongHieu();
+    });
+</script>
 
