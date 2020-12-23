@@ -81,9 +81,14 @@ namespace PTStore.Controllers
                             HttpContext.Session.SetString("UserId", query.UserId.ToString());
                             var user = _context.Users.Where(x => x.UserId == query.UserId).FirstOrDefault().HoVaTen.Split(' ');
                             HttpContext.Session.SetString("UserName", user[user.Length - 1]);
-                            return Redirect("/Customer");
+                            return Redirect("/Home");
                         }
                     }
+                    else
+                    {
+                        ViewData["ErrorModel"] = "Tên đăng nhập hoặc mật khẩu không đúng!";
+                        return View();
+                    }    
                 }
                 else
                 {
@@ -93,7 +98,19 @@ namespace PTStore.Controllers
             }
             return View();
         }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return Redirect("/Home");
+        }
+
         public IActionResult Signup()
+        {
+            return View();
+        }
+
+        public IActionResult Account()
         {
             return View();
         }
@@ -120,6 +137,12 @@ namespace PTStore.Controllers
         public IActionResult HeaderMidPartial()
         {
             return PartialView();
+        }
+
+        public IActionResult HeaderBottomPartial()
+        {
+            var qrGetThuongHieu = _context.DienThoais.Include(x => x.ThuongHieu).Where(x => x.SoLuong > 0).Select(x => x.ThuongHieu).OrderBy(x=>x.TenThuongHieu).Distinct();
+            return PartialView(qrGetThuongHieu.ToList());
         }
     }
 }
