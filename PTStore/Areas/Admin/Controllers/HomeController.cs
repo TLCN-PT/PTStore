@@ -10,7 +10,7 @@ namespace PTStore.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        private readonly PTStoreContext _context;
+        //private readonly PTStoreContext _context;
         public IActionResult Index()
         {
             return View();

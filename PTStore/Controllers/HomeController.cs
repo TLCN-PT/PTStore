@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace PTStore.Controllers
 {
@@ -24,8 +25,7 @@ namespace PTStore.Controllers
 
         public IActionResult Index()
         {
-            //var s = context.DonHangs.Where(x => x.DonHangId == 11).FirstOrDefault();
-            //ViewData["Image"] = s.Email;
+            ViewData.Model = _context.ThuongHieus.ToList();
             //ViewData["Name"] = s.NgayDatHang?.ToString("dd/M/yyyy");
             return View();
         }
@@ -58,6 +58,13 @@ namespace PTStore.Controllers
             return View();
         }
 
+        public IActionResult Login()
+        {
+            ViewData["ErrorModel"] = "";
+            return View();
+        }
+
+        [HttpPost]
         public IActionResult Login(LoginViewModel acc)
         {
             if (ModelState.IsValid)
@@ -65,15 +72,23 @@ namespace PTStore.Controllers
                 var query = _context.Accounts.Where(s => s.TenDangNhap == acc.TenDangNhap).FirstOrDefault();
                 if (query != null)
                 {
-                    if(acc.MatKhau == query.MatKhau)
+                    if (acc.MatKhau == query.MatKhau)
                     {
-                        var role = _context.UserRoles.Where(x => x.UserId == query.UserId && x.RoleId==2);
-                        if(query!=null)
+                        var role = _context.UserRoles.Where(x => x.UserId == query.UserId && x.RoleId == 2);
+                        if (query != null)
                         {
                             ViewData["MUser"] = _context.Users.Where(x => x.UserId == query.UserId).FirstOrDefault();
+                            HttpContext.Session.SetString("UserId", query.UserId.ToString());
+                            var user = _context.Users.Where(x => x.UserId == query.UserId).FirstOrDefault().HoVaTen.Split(' ');
+                            HttpContext.Session.SetString("UserName", user[user.Length - 1]);
                             return Redirect("/Customer");
                         }
                     }
+                }
+                else
+                {
+                    ViewData["ErrorModel"] = "Tên đăng nhập hoặc mật khẩu không đúng!";
+                    return View();
                 }
             }
             return View();
@@ -81,6 +96,30 @@ namespace PTStore.Controllers
         public IActionResult Signup()
         {
             return View();
+        }
+
+        public IActionResult ThuongHieu(int id)
+        {
+            ViewData["TenThuongHieu"] = _context.ThuongHieus.Where(x => x.ThuongHieuId == id).First().TenThuongHieu;
+            return View();
+        }
+
+        public IActionResult TatCaDienThoai()
+        {
+            var qrGetDienThoai = _context.DienThoais.ToList();
+            return View(qrGetDienThoai);
+        }
+
+        [HttpGet]
+        public IActionResult ThuongHieuPartial()
+        {
+            var qrGetThuongHieu = _context.ThuongHieus.ToList();
+            return PartialView(qrGetThuongHieu);
+        }
+
+        public IActionResult HeaderMidPartial()
+        {
+            return PartialView();
         }
     }
 }

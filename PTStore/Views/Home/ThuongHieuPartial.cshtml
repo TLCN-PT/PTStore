@@ -1,0 +1,26 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@model List<PTStore.Models.ThuongHieu>
+<section style="margin-top:2%">
+    <div class="container" style="background-color:white">
+        <div class="row">
+            <div class="col-sm-12 padding-right">
+                @{
+                    foreach (var item in Model)
+                    {
+                        <div class="col-sm-2">
+                            <a asp-controller="Home" asp-action="ThuongHieu" asp-route-id="@item.ThuongHieuId"><img src=@item.HinhAnhThuongHieu class="thuonghieuimg" /> </a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .thuonghieuimg {
+        width: auto;
+        height: 38px;
+    }
+</style>

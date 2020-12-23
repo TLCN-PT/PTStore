@@ -1,0 +1,51 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@using Microsoft.AspNetCore.Http;
+<div class="header-middle" style="height:80px; background-color:white">
+    <!--header-middle-->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 clearfix">
+                <div class="logo pull-left">
+                    <a asp-controller="Home" asp-action="Index"><img src="/Common/logo-ptstore.png" alt="PT Store logo" width="162"></a>
+                </div>
+            </div>
+            <div class="col-md-6 clearfix">
+                <nav class="navbar navbar-light bg-light">
+                    <div class="container-fluid">
+                        <form class="d-inline pull-right">
+                            <input class="form-control me-2 col-sm-6" style="width:450px" type="search" placeholder="Nhập nội dung cần tìm kiếm..." aria-label="Search">
+                            <button class="btn btn-outline-success" style="background-color:#fe980f; color:white" type="submit">Tìm Kiếm</button>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            @if (string.IsNullOrEmpty(Context.Session.GetString("UserName")))
+            {
+                <div class="col-md-4 clearfix">
+                    <div class="shop-menu clearfix pull-right">
+                        <ul id="ulhighlight" class="nav navbar-nav">
+                            <li><a asp-controller="Home" asp-action="Cart"><i class="customLi fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+                            <li><a asp-controller="Home" asp-action="Login"><i class="customLi fa fa-sign-in"></i> Đăng Nhập</a></li>
+                            <li><a asp-controller="Home" asp-action="Signup"><i class="customLi fa fa-plus"></i> Đăng Ký</a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            else
+            {
+                string name = Context.Session.GetString("UserName");
+                <div class="col-md-4 clearfix">
+                    <div class="shop-menu clearfix pull-right">
+                        <ul id="ulhighlight" class="nav navbar-nav">
+                            <li><a asp-controller="Home" asp-action="Account"><i class="customLi fa fa-shopping-cart"></i>Xin chào, @name</a></li>
+                            <li><a asp-controller="Home" asp-action="Cart"><i class="customLi fa fa-sign-in"></i>Giỏ hàng</a></li>
+                            <li><a asp-controller="Home" asp-action="Logout"><i class="customLi fa fa-plus"></i> Đăng Xuất</a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

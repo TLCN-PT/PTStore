@@ -1,11 +1,10 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -22,8 +21,10 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="~/images/ico/apple-touch-icon-57-precomposed.png">
+
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-</head><!--/head-->
+</head>
 
 <body style="background-color:#F0F0E9">
     <header id="header">
@@ -51,7 +52,8 @@
                     </div>
                 </div>
             </div>
-        </div><!--/header_top-->
+        </div>
+        <!--/header_top-->
 
         <div class="header-middle" style="height:80px; background-color:white">
             <!--header-middle-->
@@ -71,7 +73,6 @@
                                 </form>
                             </div>
                         </nav>
-
                     </div>
                     <div class="col-md-4 clearfix">
                         <div class="shop-menu clearfix pull-right">
@@ -81,10 +82,6 @@
                                 <li><a asp-controller="Home" asp-action="Signup"><i class="customLi fa fa-plus"></i> Đăng Ký</a></li>
                             </ul>
                         </div>
-                        <style>
-                            .customLi {
-                            }
-                        </style>
                     </div>
                 </div>
             </div>
@@ -194,14 +191,11 @@
             </div>
         </div>
     </footer><!--/Footer-->
-
     <script src="~/Guest/js/jquery.js"></script>
     <script src="~/Guest/js/bootstrap.min.js"></script>
     <script src="~/Guest/js/jquery.scrollUp.min.js"></script>
     <script src="~/Guest/js/price-range.js"></script>
     <script src="~/Guest/js/jquery.prettyPhoto.js"></script>
     <script src="~/Guest/js/main.js"></script>
-
-
 </body>
 </html>

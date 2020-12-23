@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace PTStore.Areas.Customer.Controllers
 {
@@ -11,8 +12,18 @@ namespace PTStore.Areas.Customer.Controllers
     {
         public IActionResult Index()
         {
+            if(string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")))
+            {
+                return Redirect("/Home/Index");
+            }    
             return View();
             
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return Redirect("~/Home");
         }
         public IActionResult Detail()
         {
