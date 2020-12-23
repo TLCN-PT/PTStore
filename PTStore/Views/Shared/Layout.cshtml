@@ -54,78 +54,11 @@
             </div>
         </div>
         <!--/header_top-->
-
-        <div class="header-middle" style="height:80px; background-color:white">
-            <!--header-middle-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-2 clearfix">
-                        <div class="logo pull-left">
-                            <a asp-controller="Home" asp-action="Index"><img src="/Common/logo-ptstore.png" alt="PT Store logo" width="162"></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 clearfix">
-                        <nav class="navbar navbar-light bg-light">
-                            <div class="container-fluid">
-                                <form class="d-inline pull-right">
-                                    <input class="form-control me-2 col-sm-6" style="width:450px" type="search" placeholder="Nhập nội dung cần tìm kiếm..." aria-label="Search">
-                                    <button class="btn btn-outline-success" style="background-color:#fe980f; color:white" type="submit">Tìm Kiếm</button>
-                                </form>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="col-md-4 clearfix">
-                        <div class="shop-menu clearfix pull-right">
-                            <ul id="ulhighlight" class="nav navbar-nav">
-                                <li><a asp-controller="Home" asp-action="Cart"><i class="customLi fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
-                                <li><a asp-controller="Home" asp-action="Login"><i class="customLi fa fa-sign-in"></i> Đăng Nhập</a></li>
-                                <li><a asp-controller="Home" asp-action="Signup"><i class="customLi fa fa-plus"></i> Đăng Ký</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/header-middle-->
-
+        <partial name="HeaderMidPartial" />
+        <!--/header-middle-->
         <div class="header-bottom" style="background-color: #F38A2D; height:55px; padding-bottom:20px; padding-top:20px">
             <!--header-bottom-->
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                        </div>
-                        <div class="mainmenu pull-left">
-                            <ul class="nav navbar-nav collapse navbar-collapse">
-                                <li><a asp-controller="Home" asp-action="Index" style="color:white">Trang chủ</a></li>
-                                <li class="dropdown">
-                                    <a href="#" style="color:white">Cửa hàng<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="#">Tất cả điện thoại</a></li>
-                                        <li><a asp-controller="Home" asp-action="ThuongHieu" asp-route-id="1">Iphone</a></li>
-                                        <li><a href="#">SamSung</a></li>
-                                        <li><a href="#">Xiaomi</a></li>
-                                        <li><a href="#">Vivo</a></li>
-                                        <li><a href="#">Oppo</a></li>
-                                        <li><a href="#">Realme</a></li>
-                                        <li><a href="#">VsMart</a></li>
-                                        <li><a href="#">Nokia</a></li>
-                                        <li><a href="#">Huawei</a></li>
-                                        <li><a href="#">Mobell</a></li>
-                                    </ul>
-                                </li>
-                                <li><a asp-controller="Home" asp-action="Contact" style="color:white">Liên hệ</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            <div id="HeaderBottomPartial"></div>
         </div><!--/header-bottom-->
     </header><!--/header-->
 
@@ -197,5 +130,26 @@
     <script src="~/Guest/js/price-range.js"></script>
     <script src="~/Guest/js/jquery.prettyPhoto.js"></script>
     <script src="~/Guest/js/main.js"></script>
+    <script>
+        function LoadHeaderBottomPartial() {
+            $.ajax({
+                url: "/Home/HeaderBottomPartial",
+                contentType: "application/html; charset=utf-8",
+                type: "GET",
+                cache: !0,
+                dataType: "html",
+                success: function (t) {
+                    $("#HeaderBottomPartial").html(t)
+                },
+                error: function () {
+                    $("#HeaderBottomPartial").html("Error when loading ThuongHieu")
+                }
+            })
+        }
+
+        $(document).ready(function () {
+            LoadHeaderBottomPartial();
+        });
+    </script>
 </body>
 </html>
