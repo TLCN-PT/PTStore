@@ -1,0 +1,15 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container text-center">
+    <div class="content-404" style="margin-top:2%">
+        <img src="~/Common/404.png" style="height:300px;width:300px" class="img-responsive" alt="">
+        <h4><b>XIN LỖI!!!</b> BẠN KHÔNG THỂ TRUY CẬP VÀO TRANG WEB NÀY</h4>
+        <a asp-controller="Home" asp-action="Index" style="background-color:#fe980f; color:white; height:50px; width:150px; margin-top:2%">Quay về trang chủ</a>
+    </div>
+</div>
+

@@ -112,6 +112,10 @@ namespace PTStore.Controllers
 
         public IActionResult Account()
         {
+            if(string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")))
+            {
+                return Redirect("/Home/Error");
+            }
             return View();
         }
 
