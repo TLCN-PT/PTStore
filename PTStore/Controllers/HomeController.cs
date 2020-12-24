@@ -148,5 +148,10 @@ namespace PTStore.Controllers
             var qrGetThuongHieu = _context.DienThoais.Include(x => x.ThuongHieu).Where(x => x.SoLuong > 0).Select(x => x.ThuongHieu).OrderBy(x=>x.TenThuongHieu).Distinct();
             return PartialView(qrGetThuongHieu.ToList());
         }
+
+        public IActionResult ErrorMessage()
+        {
+            return View();
+        }
     }
 }
