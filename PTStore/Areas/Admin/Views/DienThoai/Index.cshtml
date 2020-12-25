@@ -7,37 +7,37 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2 style="color:#337ab7">Quản lý điện thoại</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-default" asp-action="Create" style="background-color: #337ab7; color:white; margin-top:1%; border-color:#337ab7">Thêm điện thoại</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                Tên điện thoại
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TinhTrang)
+                Tình trạng điện thoại
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HinhAnh)
+                Hình ảnh
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Gia)
+                Giá đang kinh doanh
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.GiaGoc)
+                Giá gốc
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SoLuong)
+                Số lượng còn
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ThongSoKyThuat)
+                Thông số kỹ thuật
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ThuongHieu)
+                Thương Hiệu
             </th>
             <th></th>
         </tr>
@@ -71,9 +71,9 @@
                     @Html.DisplayFor(modelItem => item.ThuongHieu.TenThuongHieu)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.DienThoaiId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.DienThoaiId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.DienThoaiId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.DienThoaiId">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.DienThoaiId">Chi tiết</a> |
+                    <a asp-action="Delete" asp-route-id="@item.DienThoaiId">Xóa</a>
                 </td>
             </tr>
         }

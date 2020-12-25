@@ -23,7 +23,7 @@
         </div>
     </div>
 </section>
-<a asp-action="DienThoai" asp-route-sortOrder="@ViewData["sortOrderGiam"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default" style="background-color: #fe980f; color:white; font-size:16px; height: 40px;">Giá cao xuống thấp</a>
+<a asp-action="DienThoai" asp-route-sortOrder="@ViewData["sortOrderGiam"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default pull-right" style="background-color: #fe980f; color:white; font-size:16px; height: 40px;">Giá cao xuống thấp</a>
 <a asp-action="DienThoai" asp-route-sortOrder="@ViewData["sortOrderTang"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default" style="background-color: #fe980f; color:white; font-size:16px; height: 40px;">Giá thấp tới cao</a>
 <div class="container" style="background-color:white; margin-top:2%">
     @{
@@ -40,14 +40,14 @@
                                     <div class="single-products">
                                         <div class="productinfo text-center">
                                             <img src="@Model.lstDienThoai[s].HinhAnh" alt="@Model.lstDienThoai[s].Name">
-                                            <h2>@Model.lstDienThoai[s].Gia</h2>
-                                            <p>@Model.lstDienThoai[s].Name</p>
+                                            <h2 style="font-size:20px">@Model.lstDienThoai[s].Gia</h2>
+                                            <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
 
                                         </div>
                                         <div class="product-overlay">
                                             <div class="overlay-content">
-                                                <h2>Giá</h2>
-                                                <p>@Model.lstDienThoai[s].Name</p>
+                                                <h2 style="font-size:20px">Giá</h2>
+                                                <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
                                                 <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
                                                 <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
 
