@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-@{ 
+@{
     PTStoreContext context = new PTStoreContext();
     string id = Context.Session.GetString("UserId");
     int userid = int.Parse(id);
@@ -85,8 +85,40 @@
                                 </div>
                                 <div style="margin-top:3%">
                                     <button type="submit" class="btn btn-default pull-left" style="background-color: #fe980f; color: white; height:40px">Cập nhật tài khoản</button>
-                                    <button type="submit" class="btn btn-default pull-right" style="background-color: #fe980f; color: white; height:40px">Đổi mật khẩu</button>
+                                    <button data-toggle="modal" data-target="#changepassword" type="submit" class="btn btn-default pull-right" style="background-color: #fe980f; color: white; height:40px">Đổi mật khẩu</button>
                                 </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal đổi mật khẩu -->
+<div class="modal fade" id="changepassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-body" style="width:1500px">
+            <div class="container-fluid" style="margin-bottom: 2%">
+                <div class="row">
+                    <div class="col-sm-4" style="background-color:white; margin-top:2%; height:350px">
+                        <div class="changepassword-form">
+                            <h3 style="color:#fe980f; text-align:center">Đổi mật khẩu</h3>
+                            <form asp-action="ChangePassword" asp-controller="Home">
+                                <div class="mb-3" style="margin-top:3%">
+                                    <label class="form-label">Nhập mật khẩu cũ</label>
+                                    <input name="oldpassword" type="password" class="form-control" id="inputoldpassword">
+                                </div>
+                                <div class="mb-3" style="margin-top:3%">
+                                    <label class="form-label">Nhập mật khẩu mới</label>
+                                    <input name="newpassword" type="password" class="form-control" id="inputnewpassword">
+                                </div>
+                                <div class="mb-3" style="margin-top:3%">
+                                    <label class="form-label">Nhập lại mật khẩu mới</label>
+                                    <input name="newpasswordagain" type="password" class="form-control" id="inputnewpasswordagain">
+                                </div>
+                                <button type="submit" class="btn btn-default col-sm-offset-5" style="margin-top:4%; background-color:#fe980f; color:white; height:40px">Đổi mật khẩu</button>
                             </form>
                         </div>
                     </div>

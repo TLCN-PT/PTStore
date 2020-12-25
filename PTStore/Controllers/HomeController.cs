@@ -153,5 +153,18 @@ namespace PTStore.Controllers
         {
             return View();
         }
+        /*public IActionResult ChangePassword(string oldpassword, string newpassword, string newpasswordagain)
+        {
+            string id = HttpContext.Session.GetString("UserId");
+            var query = _context.Accounts.Where(s => s.UserId == int.Parse(id)).FirstOrDefault();
+            if (query != null)
+            {
+                if (oldpassword == query.MatKhau)
+                {
+                    return View();
+                }
+            }
+                    return View();
+        } */
     }
 }
