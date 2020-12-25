@@ -25,7 +25,6 @@ namespace PTStore.Controllers
 
         public IActionResult Index()
         {
-            ViewData.Model = _context.ThuongHieus.ToList();
             //ViewData["Name"] = s.NgayDatHang?.ToString("dd/M/yyyy");
             return View();
         }
@@ -45,14 +44,12 @@ namespace PTStore.Controllers
         {
             return View();
         }
-        public IActionResult Productbytype()
-        {
-            return View();
-        }
+        
         public IActionResult Detail()
         {
             return View();
         }
+
         public IActionResult Cart()
         {
             return View();
@@ -101,8 +98,12 @@ namespace PTStore.Controllers
 
         public IActionResult Logout()
         {
-            HttpContext.Session.Clear();
-            return Redirect("/Home");
+            if (IsCustomerLogged())
+            {
+                HttpContext.Session.Clear();
+                return Redirect("/Home");
+            }
+            return Redirect("/Home/Error");
         }
 
         public IActionResult Signup()
@@ -112,25 +113,104 @@ namespace PTStore.Controllers
 
         public IActionResult Account()
         {
-            if(string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")))
+            if(IsCustomerLogged())
             {
-                return Redirect("/Home/Error");
+                return View();
             }
+            return Redirect("/Home/Error");
+        }
+
+        public IActionResult DienThoai(string sortOrder, int thuonghieuOrder)
+        {
+            if(string.IsNullOrEmpty(sortOrder))
+            {
+                ViewData["sortOrderTang"] = "GiaThapToiCao";
+                ViewData["sortOrderGiam"] = "GiaCaoXuongThap";
+            }    
+            else if(sortOrder == "GiaCaoXuongThap")
+            {
+                ViewData["sortOrderGiam"] = "";
+                ViewData["sortOrderTang"] = "GiaThapToiCao";
+            }
+            else
+            {
+                ViewData["sortOrderTang"] = "";
+                ViewData["sortOrderGiam"] = "GiaCaoXuongThap";
+            }
+            
+            if(thuonghieuOrder>0)
+            {
+                ViewData["thuonghieuOrder"] = thuonghieuOrder;
+            }
+            DienThoaiViewModel dt = new DienThoaiViewModel();
+            switch (sortOrder)
+            {
+                case "GiaCaoXuongThap":
+                    dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).OrderByDescending(s => s.Gia).ToList();
+                    break;
+                case "GiaThapToiCao":
+                    dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).OrderBy(s => s.Gia).ToList();
+                    break;
+                default:
+                    dt.lstDienThoai = dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).OrderBy(s => s.DienThoaiId).ToList();
+                    break;
+            }
+            if(thuonghieuOrder>0)
+            {
+                dt.lstDienThoai = dt.lstDienThoai.FindAll(x => x.ThuongHieuId == thuonghieuOrder);
+            }
+            dt.lstThuongHieu = _context.ThuongHieus.ToList();
+            return View(dt);
+        }
+
+        public IActionResult TatCaDienThoaiPartial(string sortOrder)
+        {
+            var qrGetDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0);
+            switch (sortOrder)
+            {
+                case "giagiamdan":
+                    qrGetDienThoai = qrGetDienThoai.OrderByDescending(s => s.Gia);
+                    break;
+                case "giatangdan":
+                    qrGetDienThoai = qrGetDienThoai.OrderBy(s => s.Gia);
+                    break;
+                default:
+                    qrGetDienThoai = qrGetDienThoai.OrderBy(s => s.DienThoaiId);
+                    break;
+            }
+            return PartialView(qrGetDienThoai.AsNoTracking().ToList());
+        }
+
+        public IActionResult DienThoaiPartial(string sortOrder)
+        {
+            var qrGetDienThoai = _context.DienThoais.Where(x=>x.SoLuong>0);
+            return View(qrGetDienThoai.AsNoTracking().ToList());
+        }
+
+        [HttpGet]
+        public IActionResult ThuongHieu()
+        {
             return View();
         }
 
+        [HttpPost]
         public IActionResult ThuongHieu(int id)
         {
             ViewData["TenThuongHieu"] = _context.ThuongHieus.Where(x => x.ThuongHieuId == id).First().TenThuongHieu;
             return View();
         }
 
-        public IActionResult TatCaDienThoai()
+        // Check session if Customer logged or not
+        public bool IsCustomerLogged()
         {
-            var qrGetDienThoai = _context.DienThoais.ToList();
-            return View(qrGetDienThoai);
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")))
+            {
+                return false;
+            }
+            return true;
         }
 
+        // Layout Partial View
         [HttpGet]
         public IActionResult ThuongHieuPartial()
         {
@@ -149,6 +229,13 @@ namespace PTStore.Controllers
             return PartialView(qrGetThuongHieu.ToList());
         }
 
+        public IActionResult FooterPartial()
+        {
+            var qrGetThuongHieu = _context.DienThoais.Include(x => x.ThuongHieu).Where(x => x.SoLuong > 0).Select(x => x.ThuongHieu).OrderBy(x => x.TenThuongHieu).Distinct();
+            return PartialView(qrGetThuongHieu.ToList());
+        }
+
+        // Error Message
         public IActionResult ErrorMessage()
         {
             return View();

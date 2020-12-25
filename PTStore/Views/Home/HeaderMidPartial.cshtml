@@ -41,11 +41,31 @@
                         <ul id="ulhighlight" class="nav navbar-nav">
                             <li><a asp-controller="Home" asp-action="Account"><i class="fa fa-user"></i>Xin chào, @name</a></li>
                             <li><a asp-controller="Home" asp-action="Cart"><i class="fa fa-shopping-cart"></i>Giỏ hàng</a></li>
-                            <li><a asp-controller="Home" asp-action="Logout"><i class="fa fa-sign-out"></i> Đăng Xuất</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#signout"><i class="fa fa-sign-out"></i> Đăng Xuất</a></li>
                         </ul>
                     </div>
                 </div>
             }
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color:#fe980f">ĐĂNG XUẤT</h4>
+            </div>
+            <div class="modal-body" style="height:50px">
+                <div class="row" style="margin-left:0.5px">
+                    Bạn có thật sự muốn đăng xuất?
+                </div>
+            </div>
+            <div class="modal-footer" style="height:80px">
+                @*<button type="button" class="btn btn-primary">Đăng xuất</button>*@
+                <a class="btn btn-default" asp-controller="Home" asp-action="Logout" style="background-color: #fe980f; color:white; font-size:16px; height: 32px; width: 90px; text-align:center">Đăng xuất</a>
+                @*<button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>*@
+            </div>
         </div>
     </div>
 </div>

@@ -1,12 +1,48 @@
-﻿@using Microsoft.AspNetCore.Http;
-@{
-    if (Context.Session.GetString("UserId") != null)
-    {
-        Layout = "~/Areas/Customer/Views/Shared/_Layout.cshtml";
-    }
-    else
-    {
-        Layout = "~/Views/Shared/_LayoutGuest.cshtml";
-    }
+﻿@{
+    ViewData["Title"] = "Thương Hiệu";
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
-@ViewData["TenThuongHieu"]
+
+<div id="ThuongHieuPartial"></div>
+<button onclick="LoadTatCaDienThoaiPartial()">Giá giảm dần</button>
+<div id="TatCaDienThoaiPartial"></div>
+
+<script>
+    function LoadThuongHieuPartial() {
+        $.ajax({
+            url: "/Home/ThuongHieuPartial",
+            contentType: "application/html; charset=utf-8",
+            type: "GET",
+            cache: !0,
+            dataType: "html",
+            success: function (t) {
+                $("#ThuongHieuPartial").html(t)
+            },
+            error: function () {
+                $("#ThuongHieuPartial").html("Error when loading ThuongHieu")
+            }
+        })
+    }
+
+    function LoadTatCaDienThoaiPartial() {
+        $.ajax({
+            url: "/Home/TatCaDienThoaiPartial",
+            contentType: "application/html; charset=utf-8",
+            type: "GET",
+            cache: !0,
+            dataType: "html",
+            success: function (t) {
+                $("#TatCaDienThoaiPartial").html(t)
+            },
+            error: function () {
+                $("#TatCaDienThoaiPartial").html("Error when loading TatCaDienThoai")
+            }
+        })
+    }
+
+    $(document).ready(function () {
+        LoadThuongHieuPartial();
+        LoadTatCaDienThoaiPartial();
+    })
+</script>
+
