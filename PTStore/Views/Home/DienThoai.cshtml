@@ -1,0 +1,73 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@model PTStore.Common.ViewModels.DienThoaiViewModel
+@{
+    ViewData["Title"] = "DienThoai";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<section style="margin-top:2%">
+    <div class="container" style="background-color:white">
+        <div class="row">
+            <div class="col-sm-12 padding-right">
+                @{
+                    foreach (var item in Model.lstThuongHieu)
+                    {
+                        <div class="col-sm-2">
+                            <a asp-controller="Home" asp-action="DienThoai" asp-route-thuonghieuOrder="@item.ThuongHieuId"><img src=@item.HinhAnhThuongHieu class="thuonghieuimg" /> </a>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<a asp-action="DienThoai" asp-route-sortOrder="@ViewData["sortOrderGiam"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default" style="background-color: #fe980f; color:white; font-size:16px; height: 40px;">Giá cao xuống thấp</a>
+<a asp-action="DienThoai" asp-route-sortOrder="@ViewData["sortOrderTang"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default" style="background-color: #fe980f; color:white; font-size:16px; height: 40px;">Giá thấp tới cao</a>
+<div class="container" style="background-color:white; margin-top:2%">
+    @{
+        int s = 0;
+        for (int j = 0; j < ((Model.lstDienThoai.Count / 4) + 1) && s < Model.lstDienThoai.Count; j++)
+        {
+            <div class="row">
+                <div class="col-sm-12 padding-right">
+                    <div class="features_items">
+                        @for (int k = 0; k < 4 && s < Model.lstDienThoai.Count; k++)
+                        {
+                            <div class="col-sm-3">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
+                                            <img src="@Model.lstDienThoai[s].HinhAnh" alt="@Model.lstDienThoai[s].Name">
+                                            <h2>@Model.lstDienThoai[s].Gia</h2>
+                                            <p>@Model.lstDienThoai[s].Name</p>
+
+                                        </div>
+                                        <div class="product-overlay">
+                                            <div class="overlay-content">
+                                                <h2>Giá</h2>
+                                                <p>@Model.lstDienThoai[s].Name</p>
+                                                <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            s++;
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+<style>
+    .thuonghieuimg {
+        width: auto;
+        height: 38px;
+    }
+</style>
+
