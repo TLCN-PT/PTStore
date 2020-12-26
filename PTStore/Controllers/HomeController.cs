@@ -111,6 +111,18 @@ namespace PTStore.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Signup(SignupViewModel suMd)
+        {
+            if(ModelState.IsValid)
+            {
+                ViewData["ModelError"] = "Nhập đúng";
+            }
+            else
+                ViewData["ModelError"] = "Nhập sai";
+            return View();
+        }
+
         public IActionResult Account()
         {
             if(IsCustomerLogged())
