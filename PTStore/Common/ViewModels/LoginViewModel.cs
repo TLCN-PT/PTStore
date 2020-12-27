@@ -10,7 +10,6 @@ namespace PTStore.Common.ViewModels
     public class LoginViewModel
     {
         [DisplayName("Tên đăng nhập"), Required(ErrorMessage = "Tên đăng nhập không được để trống!")]
-        
         public string TenDangNhap { get; set; }
 
         [DisplayName("Mật khẩu"), Required(ErrorMessage = "Mật khẩu không được để trống!")]
