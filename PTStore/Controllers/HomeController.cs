@@ -74,10 +74,11 @@ namespace PTStore.Controllers
                         var role = _context.UserRoles.Where(x => x.UserId == query.UserId && x.RoleId == 2);
                         if (query != null)
                         {
-                            ViewData["MUser"] = _context.Users.Where(x => x.UserId == query.UserId).FirstOrDefault();
+                            HttpContext.Session.Clear();
                             HttpContext.Session.SetString("UserId", query.UserId.ToString());
                             var user = _context.Users.Where(x => x.UserId == query.UserId).FirstOrDefault().HoVaTen.Split(' ');
                             HttpContext.Session.SetString("UserName", user[user.Length - 1]);
+                            HttpContext.Session.SetString("UserRole", "Customer");
                             return Redirect("/Home");
                         }
                     }
