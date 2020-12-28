@@ -1,0 +1,85 @@
+﻿@model PTStore.Models.ThongSoKyThuat
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ThongSoKyThuat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ManHinh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ManHinh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HeDieuHanh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HeDieuHanh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CameraSau)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CameraSau)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CameraTruoc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CameraTruoc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpu)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cpu)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Ram)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Ram)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BoNhoTrong)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BoNhoTrong)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TheSim)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TheSim)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DungLuongPin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DungLuongPin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayRaMat)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NgayRaMat)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DienThoai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DienThoai.DienThoaiId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ThongSoKyThuatId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

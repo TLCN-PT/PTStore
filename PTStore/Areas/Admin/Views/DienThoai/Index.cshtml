@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
-@model IEnumerable<PTStore.Models.DienThoai>
+@model IEnumerable<PTStore.Common.ViewModels.Admin.DienThoaiIndexViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,9 +8,16 @@
 }
 
 <h2 style="color:#337ab7">Quản lý điện thoại</h2>
-
-<p>
-    <a class="btn btn-default" asp-action="Create" style="background-color: #337ab7; color:white; margin-top:1%; border-color:#337ab7">Thêm điện thoại</a>
+<div class="navbar-form navbar-left" style="padding-top:7px; padding-left:0px">
+    <form class="navbar-form navbar-left">
+        <div class="input-group">
+            <input type="text" value="" class="form-control" placeholder="Nhập nội dung ...">
+            <span class="input-group-btn"><button type="button" class="btn btn-primary">Tìm kiếm</button></span>
+        </div>
+    </form>
+</div>
+<p style="float: right; padding-right: 145px; margin-top: 30px;">
+    <a asp-action="Create">Thêm điện thoại</a>
 </p>
 <table class="table">
     <thead>
@@ -22,10 +29,10 @@
                 Tình trạng điện thoại
             </th>
             <th>
-                Hình ảnh
+                Link Hình ảnh
             </th>
             <th>
-                Giá đang kinh doanh
+                Giá bán
             </th>
             <th>
                 Giá gốc
@@ -34,10 +41,7 @@
                 Số lượng còn
             </th>
             <th>
-                Thông số kỹ thuật
-            </th>
-            <th>
-                Thương Hiệu
+                Tên Thương Hiệu
             </th>
             <th></th>
         </tr>
@@ -47,33 +51,29 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.dienThoai.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TinhTrang)
+                    @Html.DisplayFor(modelItem => item.dienThoai.TinhTrang)
+                </td>
+                <td style="overflow: hidden;">
+                    @Html.DisplayFor(modelItem => item.dienThoai.HinhAnh)
+                </td>
+                <td >
+                    @string.Format("{0:0,0}", item.dienThoai.Gia) VND
+                </td>
+                <td >
+                    @string.Format("{0:0,0}", item.dienThoai.GiaGoc) VND
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.HinhAnh)
+                    @Html.DisplayFor(modelItem => item.dienThoai.SoLuong)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Gia)
+                    @Html.DisplayFor(modelItem => item.TenThuongHieu)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.GiaGoc)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SoLuong)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ThongSoKyThuat.ThongSoKyThuatId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ThuongHieu.TenThuongHieu)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.DienThoaiId">Sửa</a> |
-                    <a asp-action="Details" asp-route-id="@item.DienThoaiId">Chi tiết</a> |
-                    <a asp-action="Delete" asp-route-id="@item.DienThoaiId">Xóa</a>
+                    <a asp-action="Edit" asp-route-id="@item.dienThoai.DienThoaiId">Sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.dienThoai.DienThoaiId">Chi tiết</a>
                 </td>
             </tr>
         }
@@ -94,3 +94,12 @@
         document.getElementById("acustomer").className = "";
     });
 </script>
+<style>
+    .table > thead > tr > th {
+        vertical-align: inherit !important;
+    }
+
+    table {
+        table-layout: fixed;
+    }
+</style>

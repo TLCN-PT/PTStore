@@ -7,63 +7,121 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết điện thoại</h2>
 
 <div>
-    <h4>DienThoai</h4>
+    <h4>Điện thoại</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên điện thoại
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TinhTrang)
+            Tình trạng
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TinhTrang)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.HinhAnh)
+            Link hình ảnh
         </dt>
         <dd>
             @Html.DisplayFor(model => model.HinhAnh)
         </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Gia)
-        </dt>
+        <dt>Hình ảnh</dt>
         <dd>
-            @Html.DisplayFor(model => model.Gia)
+            <img src="@Model.HinhAnh" style="height:100px; width:auto" />
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.GiaGoc)
+            Giá bán
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.GiaGoc)
+            @string.Format("{0:0,0}", Model.Gia) VND
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SoLuong)
+            Giá gốc
+        </dt>
+        <dd>
+            @string.Format("{0:0,0}", Model.GiaGoc) VND
+        </dd>
+        <dt>
+            Số lượng còn
         </dt>
         <dd>
             @Html.DisplayFor(model => model.SoLuong)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ThongSoKyThuat)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ThongSoKyThuat.ThongSoKyThuatId)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.ThuongHieu)
+            Tên thương hiệu
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ThuongHieu.TenThuongHieu)
         </dd>
+        <dt>
+            Màn hình
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThongSoKyThuat.ManHinh)
+        </dd>
+        <dt>
+            Hệ điều hành
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThongSoKyThuat.HeDieuHanh)
+        </dd>
+        <dt>
+            Camera sau
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThongSoKyThuat.CameraSau)
+        </dd>
+        <dt>
+            Camera trước
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThongSoKyThuat.CameraTruoc)
+        </dd>
+        <dt>
+            CPU
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThongSoKyThuat.Cpu)
+        </dd>
+        <dt>
+            RAM
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThongSoKyThuat.Ram)
+        </dd>
+        <dt>
+            Bộ nhớ trong
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThongSoKyThuat.BoNhoTrong)
+        </dd>
+        <dt>
+            Thẻ sim
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThongSoKyThuat.TheSim)
+        </dd>
+        <dt>
+            Dung lượng pin
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ThongSoKyThuat.DungLuongPin)
+        </dd>
+        <dt>
+            Ngày ra mắt
+        </dt>
+        <dd>
+            @Model.ThongSoKyThuat.NgayRaMat?.ToString("dd/M/yyyy")
+        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.DienThoaiId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.DienThoaiId">Sửa</a> |
+    <a asp-action="Index">Quay lại</a>
 </div>
