@@ -7,9 +7,9 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Chỉnh sửa Thương hiệu</h2>
 
-<h4>ThuongHieu</h4>
+<h4>Thương hiệu</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,23 +17,23 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ThuongHieuId" />
             <div class="form-group">
-                <label asp-for="TenThuongHieu" class="control-label"></label>
+                <label class="control-label">Tên thương hiệu</label>
                 <input asp-for="TenThuongHieu" class="form-control" />
                 <span asp-validation-for="TenThuongHieu" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="HinhAnhThuongHieu" class="control-label"></label>
+                <label class="control-label">Link hình ảnh</label>
                 <input asp-for="HinhAnhThuongHieu" class="form-control" />
                 <span asp-validation-for="HinhAnhThuongHieu" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Lưu" class="btn btn-default" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Quay lại</a>
 </div>
 

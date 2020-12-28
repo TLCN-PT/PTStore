@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PTStore.Models;
+using PTStore.Common.ViewModels.Admin;
 
 namespace PTStore.Areas.Admin.Controllers
 {
@@ -20,29 +21,56 @@ namespace PTStore.Areas.Admin.Controllers
         }
 
         // GET: Admin/DienThoai
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var pTStoreContext = _context.DienThoais.Include(d => d.ThongSoKyThuat).Include(d => d.ThuongHieu);
-            return View(await pTStoreContext.ToListAsync());
+            var pTStoreContext = _context.DienThoais.Include(d => d.ThongSoKyThuat).Include(d => d.ThuongHieu).ToList();
+            List<DienThoaiIndexViewModel> lstDt = new List<DienThoaiIndexViewModel>();
+            foreach(var item in pTStoreContext)
+            {
+                DienThoaiIndexViewModel dt = new DienThoaiIndexViewModel();
+                dt.dienThoai = item;
+                if(dt.dienThoai.TinhTrang == "DangKinhDoanh")
+                {
+                    dt.dienThoai.TinhTrang = "Đang kinh doanh";
+                }
+                else
+                {
+                    dt.dienThoai.TinhTrang = "Ngừng kinh doanh";
+                }    
+                dt.TenThuongHieu = _context.ThuongHieus.Where(x => x.ThuongHieuId == item.ThuongHieuId).FirstOrDefault().TenThuongHieu;
+                lstDt.Add(dt);
+            }
+            
+            return View(lstDt);
         }
 
         // GET: Admin/DienThoai/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var dienThoai = await _context.DienThoais
+            var dienThoai = _context.DienThoais
                 .Include(d => d.ThongSoKyThuat)
                 .Include(d => d.ThuongHieu)
-                .FirstOrDefaultAsync(m => m.DienThoaiId == id);
+                .FirstOrDefault(m => m.DienThoaiId == id);
             if (dienThoai == null)
             {
                 return NotFound();
             }
-
+            if (dienThoai.TinhTrang == "DangKinhDoanh")
+            {
+                dienThoai.TinhTrang = "Đang kinh doanh";
+            }
+            else
+                dienThoai.TinhTrang = "Ngừng kinh doanh";
+            //DienThoaiDetailViewModel dt = new DienThoaiDetailViewModel();
+            //dt.dienThoai = dienThoai;
+            //dt.thongSoKyThuat = _context.ThongSoKyThuats.Where(x => x.DienThoaiId == dt.dienThoai.DienThoaiId).FirstOrDefault();
+            //dt.TenThuongHieu = _context.ThuongHieus.Where(x => x.ThuongHieuId == dt.dienThoai.ThuongHieuId).FirstOrDefault().TenThuongHieu;
+            //dienThoai.ThuongHieu.
             return View(dienThoai);
         }
 

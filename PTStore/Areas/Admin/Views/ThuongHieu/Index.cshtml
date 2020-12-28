@@ -3,23 +3,30 @@
 @model IEnumerable<PTStore.Models.ThuongHieu>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Thương hiệu";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    <a asp-action="Create">Create New</a>
+<h2>Quản lý thương hiệu</h2>
+<div class="navbar-form navbar-left" style="padding-top:7px; padding-left:0px">
+    <form class="navbar-form navbar-left">
+        <div class="input-group">
+            <input type="text" value="" class="form-control" placeholder="Nhập nội dung ...">
+            <span class="input-group-btn"><button type="button" class="btn btn-primary">Tìm kiếm</button></span>
+        </div>
+    </form>
+</div>
+<p style="float: right; padding-right: 145px; margin-top: 30px;">
+    <a asp-action="Create">Thêm thương hiệu</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.TenThuongHieu)
+                Tên thương hiệu
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.HinhAnhThuongHieu)
+                Link hình ảnh
             </th>
             <th></th>
         </tr>
@@ -35,9 +42,8 @@
                     @Html.DisplayFor(modelItem => item.HinhAnhThuongHieu)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ThuongHieuId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ThuongHieuId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ThuongHieuId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.ThuongHieuId">Chỉnh sửa</a> |
+                    <a asp-action="Details" asp-route-id="@item.ThuongHieuId">Chi tiết</a>
                 </td>
             </tr>
         }
