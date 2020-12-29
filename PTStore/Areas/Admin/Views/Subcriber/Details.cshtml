@@ -7,20 +7,20 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết</h2>
 
 <div>
     <h4>Subcriber</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TrangThai)
+            Trạng thái
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TrangThai)
@@ -28,6 +28,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Sửa trạng thái</a> |
+    <a asp-action="Index">Quay lại</a>
 </div>

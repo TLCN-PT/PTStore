@@ -10,22 +10,31 @@ using PTStore.Models;
 namespace PTStore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class SubcriberController : Controller
+    public class KhachHangAccountsController : Controller
     {
         private readonly PTStoreContext _context;
 
-        public SubcriberController(PTStoreContext context)
+        public KhachHangAccountsController(PTStoreContext context)
         {
             _context = context;
         }
 
-        // GET: Admin/Subcriber
+        // GET: Admin/KhachHangAccounts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Subcribers.ToListAsync());
+            var query = (from acc in _context.Accounts
+                         join usr in _context.UserRoles
+             on acc.AccountId equals usr.UserId
+                         where usr.RoleId == 2
+                         select acc);
+            //into grouping;
+            //            select new { acc, acc.User, usr = grouping.Where(x => x.RoleId == 1).ToList() };
+            //List<Account> accounts = query;
+            //return View(query);
+            return View(await query.ToListAsync());
         }
 
-        // GET: Admin/Subcriber/Details/5
+        // GET: Admin/KhachHangAccounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,46 +42,42 @@ namespace PTStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var subcriber = await _context.Subcribers
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (subcriber == null)
+            var account = await _context.Accounts
+                .Include(a => a.User)
+                .FirstOrDefaultAsync(m => m.AccountId == id);
+            if (account == null)
             {
                 return NotFound();
             }
-            if(subcriber.TrangThai == "DangDangKy")
-            {
-                subcriber.TrangThai = "Đang đăng ký";
-            }
-            else
-            {
-                subcriber.TrangThai = "Ngừng đăng ký";
-            }
-            return View(subcriber);
+
+            return View(account);
         }
 
-        // GET: Admin/Subcriber/Create
+        // GET: Admin/KhachHangAccounts/Create
         public IActionResult Create()
         {
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId");
             return View();
         }
 
-        // POST: Admin/Subcriber/Create
+        // POST: Admin/KhachHangAccounts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Email,TrangThai")] Subcriber subcriber)
+        public async Task<IActionResult> Create([Bind("AccountId,TenDangNhap,MatKhau,TrangThai,UserId")] Account account)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(subcriber);
+                _context.Add(account);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(subcriber);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", account.UserId);
+            return View(account);
         }
 
-        // GET: Admin/Subcriber/Edit/5
+        // GET: Admin/KhachHangAccounts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,22 +85,23 @@ namespace PTStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var subcriber = await _context.Subcribers.FindAsync(id);
-            if (subcriber == null)
+            var account = await _context.Accounts.FindAsync(id);
+            if (account == null)
             {
                 return NotFound();
             }
-            return View(subcriber);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", account.UserId);
+            return View(account);
         }
 
-        // POST: Admin/Subcriber/Edit/5
+        // POST: Admin/KhachHangAccounts/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Email,TrangThai")] Subcriber subcriber)
+        public async Task<IActionResult> Edit(int id, [Bind("AccountId,TenDangNhap,MatKhau,TrangThai,UserId")] Account account)
         {
-            if (id != subcriber.Id)
+            if (id != account.AccountId)
             {
                 return NotFound();
             }
@@ -104,12 +110,12 @@ namespace PTStore.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(subcriber);
+                    _context.Update(account);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!SubcriberExists(subcriber.Id))
+                    if (!AccountExists(account.AccountId))
                     {
                         return NotFound();
                     }
@@ -120,10 +126,11 @@ namespace PTStore.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(subcriber);
+            ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", account.UserId);
+            return View(account);
         }
 
-        // GET: Admin/Subcriber/Delete/5
+        // GET: Admin/KhachHangAccounts/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -131,30 +138,31 @@ namespace PTStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var subcriber = await _context.Subcribers
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (subcriber == null)
+            var account = await _context.Accounts
+                .Include(a => a.User)
+                .FirstOrDefaultAsync(m => m.AccountId == id);
+            if (account == null)
             {
                 return NotFound();
             }
 
-            return View(subcriber);
+            return View(account);
         }
 
-        // POST: Admin/Subcriber/Delete/5
+        // POST: Admin/KhachHangAccounts/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var subcriber = await _context.Subcribers.FindAsync(id);
-            _context.Subcribers.Remove(subcriber);
+            var account = await _context.Accounts.FindAsync(id);
+            _context.Accounts.Remove(account);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool SubcriberExists(int id)
+        private bool AccountExists(int id)
         {
-            return _context.Subcribers.Any(e => e.Id == id);
+            return _context.Accounts.Any(e => e.AccountId == id);
         }
     }
 }

@@ -2,8 +2,8 @@
 @addTagHelper *, AuthoringTagHelpers
 @model PTStore.Common.ViewModels.LoginViewModel
 @{
-    ViewData["Title"] = "Login";
-    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+    ViewData["Title"] = "Đăng nhập";
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
 
 <section>
@@ -14,13 +14,13 @@
                 <div class="login-form ">
                     <!--login form-->
                     <h2 class="col-sm-offset-5">Đăng Nhập</h2>
-                    <form asp-controller="Home" asp-action="Login" method="post">
+                    <form asp-controller="DangNhap" asp-action="Index" method="post">
                         <div class="mb-3">
                             <label class="form-label">Tên Đăng Nhập</label>
                             <input asp-for="TenDangNhap" type="text" class="form-control" id="inputUsername">
                             <span asp-validation-for="TenDangNhap" class="text-danger"></span>
                         </div>
-                        
+
                         <div class="mb-3">
                             <label class="form-label">Mật khẩu</label>
                             <input type="password" asp-for="MatKhau" class="form-control" id="inputPassword">

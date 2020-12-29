@@ -42,6 +42,26 @@ namespace PTStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            if (donHang.HinhThucThanhToan == "TrucTiep")
+                donHang.HinhThucThanhToan = "Trực tiếp";
+            switch(donHang.TrangTrai)
+            {
+                case "DaGiaoHang":
+                    donHang.TrangTrai = "Đã giao hàng";
+                    break;
+                case "DatHangThanhCong":
+                    donHang.TrangTrai = "Đặt hàng thành công";
+                    break;
+                case "GiaoThanhCong":
+                    donHang.TrangTrai = "Giao thành công";
+                    break;
+                case "BiHuy":
+                    donHang.TrangTrai = "Bị huỷ";
+                    break;
+                default:
+                    donHang.TrangTrai = "Lỗi";
+                    break;
+            }
             return View(donHang);
         }
 

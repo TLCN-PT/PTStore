@@ -1,7 +1,7 @@
 ﻿@model PTStore.Common.ViewModels.SignupViewModel
 @{
-    ViewData["Title"] = "Signup";
-    Layout = "~/Views/Shared/_LayoutGuest.cshtml";
+    ViewData["Title"] = "Đăng ký";
+    Layout = "~/Views/Shared/Layout.cshtml";
 }
 
 <section>
@@ -12,7 +12,7 @@
                 <div class="signup-form">
                     <!--login form-->
                     <h2 class="col-sm-offset-5">Đăng Ký</h2>
-                    <form id="SignupForm" asp-controller="Home" asp-action="Signup">
+                    <form id="SignupForm" asp-controller="DangKy" asp-action="Index">
                         <div class="mb-3">
                             <label class="form-label">Họ và Tên</label>
                             <input type="text" class="form-control" id="inputName" asp-for="HoVaTen">

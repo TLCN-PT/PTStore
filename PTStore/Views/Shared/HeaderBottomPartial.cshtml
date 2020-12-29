@@ -16,18 +16,18 @@
             </div>
             <div class="mainmenu pull-left">
                 <ul class="nav navbar-nav collapse navbar-collapse">
-                    <li><a asp-controller="Home" asp-action="Index" style="color:white">Trang chủ</a></li>
+                    <li><a asp-controller="Home" style="color:white">Trang chủ</a></li>
                     <li class="dropdown">
                         <a href="#" style="color:white">Cửa hàng<i class="fa fa-angle-down"></i></a>
                         <ul role="menu" class="sub-menu">
-                            <li><a asp-controller="Home" asp-action="DienThoai">Tất cả điện thoại</a></li>
+                            <li><a asp-controller="DienThoai" asp-action="Index">Tất cả điện thoại</a></li>
                             @foreach (var item in Model)
                             {
-                                <li><a asp-controller="Home" asp-action="DienThoai" asp-route-thuonghieuOrder="@item.ThuongHieuId">@item.TenThuongHieu</a></li>
+                                <li><a asp-controller="DienThoai" asp-action="Index" asp-route-thuonghieuOrder="@item.ThuongHieuId">@item.TenThuongHieu</a></li>
                             }
                         </ul>
                     </li>
-                    <li><a asp-controller="Home" asp-action="Contact" style="color:white">Liên hệ</a></li>
+                    <li><a asp-controller="Home" asp-action="LienHe" style="color:white">Liên hệ</a></li>
                 </ul>
             </div>
         </div>

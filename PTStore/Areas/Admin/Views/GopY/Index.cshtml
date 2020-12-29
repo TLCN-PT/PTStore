@@ -7,25 +7,30 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lý Góp Ý</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="navbar-form navbar-left" style="padding-top:7px; padding-left:0px">
+    <form class="navbar-form navbar-left">
+        <div class="input-group">
+            <input type="text" value="" class="form-control" placeholder="Nhập nội dung ...">
+            <span class="input-group-btn"><button type="button" class="btn btn-primary">Tìm kiếm</button></span>
+        </div>
+    </form>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SoDienThoai)
+                Số điện thoại
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ChuDe)
+                Chủ đề
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NoiDung)
+                Nội dung
             </th>
             <th></th>
         </tr>
@@ -47,9 +52,7 @@
                     @Html.DisplayFor(modelItem => item.NoiDung)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id">Chi tiết</a>
                 </td>
             </tr>
         }
