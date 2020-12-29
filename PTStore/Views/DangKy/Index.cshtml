@@ -19,11 +19,6 @@
                             <span class="text-danger" id="spVldHoVaTen" asp-validation-for="HoVaTen"></span>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Tên đăng nhập</label>
-                            <input type="text" class="form-control" id="inputTenDangNhap" asp-for="TenDangNhap">
-                            <span class="text-danger" id="spVldTenDangNhap" asp-validation-for="TenDangNhap"></span>
-                        </div>
-                        <div class="mb-3">
                             <label class="form-label">Email</label>
                             <input type="email" class="form-control" id="inputEmail" asp-for="Email">
                             <span class="text-danger" id="spVldEmail" asp-validation-for="Email"></span>
@@ -35,7 +30,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Ngày sinh</label>
-                            <input type="date" class="form-control" id="inputBirthdate" asp-for="NgaySinh">
+                            <input class="form-control" id="inputBirthdate" asp-for="NgaySinh">
                             <span class="text-danger" id="spVldNgaySinh" asp-validation-for="NgaySinh"></span>
                         </div>
                         <div class="mb-3">
@@ -62,6 +57,11 @@
                             </div>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Tên đăng nhập</label>
+                            <input type="text" class="form-control" id="inputTenDangNhap" asp-for="TenDangNhap">
+                            <span class="text-danger" id="spVldTenDangNhap" asp-validation-for="TenDangNhap"></span>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Mật khẩu</label>
                             <input type="password" class="form-control" id="inputPassword1" asp-for="MatKhau">
                             <span class="text-danger" id="spVldMatKhau" asp-validation-for="MatKhau"></span>
@@ -85,21 +85,21 @@
     </div>
 </section>
 <script>
-    $("#inputTenDangNhap").keyup(function (event) {
-        let value = $("#inputTenDangNhap").val();
-        var re = /([A-Za-z.0-9\-_]){5,20}/g;
-        if (re.test(value)) {
-            $("#spVldTenDangNhap").text("");
-            console.log("true");
-        }
-        else {
-            $("#spVldTenDangNhap").text("Tên đăng nhập từ 5-20 kí tự, chỉ chứ kí tự chữ, số và ._-");
-            console.log("false");
-        }
-    })
-    $("#SignupForm button").click(function (event) {
-        $("#spVldModel").html("Kich hoat default!");
-        event.preventDefault();
-    })
+    //$("#inputTenDangNhap").keyup(function (event) {
+    //    let value = $("#inputTenDangNhap").val();
+    //    var re = /([A-Za-z.0-9\-_]){5,20}/g;
+    //    if (re.test(value)) {
+    //        $("#spVldTenDangNhap").text("");
+    //        console.log("true");
+    //    }
+    //    else {
+    //        $("#spVldTenDangNhap").text("Tên đăng nhập từ 5-20 kí tự, chỉ chứ kí tự chữ, số và ._-");
+    //        console.log("false");
+    //    }
+    //})
+    //$("#SignupForm button").click(function (event) {
+    //    $("#spVldModel").html("Kich hoat default!");
+    //    event.preventDefault();
+    //})
 </script>
 

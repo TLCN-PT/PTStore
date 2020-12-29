@@ -79,6 +79,18 @@ namespace PTStore.Controllers
             return PartialView(qrGetThuongHieu.ToList());
         }
 
+        public IActionResult DienThoaiDeXuatPartial()
+        {
+            var qrGetDT = _context.DienThoais.OrderByDescending(x => x.ChiTietDonHangs.Count).Take(9);
+            return PartialView(qrGetDT.ToList());
+        }
+
+        public IActionResult DienThoaiGanDayPartial()
+        {
+            var qrGetDT = _context.DienThoais.OrderByDescending(x => x.ThongSoKyThuat.NgayRaMat).Take(4);
+            return PartialView(qrGetDT.ToList());
+        }
+
         // Error Message
         public IActionResult ErrorMessage()
         {

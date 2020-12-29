@@ -10,7 +10,7 @@
                     foreach (var item in Model)
                     {
                         <div class="col-sm-2">
-                            <a asp-controller="Home" asp-action="ThuongHieu" asp-route-id="@item.ThuongHieuId"><img src=@item.HinhAnhThuongHieu class="thuonghieuimg" /> </a>
+                            <a asp-controller="DienThoai" asp-action="Index" asp-route-thuonghieuOrder="@item.ThuongHieuId"><img src=@item.HinhAnhThuongHieu class="thuonghieuimg" /> </a>
                         </div>
                     }
                 }

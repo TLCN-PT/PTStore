@@ -14,10 +14,10 @@ namespace PTStore.Areas.Admin.Controllers
         //private readonly PTStoreContext _context;
         public IActionResult Index()
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
-            //{
-            //    return Redirect("/Admin/Login");
-            //}
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return Redirect("/Admin/Login");
+            }
             return View();
         }
 

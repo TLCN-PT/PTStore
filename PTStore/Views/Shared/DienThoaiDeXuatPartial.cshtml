@@ -1,0 +1,80 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@model List<PTStore.Models.DienThoai>
+
+<section style="background-color:#f0f0e9 ; margin-top:2%">
+    <div class="container" style="background-color:white">
+        <div class="row">
+            <div class="col-sm-12 padding-right">
+                <div class="recommended_items" style="margin-top:3%">
+                    <h2 class="title text-center">CÁC ĐIỆN THOẠI ĐỀ XUẤT</h2>
+                    <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="item">
+                                @for (int i = 0; i < 4; i++)
+                                {
+                                    <div class="col-sm-3" style="height:377.150px !important">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="@Model[i].HinhAnh" alt="@Model[i].Name" style="height:256.75px;width:auto">
+                                                    <h2>@string.Format("{0:0,0}",Model[i].Gia) VNĐ</h2>
+                                                    <p>@Model[i].Name</p>
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>@string.Format("{0:0,0}", Model[i].Gia) VNĐ</h2>
+                                                        <p>@Model[i].Name</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <div class="item active">
+                                @for (int i = 4; i < 8; i++)
+                                {
+                                    <div class="col-sm-3">
+                                        <div class="product-image-wrapper">
+                                            <div class="single-products">
+                                                <div class="productinfo text-center">
+                                                    <img src="@Model[i].HinhAnh" alt="@Model[i].Name">
+                                                    <h2>@string.Format("{0:0,0}", Model[i].Gia) VNĐ</h2>
+                                                    <p>@Model[i].Name</p>
+
+                                                </div>
+                                                <div class="product-overlay">
+                                                    <div class="overlay-content">
+                                                        <h2>@string.Format("{0:0,0}", Model[i].Gia) VNĐ</h2>
+                                                        <p>@Model[i].Name</p>
+                                                        <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <a class="left recommended-item-control" href="/Home/Index#recommended-item-carousel" data-slide="prev">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <a class="right recommended-item-control" href="/Home/Index#recommended-item-carousel" data-slide="next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

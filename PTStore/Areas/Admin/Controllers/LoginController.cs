@@ -29,8 +29,8 @@ namespace PTStore.Areas.Admin.Controllers
                 {
                     if (acc.MatKhau == query.MatKhau)
                     {
-                        var role = _context.UserRoles.Where(x => x.UserId == query.UserId && x.RoleId == 1);
-                        if (query != null)
+                        var role = _context.UserRoles.Where(x => x.UserId == query.UserId).FirstOrDefault().RoleId;
+                        if (role==1)
                         {
                             HttpContext.Session.Clear();
                             HttpContext.Session.SetString("UserId", query.UserId.ToString());
@@ -39,6 +39,11 @@ namespace PTStore.Areas.Admin.Controllers
                             HttpContext.Session.SetString("UserRole", "Admin");
                             return Redirect("/Admin/Home");
                         }
+                        else
+                        {
+                            ViewData["ErrorModel"] = "Bạn không có quyền truy cập vào trang này!";
+                            return View();
+                        }    
                     }
                     else
                     {
