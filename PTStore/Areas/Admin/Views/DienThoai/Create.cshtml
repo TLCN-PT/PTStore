@@ -7,11 +7,11 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2 style="color:#337ab7; text-align:center">Thêm Điện Thoại</h2>
+<h2 style="color:#337ab7">Thêm Điện Thoại</h2>
 
 <hr />
 <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-1">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -52,8 +52,8 @@
                 <label asp-for="ThongSoKyThuatId" class="control-label">Thông số kỹ thuật</label>
                 <select asp-for="ThongSoKyThuatId" class="form-control" asp-items="ViewBag.ThongSoKyThuatId"></select>
             </div>
-            <div class="form-group col-md-offset-4">
-                <input  style="background-color:#337ab7; color:white; width:150px; font-size:14px" type="submit" value="Thêm" class="btn btn-default" />
+            <div class="form-group">
+                <input style="background-color:#337ab7; color:white; font-size:14px" type="submit" value="Thêm" class="btn btn-default" />
             </div>
         </form>
     </div>

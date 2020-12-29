@@ -7,7 +7,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Quản lý đơn hàng</h2>
+<h2 style="color:#337ab7">Quản lý đơn hàng</h2>
 
 <div class="navbar-form navbar-left" style="padding-top:7px; padding-left:0px">
     <form class="navbar-form navbar-left">
@@ -90,7 +90,7 @@
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.DonHangId">Sửa trạng thái</a> |
-                    <a asp-action="Details" asp-route-id="@item.DonHangId">Chi Tiết</a>
+                    <a asp-action="Details" asp-route-id="@item.DonHangId">Chi tiết</a>
                 </td>
             </tr>
         }
