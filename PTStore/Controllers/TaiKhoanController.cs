@@ -1,24 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using PTStore.Common.ViewModels;
 using PTStore.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace PTStore.Areas.Admin.Controllers
+namespace PTStore.Controllers
 {
-    [Area("Admin")]
-    public class HomeController : Controller
+    public class TaiKhoanController : Controller
     {
-        //private readonly PTStoreContext _context;
+        private readonly PTStoreContext _context = new PTStoreContext();
         public IActionResult Index()
         {
-            //if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
-            //{
-            //    return Redirect("/Admin/Login");
-            //}
-            return View();
+            if (IsCustomerLogged())
+            {
+                return View();
+            }
+            return Redirect("/Home/Error");
         }
 
         public IActionResult DangXuat()

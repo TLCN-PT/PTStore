@@ -1,6 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
-
+@using Microsoft.AspNetCore.Http;
 <!doctype html>
 <html lang="en">
 <head>
@@ -39,22 +39,22 @@
                     <button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
                 </div>
                 @*<div class="navbar-form navbar-left" style="padding-top:7px; padding-left:0px">
-                    <form class="navbar-form navbar-left">
-                        <div class="input-group">
-                            <input type="text" value="" class="form-control" placeholder="Nhập nội dung ...">
-                            <span class="input-group-btn"><button type="button" class="btn btn-primary">Tìm kiếm</button></span>
-                        </div>
-                    </form>
-                </div>*@
+                        <form class="navbar-form navbar-left">
+                            <div class="input-group">
+                                <input type="text" value="" class="form-control" placeholder="Nhập nội dung ...">
+                                <span class="input-group-btn"><button type="button" class="btn btn-primary">Tìm kiếm</button></span>
+                            </div>
+                        </form>
+                    </div>*@
                 <div id="navbar-menu">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown" style="padding-top:14px">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@*<img src="~/assets/img/user.png" class="img-circle" alt="Avatar">*@ <span>Phung @*@ViewData["AdminName"]*@</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@*<img src="~/assets/img/user.png" class="img-circle" alt="Avatar">*@ <span>Xin chào, @Context.Session.GetString("UserName") @*@ViewData["AdminName"]*@</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
                             <ul class="dropdown-menu">
                                 @*<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
-                                <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>*@
-                                <li><a href="#"><i class="lnr lnr-cog"></i> <span>Tài khoản</span></a></li>
-                                <li><a href="#"><i class="lnr lnr-exit"></i> <span>Đăng xuất</span></a></li>
+                                    <li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>*@
+                                @*<li><a href="#"><i class="lnr lnr-cog"></i> <span>Tài khoản</span></a></li>*@
+                                <li><a href="#"  data-toggle="modal" data-target="#signout"><i class="lnr lnr-exit"></i> <span>Đăng xuất</span></a></li>
                             </ul>
                         </li>
 
@@ -78,7 +78,7 @@
                             <div id="dr" class="collapse ">
                                 <ul class="nav">
                                     <li><a id="aadmin" asp-area="Admin" asp-controller="AccountAdmin" asp-action="Index" class="">Admin</a></li>
-                                    <li><a id="acustomer" href="#" class="">Customer</a></li>
+                                    <li><a id="acustomer" asp-area="Admin" asp-controller="KhachHangAccounts" class="">Khách hàng</a></li>
                                     <li><a id="asubcriber" asp-area="Admin" asp-controller="Subcriber" asp-action="Index" class="">Subcribers</a></li>
                                 </ul>
                             </div>
@@ -107,6 +107,26 @@
             </div>
         </footer>
     </div>
+    <div class="modal fade" id="signout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="color:#fe980f">ĐĂNG XUẤT</h4>
+                </div>
+                <div class="modal-body" style="height:50px">
+                    <div class="row" style="margin-left:0.5px">
+                        Bạn có thật sự muốn đăng xuất?
+                    </div>
+                </div>
+                <div class="modal-footer" style="height:80px">
+                    @*<button type="button" class="btn btn-primary">Đăng xuất</button>*@
+                    <a class="btn btn-default" asp-area="Admin" asp-controller="Home" asp-action="DangXuat" style="background-color: #fe980f; color:white; font-size:16px; height: 32px; width: 90px; text-align:center">Đăng xuất</a>
+                    @*<button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- END WRAPPER -->
     <!-- Javascript -->
     <script src="~/assets/vendor/jquery/jquery.min.js"></script>
@@ -116,4 +136,5 @@
     @*<script src="~/assets/vendor/chartist/js/chartist.min.js"></script>*@
     <script src="~/assets/scripts/klorofil-common.js"></script>
 </body>
+
 </html>

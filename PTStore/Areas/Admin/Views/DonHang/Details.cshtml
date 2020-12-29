@@ -1,5 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
+@using PTStore.Models;
+
 @model PTStore.Models.DonHang
 
 @{
@@ -7,75 +9,88 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết đơn hàng</h2>
 
 <div>
-    <h4>DonHang</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MaDonHang)
+            Mã đơn
         </dt>
         <dd>
             @Html.DisplayFor(model => model.MaDonHang)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TenNguoiNhan)
+            Tên người nhận
         </dt>
         <dd>
             @Html.DisplayFor(model => model.TenNguoiNhan)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
+            Địa chỉ
         </dt>
         <dd>
             @Html.DisplayFor(model => model.DiaChi)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SoDienThoai)
+            Số điện thoại
         </dt>
         <dd>
             @Html.DisplayFor(model => model.SoDienThoai)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.NgayDatHang)
+            Ngày đặt hàng
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.NgayDatHang)
+            @Model.NgayDatHang?.ToString("dd/M/yyyy")
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.NgayDuKienGiao)
+            Ngày dự kiến giao
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.NgayDuKienGiao)
+            @Model.NgayDuKienGiao?.ToString("dd/M/yyyy")
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.HinhThucThanhToan)
+            Hình thức thanh toán
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.HinhThucThanhToan)
+            @Model.HinhThucThanhToan
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.TrangTrai)
+            Trạng thái
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.TrangTrai)
+            @Model.TrangTrai
+        </dd>
+        <dt>Chi tiết đơn</dt>
+        <dd>
+            @{
+                PTStoreContext context = new PTStoreContext();
+                var qr = context.ChiTietDonHangs.Where(x => x.DonHangId == Model.DonHangId).ToList();
+                double x = 0;
+                foreach (var item in qr)
+                {
+                    <div>@context.DienThoais.Where(x => x.DienThoaiId == item.DienThoaiId).First().Name ** Số lượng: @item.SoLuong ** Tổng giá: @string.Format("{0:0,0}", @item.Gia) VNĐ </div>
+                    x = x + item.Gia.GetValueOrDefault();
+                    <br />
+                }
+            }
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.User)
+            Tổng đơn hàng:
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.User.UserId)
+            <strong>@string.Format("{0:0,0}", x) VNĐ</strong>
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.DonHangId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.DonHangId">Sửa trạng thái</a> |
+    <a asp-action="Index">Quay lại</a>
 </div>

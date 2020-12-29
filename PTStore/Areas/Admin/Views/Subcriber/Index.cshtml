@@ -3,23 +3,28 @@
 @model IEnumerable<PTStore.Models.Subcriber>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Subscribers";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lý Subscribers</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="navbar-form navbar-left" style="padding-top:7px; padding-left:0px">
+    <form class="navbar-form navbar-left">
+        <div class="input-group">
+            <input type="text" value="" class="form-control" placeholder="Nhập nội dung ...">
+            <span class="input-group-btn"><button type="button" class="btn btn-primary">Tìm kiếm</button></span>
+        </div>
+    </form>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Email
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TrangThai)
+                Trạng thái
             </th>
             <th></th>
         </tr>
@@ -32,12 +37,20 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TrangThai)
+                    @{
+                        if (item.TrangThai == "DangDangKy")
+                        {
+                            <div>Đang đăng ký</div>
+                        }
+                        else
+                        {
+                            <div>Ngừng đăng ký</div>
+                        }
+                    }
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Sửa trạng thái</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Chi tiết</a>
                 </td>
             </tr>
         }
@@ -53,8 +66,8 @@
         document.getElementById("athuonghieu").className = "";
 
         document.getElementById("ataikhoan").className = "active";
-        document.getElementById("asubcriber").className = "";
+        document.getElementById("asubcriber").className = "active";
         document.getElementById("aadmin").className = "";
-        document.getElementById("acustomer").className = "active";
+        document.getElementById("acustomer").className = "";
     });
 </script>

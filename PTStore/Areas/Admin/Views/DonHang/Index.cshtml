@@ -3,47 +3,43 @@
 @model IEnumerable<PTStore.Models.DonHang>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Đơn hàng";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lý đơn hàng</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="navbar-form navbar-left" style="padding-top:7px; padding-left:0px">
+    <form class="navbar-form navbar-left">
+        <div class="input-group">
+            <input type="text" value="" class="form-control" placeholder="Nhập nội dung ...">
+            <span class="input-group-btn"><button type="button" class="btn btn-primary">Tìm kiếm</button></span>
+        </div>
+    </form>
+</div>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.MaDonHang)
+                Mã đơn
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TenNguoiNhan)
+                Tên người nhận
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DiaChi)
+                Địa chỉ
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Email)
+                Số điện thoại
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.SoDienThoai)
+                Ngày đặt hàng
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgayDatHang)
+                Thanh toán
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.NgayDuKienGiao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.HinhThucThanhToan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TrangTrai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.User)
+                Trạng thái
             </th>
             <th></th>
         </tr>
@@ -62,30 +58,39 @@
                     @Html.DisplayFor(modelItem => item.DiaChi)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.SoDienThoai)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayDatHang)
+                    @item.NgayDatHang?.ToString("dd/M/yyyy")
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.NgayDuKienGiao)
+                    @if(item.HinhThucThanhToan == "TrucTiep")
+                    {
+                        <div>Trực tiếp</div>
+                    }
+                    else
+                    {
+                        <div>Paypal</div>
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.HinhThucThanhToan)
+                    @switch(item.TrangTrai)
+                        {
+                            case "DaGiaoHang": <div>Đã giao hàng</div>
+                                break;
+                            case "DatHangThanhCong": <div>Đặt hàng thành công</div>
+                                break;
+                            case "GiaoThanhCong": <div>Giao thành công</div>
+                                break;
+                            case "BiHuy": <div>Bị huỷ</div>
+                                break;
+                            default: <div>Lỗi</div>
+                            break;
+                    }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TrangTrai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.User.UserId)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.DonHangId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.DonHangId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.DonHangId">Delete</a>
+                    <a asp-action="Edit" asp-route-id="@item.DonHangId">Sửa trạng thái</a> |
+                    <a asp-action="Details" asp-route-id="@item.DonHangId">Chi Tiết</a>
                 </td>
             </tr>
         }
@@ -93,17 +98,17 @@
 </table>
 <script>
     $(document).ready(function () {
-        document.getElementById("ahome").className = "";
-        document.getElementById("abieudo").className = "";
-        document.getElementById("adienthoai").className = "";
-        document.getElementById("adonhang").className = "active";
-        document.getElementById("agopy").className = "";
-        document.getElementById("athuonghieu").className = "";
+                        document.getElementById("ahome").className = "";
+                        document.getElementById("abieudo").className = "";
+                        document.getElementById("adienthoai").className = "";
+                        document.getElementById("adonhang").className = "active";
+                        document.getElementById("agopy").className = "";
+                        document.getElementById("athuonghieu").className = "";
 
-        document.getElementById("ataikhoan").className = "";
-        document.getElementById("asubcriber").className = "";
-        document.getElementById("aadmin").className = "";
-        document.getElementById("acustomer").className = "";
+                        document.getElementById("ataikhoan").className = "";
+                        document.getElementById("asubcriber").className = "";
+                        document.getElementById("aadmin").className = "";
+                        document.getElementById("acustomer").className = "";
 
-    });
+                    });
 </script>

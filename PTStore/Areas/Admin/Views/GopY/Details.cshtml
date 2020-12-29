@@ -3,14 +3,14 @@
 @model PTStore.Models.GopY
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Chi tiết";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết</h2>
 
 <div>
-    <h4>GopY</h4>
+    <h4>Góp ý</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -20,19 +20,19 @@
             @Html.DisplayFor(model => model.Email)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.SoDienThoai)
+            Số điện thoại
         </dt>
         <dd>
             @Html.DisplayFor(model => model.SoDienThoai)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ChuDe)
+            Chủ đề
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ChuDe)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.NoiDung)
+            Nội dung
         </dt>
         <dd>
             @Html.DisplayFor(model => model.NoiDung)
@@ -40,6 +40,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Quay lại</a>
 </div>
