@@ -7,10 +7,9 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Chi Tiết</h2>
+<h2 style="color:#337ab7">Chi tiết tài khoản User</h2>
 
 <div>
-    <h4>Tài khoản admin</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -69,7 +68,10 @@
         </dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.AccountId">Sửa trạng thái</a> |
-    <a asp-action="Index">Quay lại</a>
+<div class="col-md-offset-1">
+    <a class="btn btn-default" style="background-color:#337ab7; color:white" asp-action="Edit" asp-route-id="@Model.AccountId">Sửa trạng thái</a>
+
+</div>
+<div style="margin-top:2%">
+    <a asp-action="Index">Quay lại trang chủ</a>
 </div>

@@ -7,12 +7,11 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Chỉnh sửa Thương hiệu</h2>
+<h2 style="color:#337ab7">Chỉnh sửa Thương hiệu</h2>
 
-<h4>Thương hiệu</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-offset-1 col-md-6">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="ThuongHieuId" />
@@ -27,13 +26,13 @@
                 <span asp-validation-for="HinhAnhThuongHieu" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Lưu" class="btn btn-default" />
+                <input type="submit" value="Lưu" class="btn btn-default" style="background-color:#337ab7; color:white" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Quay lại</a>
+    <a asp-action="Index">Quay lại trang chủ</a>
 </div>
 

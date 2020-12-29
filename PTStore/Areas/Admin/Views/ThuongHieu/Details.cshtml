@@ -7,10 +7,9 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Chi tiết Thương Hiệu</h2>
+<h2 style="color:#337ab7">Chi tiết Thương Hiệu</h2>
 
 <div>
-    <h4>Thương Hiệu</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -29,7 +28,9 @@
         <dd><img src=@Model.HinhAnhThuongHieu style="width: auto; height: 38px;" /></dd>
     </dl>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.ThuongHieuId">Chỉnh sửa</a> |
-    <a asp-action="Index">Quay lại</a>
+<div class="col-md-offset-1">
+    <a class="btn btn-default" style="background-color: #337ab7; color:white; margin-top:1%" asp-action="Edit" asp-route-id="@Model.ThuongHieuId">Chỉnh sửa</a>
+    <br/>
+    
 </div>
+<a asp-action="Index">Quay về trang chủ</a>
