@@ -44,7 +44,7 @@ namespace PTStore.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Detail()
         {
             return View();
@@ -86,7 +86,7 @@ namespace PTStore.Controllers
                     {
                         ViewData["ErrorModel"] = "Tên đăng nhập hoặc mật khẩu không đúng!";
                         return View();
-                    }    
+                    }
                 }
                 else
                 {
@@ -115,7 +115,7 @@ namespace PTStore.Controllers
         [HttpPost]
         public IActionResult Signup(SignupViewModel suMd)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 ViewData["ModelError"] = "Nhập đúng";
             }
@@ -126,7 +126,7 @@ namespace PTStore.Controllers
 
         public IActionResult Account()
         {
-            if(IsCustomerLogged())
+            if (IsCustomerLogged())
             {
                 return View();
             }
@@ -135,12 +135,12 @@ namespace PTStore.Controllers
 
         public IActionResult DienThoai(string sortOrder, int thuonghieuOrder)
         {
-            if(string.IsNullOrEmpty(sortOrder))
+            if (string.IsNullOrEmpty(sortOrder))
             {
                 ViewData["sortOrderTang"] = "GiaThapToiCao";
                 ViewData["sortOrderGiam"] = "GiaCaoXuongThap";
-            }    
-            else if(sortOrder == "GiaCaoXuongThap")
+            }
+            else if (sortOrder == "GiaCaoXuongThap")
             {
                 ViewData["sortOrderGiam"] = "";
                 ViewData["sortOrderTang"] = "GiaThapToiCao";
@@ -150,8 +150,8 @@ namespace PTStore.Controllers
                 ViewData["sortOrderTang"] = "";
                 ViewData["sortOrderGiam"] = "GiaCaoXuongThap";
             }
-            
-            if(thuonghieuOrder>0)
+
+            if (thuonghieuOrder > 0)
             {
                 ViewData["thuonghieuOrder"] = thuonghieuOrder;
             }
@@ -168,7 +168,7 @@ namespace PTStore.Controllers
                     dt.lstDienThoai = dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).OrderBy(s => s.DienThoaiId).ToList();
                     break;
             }
-            if(thuonghieuOrder>0)
+            if (thuonghieuOrder > 0)
             {
                 dt.lstDienThoai = dt.lstDienThoai.FindAll(x => x.ThuongHieuId == thuonghieuOrder);
             }
@@ -196,7 +196,7 @@ namespace PTStore.Controllers
 
         public IActionResult DienThoaiPartial(string sortOrder)
         {
-            var qrGetDienThoai = _context.DienThoais.Where(x=>x.SoLuong>0);
+            var qrGetDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0);
             return View(qrGetDienThoai.AsNoTracking().ToList());
         }
 
@@ -238,7 +238,7 @@ namespace PTStore.Controllers
 
         public IActionResult HeaderBottomPartial()
         {
-            var qrGetThuongHieu = _context.DienThoais.Include(x => x.ThuongHieu).Where(x => x.SoLuong > 0).Select(x => x.ThuongHieu).OrderBy(x=>x.TenThuongHieu).Distinct();
+            var qrGetThuongHieu = _context.DienThoais.Include(x => x.ThuongHieu).Where(x => x.SoLuong > 0).Select(x => x.ThuongHieu).OrderBy(x => x.TenThuongHieu).Distinct();
             return PartialView(qrGetThuongHieu.ToList());
         }
 
@@ -250,6 +250,22 @@ namespace PTStore.Controllers
 
         // Error Message
         public IActionResult ErrorMessage()
+        {
+            return View();
+        }
+
+        //get theo code
+        public IActionResult LayMaXacNhan()
+        {
+            return View();
+        }
+
+        public IActionResult XacNhanMa()
+        {
+            return View();
+        }
+
+        public IActionResult DatLaiMatKhau()
         {
             return View();
         }
