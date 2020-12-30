@@ -60,7 +60,10 @@ namespace PTStore.Controllers
 
         public IActionResult ChiTiet(int id)
         {
-            return View();
+            var qr = _context.DienThoais.Include(d=>d.ThongSoKyThuat).Where(x => x.DienThoaiId == id);
+            if (qr == null)
+                return Redirect("Home/Error");
+            return View(qr.First());
         }
     }
 }

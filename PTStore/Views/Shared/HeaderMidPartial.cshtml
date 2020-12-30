@@ -26,9 +26,9 @@
                 <div class="col-md-4 clearfix">
                     <div class="shop-menu clearfix pull-right">
                         <ul id="ulhighlight" class="nav navbar-nav">
-                            <li><a asp-controller="GioHang"><i class="customLi fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
-                            <li><a asp-controller="DangNhap"><i class="customLi fa fa-sign-in"></i> Đăng Nhập</a></li>
-                            <li><a asp-controller="DangKy"><i class="customLi fa fa-plus"></i> Đăng Ký</a></li>
+                            <li><a asp-controller="GioHang" asp-action="Index"><i class="customLi fa fa-shopping-cart"></i> Giỏ Hàng</a></li>
+                            <li><a asp-controller="DangNhap" asp-action="Index"><i class="customLi fa fa-sign-in"></i> Đăng Nhập</a></li>
+                            <li><a asp-controller="DangKy" asp-action="Index"><i class="customLi fa fa-plus"></i> Đăng Ký</a></li>
                         </ul>
                     </div>
                 </div>
@@ -39,8 +39,8 @@
                 <div class="col-md-4 clearfix">
                     <div class="shop-menu clearfix pull-right">
                         <ul id="ulhighlight" class="nav navbar-nav">
-                            <li><a asp-controller="TaiKhoan"><i class="fa fa-user"></i>Xin chào, @name</a></li>
-                            <li><a asp-controller="GioHang"><i class="fa fa-shopping-cart"></i>Giỏ hàng</a></li>
+                            <li><a asp-controller="TaiKhoan" asp-action="Index"><i class="fa fa-user"></i>Xin chào, @name</a></li>
+                            <li><a asp-controller="GioHang" asp-action="Index"><i class="fa fa-shopping-cart"></i>Giỏ hàng</a></li>
                             <li><a href="#" data-toggle="modal" data-target="#signout"><i class="fa fa-sign-out"></i> Đăng Xuất</a></li>
                         </ul>
                     </div>

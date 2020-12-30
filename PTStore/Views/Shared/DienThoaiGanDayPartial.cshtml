@@ -24,7 +24,7 @@
                                         <div class="overlay-content">
                                             <h2>@string.Format("{0:0,0}", item.Gia) VNĐ</h2>
                                             <p>@item.Name</p>
-                                            <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                            <a asp-controller="DienThoai" asp-action="ChiTiet" asp-route-id="@item.DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
                                             <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
 
                                         </div>
