@@ -1,0 +1,40 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+@model List<PTStore.Models.DienThoai>
+
+<section style="background-color:#f0f0e9 ; margin-top:2%">
+    <div class="container" style="background-color:white">
+        <div class="row">
+            <div class="col-sm-12 padding-right">
+                <div class="features_items">
+                    <!--features_items-->
+                    <h2 class="title text-center" style="margin-top:2%">SẢN PHẨM RA MẮT GẦN ĐÂY</h2>
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-sm-3">
+                            <div class="product-image-wrapper">
+                                <div class="single-products">
+                                    <div class="productinfo text-center">
+                                        <img src="@item.HinhAnh" alt="@item.Name">
+                                        <h2>@string.Format("{0:0,0}",item.Gia) VNĐ</h2>
+                                        <p>@item.Name</p>
+                                    </div>
+                                    <div class="product-overlay">
+                                        <div class="overlay-content">
+                                            <h2>@string.Format("{0:0,0}", item.Gia) VNĐ</h2>
+                                            <p>@item.Name</p>
+                                            <a asp-controller="DienThoai" asp-action="ChiTiet" asp-route-id="@item.DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                            <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div><!--features_items-->
+            </div>
+        </div>
+    </div>
+</section>

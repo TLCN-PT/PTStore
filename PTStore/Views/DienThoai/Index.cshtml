@@ -16,7 +16,7 @@
                     foreach (var item in Model.lstThuongHieu)
                     {
                         <div class="col-sm-2">
-                            <a asp-controller="Home" asp-action="DienThoai" asp-route-thuonghieuOrder="@item.ThuongHieuId"><img src=@item.HinhAnhThuongHieu class="thuonghieuimg" /> </a>
+                            <a asp-controller="DienThoai" asp-action="Index" asp-route-thuonghieuOrder="@item.ThuongHieuId"><img src=@item.HinhAnhThuongHieu class="thuonghieuimg" /> </a>
                         </div>
                     }
                 }
@@ -24,9 +24,11 @@
         </div>
     </div>
 </section>
-<a asp-action="DienThoai" asp-route-sortOrder="@ViewData["sortOrderGiam"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default pull-right" style="background-color: #fe980f; color:white; font-size:16px; height: 40px;">Giá cao xuống thấp</a>
-<a asp-action="DienThoai" asp-route-sortOrder="@ViewData["sortOrderTang"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default" style="background-color: #fe980f; color:white; font-size:16px; height: 40px;">Giá thấp tới cao</a>
-<div class="container" style="background-color:white; margin-top:2%">
+<div id="sorttag">
+    <a asp-controller="DienThoai" asp-action="Index" asp-route-sortOrder="@ViewData["sortOrderTang"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default" style="background-color: #fe980f;color: white;font-size: 16px;height: 40px;">Giá thấp tới cao</a>
+    <a asp-controller="DienThoai" asp-action="Index" asp-route-sortOrder="@ViewData["sortOrderGiam"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default" style="background-color: #fe980f;color: white;font-size: 16px;height: 40px;">Giá cao xuống thấp</a>
+</div>
+<div class="container" style="background-color:white; margin-top:2%;padding-top: 20px;">
     @{
         int s = 0;
         for (int j = 0; j < ((Model.lstDienThoai.Count / 4) + 1) && s < Model.lstDienThoai.Count; j++)
@@ -40,7 +42,7 @@
                                 <div class="product-image-wrapper">
                                     <div class="single-products">
                                         <div class="productinfo text-center">
-                                            <img src="@Model.lstDienThoai[s].HinhAnh" alt="@Model.lstDienThoai[s].Name">
+                                            <img src="@Model.lstDienThoai[s].HinhAnh" alt="@Model.lstDienThoai[s].Name" style="height:256.75px;width:auto">
                                             <h2 style="font-size:20px">@string.Format("{0:0,0}", @Model.lstDienThoai[s].Gia) VND</h2>
                                             <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
 
@@ -49,8 +51,8 @@
                                             <div class="overlay-content">
                                                 <h2 style="font-size:20px">Giá</h2>
                                                 <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
-                                                <a href="/Home/Detail" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
-                                                <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                <a asp-controller="DienThoai" asp-action="ChiTiet" asp-route-id="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                <a href="#" data-container="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
 
                                             </div>
                                         </div>
@@ -69,5 +71,11 @@
     .thuonghieuimg {
         width: auto;
         height: 38px;
+    }
+
+    #sorttag {
+        margin-top: 2%;
+        text-align-last: right;
+        margin-right: 174px;
     }
 </style>
