@@ -42,5 +42,15 @@ namespace PTStore.Controllers
             }
             return true;
         }
+
+        public IActionResult LichSuMuaHang()
+        {
+            return View();
+        }
+
+        public IActionResult PhanHoi()
+        {
+            return View();
+        }
     }
 }
