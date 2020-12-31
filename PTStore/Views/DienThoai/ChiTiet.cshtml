@@ -14,7 +14,7 @@
             <div class="col-sm-12 padding-right" style="background-color:white">
                 <div class="product-details">
                     <!--product-details-->
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
                         <div class="view-product">
                             <img src="@Model.HinhAnh" alt="">
                         </div>
@@ -49,51 +49,51 @@
 
                             <img src="images/product-details/rating.png" alt="">
                             <span>
-                                <span>@string.Format("{0:0,0}",Model.Gia) VNĐ</span>
+                                <span style="font-size:24px">@string.Format("{0:0,0}",Model.Gia) VNĐ</span>
                             </span>
                             <span>
                                 <label>Số lượng</label>
                                 <input type="number" min="0" max="@Model.SoLuong" value="1">
                             </span>
 
-                            <button type="submit" class="btn btn-default">Thêm vào giỏ hàng</button>
+                            <button style="background-color:#fe980f; color:white; height:40px; margin-top:2%" type="submit" class="btn btn-default">Thêm vào giỏ hàng</button>
 
                             <a href=""><img src="images/product-details/share.png" class="share img-responsive" alt=""></a>
                         </div><!--/product-information-->
                     </div>
-                    <div class="col-sm-4">
-                        <p><b>Thông số sản phẩm</b></p>
-                        <div class="col-sm-7">
+                    <div class="col-sm-5">
+                        <p style="font-size:22px"><b>Thông số sản phẩm</b></p>
+                        <div class="col-sm-4">
                             <div class="single-widget">
                                 <!--Danh sách tựa của thông số-->
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><h4>Hệ điều hành:</h4></li>
-                                    <li><h4>Màn hình:</h4></li>
-                                    <li><h4>Camera sau:</h4></li>
-                                    <li><h4>Camera trước:</h4></li>
-                                    <li><h4>CPU:</h4></li>
-                                    <li><h4>RAM:</h4></li>
-                                    <li><h4>Bộ nhớ trong:</h4></li>
-                                    <li><h4>Thẻ sim:</h4></li>
-                                    <li><h4>Dung lượng Pin:</h4></li>
-                                    <li><h4>Ngày ra mắt:</h4></li>
+                                    <li><h5>Hệ điều hành:</h5></li>
+                                    <li><h5>Màn hình:</h5></li>
+                                    <li><h5>Camera sau:</h5></li>
+                                    <li><h5>Camera trước:</h5></li>
+                                    <li><h5>CPU:</h5></li>
+                                    <li><h5>RAM:</h5></li>
+                                    <li><h5>Bộ nhớ trong:</h5></li>
+                                    <li><h5>Thẻ sim:</h5></li>
+                                    <li><h5>Dung lượng Pin:</h5></li>
+                                    <li><h5>Ngày ra mắt:</h5></li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-sm-5">
+                        <div class="col-sm-8">
                             <div class="single-widget">
                                 <!--Thông số-->
                                 <ul class="nav nav-pills nav-stacked">
-                                    <li><h4>@Model.ThongSoKyThuat.HeDieuHanh</h4></li>
-                                    <li><h4>@Model.ThongSoKyThuat.ManHinh</h4></li>
-                                    <li><h4>@Model.ThongSoKyThuat.CameraTruoc</h4></li>
-                                    <li><h4>@Model.ThongSoKyThuat.CameraSau</h4></li>
-                                    <li><h4>@Model.ThongSoKyThuat.Cpu</h4></li>
-                                    <li><h4>@Model.ThongSoKyThuat.Ram</h4></li>
-                                    <li><h4>@Model.ThongSoKyThuat.BoNhoTrong</h4></li>
-                                    <li><h4>@Model.ThongSoKyThuat.TheSim</h4></li>
-                                    <li><h4>@Model.ThongSoKyThuat.DungLuongPin</h4></li>
-                                    <li><h4>@Model.ThongSoKyThuat.NgayRaMat?.ToString("dd/M/yyyy")</h4></li>
+                                    <li><h5>@Model.ThongSoKyThuat.HeDieuHanh</h5></li>
+                                    <li><h5>@Model.ThongSoKyThuat.ManHinh</h5></li>
+                                    <li><h5>@Model.ThongSoKyThuat.CameraTruoc</h5></li>
+                                    <li><h5>@Model.ThongSoKyThuat.CameraSau</h5></li>
+                                    <li><h5>@Model.ThongSoKyThuat.Cpu</h5></li>
+                                    <li><h5>@Model.ThongSoKyThuat.Ram</h5></li>
+                                    <li><h5>@Model.ThongSoKyThuat.BoNhoTrong</h5></li>
+                                    <li><h5>@Model.ThongSoKyThuat.TheSim</h5></li>
+                                    <li><h5>@Model.ThongSoKyThuat.DungLuongPin</h5></li>
+                                    <li><h5>@Model.ThongSoKyThuat.NgayRaMat?.ToString("dd/M/yyyy")</h5></li>
                                 </ul>
                             </div>
                         </div>
