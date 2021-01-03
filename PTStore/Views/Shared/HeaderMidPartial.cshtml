@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-2 clearfix">
                 <div class="logo pull-left">
-                    <a asp-controller="Home"><img src="/Common/logo-ptstore.png" alt="PT Store logo" width="162"></a>
+                    <a asp-controller="Home" asp-action="Index"><img src="/Common/logo-ptstore.png" alt="PT Store logo" width="162"></a>
                 </div>
             </div>
             <div class="col-md-6 clearfix">
@@ -21,7 +21,7 @@
                     </div>
                 </nav>
             </div>
-            @if (string.IsNullOrEmpty(Context.Session.GetString("UserName")))
+            @if (string.IsNullOrEmpty(Context.Session.GetString("UserId")))
             {
                 <div class="col-md-4 clearfix">
                     <div class="shop-menu clearfix pull-right">

@@ -22,7 +22,7 @@ namespace PTStore.Areas.Admin.Controllers
         // GET: Admin/DonHang
         public async Task<IActionResult> Index()
         {
-            var pTStoreContext = _context.DonHangs.Include(d => d.User);
+            var pTStoreContext = _context.DonHangs.Include(d => d.User).OrderByDescending(x=>x.NgayDatHang);
             return View(await pTStoreContext.ToListAsync());
         }
 

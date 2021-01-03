@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using PTStore.Common.MD5;
 
 namespace PTStore.Controllers
 {
@@ -24,12 +25,22 @@ namespace PTStore.Controllers
         [HttpPost]
         public IActionResult Index(LoginViewModel acc)
         {
+            if(HttpContext.Session.GetString("UserId") != null)
+            {
+                return Redirect("/Home/Error");
+            }
+            HttpContext.Session.Clear();
             if (ModelState.IsValid)
             {
                 var query = _context.Accounts.Where(s => s.TenDangNhap == acc.TenDangNhap).FirstOrDefault();
                 if (query != null)
                 {
-                    if (acc.MatKhau == query.MatKhau)
+                    if(query.TrangThai == "Disable")
+                    {
+                        ViewData["ErrorModel"] = "Tài khoản đã bị khoá! Vui lòng liên hệ quản trị viên!";
+                        return View();
+                    }
+                    if (GetMD5.GetHash(acc.MatKhau) == query.MatKhau)
                     {
                         var role = _context.UserRoles.Where(x => x.UserId == query.UserId && x.RoleId == 2);
                         if (query != null)
