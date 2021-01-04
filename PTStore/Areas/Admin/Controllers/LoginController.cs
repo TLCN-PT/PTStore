@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PTStore.Models;
 using PTStore.Common.ViewModels;
 using Microsoft.AspNetCore.Http;
+using PTStore.Common.MD5;
 
 namespace PTStore.Areas.Admin.Controllers
 {
@@ -27,7 +28,7 @@ namespace PTStore.Areas.Admin.Controllers
                 var query = _context.Accounts.Where(s => s.TenDangNhap == acc.TenDangNhap).FirstOrDefault();
                 if (query != null)
                 {
-                    if (acc.MatKhau == query.MatKhau)
+                    if (query.MatKhau == GetMD5.GetHash(acc.MatKhau))
                     {
                         var role = _context.UserRoles.Where(x => x.UserId == query.UserId).FirstOrDefault().RoleId;
                         if (role==1)

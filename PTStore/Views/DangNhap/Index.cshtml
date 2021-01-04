@@ -1,5 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
+@using Microsoft.AspNetCore.Http 
 @model PTStore.Common.ViewModels.LoginViewModel
 @{
     ViewData["Title"] = "Đăng nhập";
@@ -26,6 +27,8 @@
                             <input type="password" asp-for="MatKhau" class="form-control" id="inputPassword">
                             <span asp-validation-for="MatKhau" class="text-danger"></span>
                             <span class="text-danger">@ViewData["ErrorModel"]</span>
+                            <span class="text-danger">@Context.Session.GetString("ThongBao")</span>
+                            <span class="text-danger">@Context.Session.GetString("ThongBaoTuGioHang")</span>
                         </div>
                         <button type="submit" class="btn btn-default col-sm-offset-5">Đăng Nhập</button>
                         <div class="card-footer" style="margin-top:5%">

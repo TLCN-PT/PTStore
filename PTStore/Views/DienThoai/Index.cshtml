@@ -1,6 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
-@using System.Globalization;
 
 @model PTStore.Common.ViewModels.DienThoaiViewModel
 @{
@@ -43,16 +42,16 @@
                                     <div class="single-products">
                                         <div class="productinfo text-center">
                                             <img src="@Model.lstDienThoai[s].HinhAnh" alt="@Model.lstDienThoai[s].Name" style="height:256.75px;width:auto">
-                                            <h2 style="font-size:20px">@string.Format("{0:0,0}", @Model.lstDienThoai[s].Gia) VND</h2>
+                                            <h2 style="font-size:20px">@string.Format("{0:0,0}", Model.lstDienThoai[s].Gia)₫</h2>
                                             <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
 
                                         </div>
                                         <div class="product-overlay">
                                             <div class="overlay-content">
-                                                <h2 style="font-size:20px">Giá</h2>
+                                                <h2 style="font-size:20px">@string.Format("{0:0,0}", Model.lstDienThoai[s].Gia)₫</h2>
                                                 <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
                                                 <a asp-controller="DienThoai" asp-action="ChiTiet" asp-route-id="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
-                                                <a href="#" data-container="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                <a onclick="ThemVaoGioHang(@Model.lstDienThoai[s].DienThoaiId)" href="#" data-container="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
 
                                             </div>
                                         </div>
@@ -79,3 +78,22 @@
         margin-right: 174px;
     }
 </style>
+<script>
+    function ThemVaoGioHang(id) {
+        $.ajax({
+            url: 'GioHang/ThemSanPham/' + id,
+            dataType: "json",
+            type: "POST",
+            contentType: 'application/json; charset=utf-8',
+            data: { id: id },
+            processData: false,
+            cache: false,
+            success: function (data) {
+                alert(data);
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+    }
+</script>

@@ -1,4 +1,7 @@
-﻿
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@using Microsoft.AspNetCore.Http
+@model List<PTStore.Models.DonHang>
 @{
     ViewData["Title"] = "LichSuMuaHang";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -15,7 +18,7 @@
                         </div>
                         <div class="col-sm-8">
                             <h5>Tài khoản của</h5>
-                            <strong style="">Phan Tiên</strong>
+                            <strong style="">@Context.Session.GetString("UserName")</strong>
                         </div>
                     </div>
                 </li>
@@ -40,13 +43,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">D1U3150520</th>
-                            <td>15/05/2020</td>
-                            <td>Điện thoại Xiaomi Mi 10T Pro 5G</td>
-                            <td>12990000</td>
-                            <td>Đã giao hàng</td>
-                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            double gia = 0;
+                            //string s = "";
+                            foreach(var items in item.ChiTietDonHangs)
+                            {
+                                gia += items.Gia.GetValueOrDefault();
+                            }
+                            <tr>
+                                <th scope="row">@item.MaDonHang</th>
+                                <td>@item.NgayDatHang?.ToString("dd/MM/yyyy")</td>
+                                <td></td>
+                                <td>@gia</td>
+                                <td>@item.TrangTrai</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

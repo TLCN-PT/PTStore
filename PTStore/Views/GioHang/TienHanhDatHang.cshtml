@@ -1,0 +1,140 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+@model PTStore.Common.ViewModels.ThongTinThanhToanViewModel
+
+@using PTStore.Common.ViewModels
+@{
+    ViewData["Title"] = "Tiến hành đặt hàng";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<div class="container" style="background-color:white; margin-top:3%">
+    <div class="row">
+        <div class="col-sm-4">
+            <form asp-controller="GioHang" asp-action="DatHang" class="billing-form">
+                <h3 class="mb-4 billing-heading" style="color:#fe980f">Thông Tin Người Nhận</h3>
+                <div class="row align-items-end">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="lastname">Họ và Tên</label>
+                            <input asp-for="HoVaTen" id="inputHoVaTen" required type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="country">Số điện thoại</label>
+                            <input type="tel" id="inputSdt" asp-for="SoDienThoai" asp- class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="country">Email</label>
+                            <input type="email" id="inputEmail" asp-for="Email" required class="form-control">
+                        </div>
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="streetaddress">Địa Chỉ Cụ Thể</label>
+                            <input type="text" asp-for="DiaChi" required class="form-control" id="inputDiaChi" placeholder="">
+                        </div>
+                    </div>
+                    <div class="payment-options" style="padding-left:30px">
+                        <span>
+                            <label><input type="radio" checked asp-for="HinhThucThanhToan" value="TrucTiep" name="HinhThucThanhToan">Thanh toán khi nhận hàng</label>
+                        </span>
+                        <span>
+                            <label><input type="radio" asp-for="HinhThucThanhToan" value="Paypal" name="HinhThucThanhToan"> Paypal</label>
+                        </span>
+                        <button type="submit" name="submit" class="btn btn-primary pull-right" style="width:150px; height:50px">Đặt hàng</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-8">
+            <section id="cart_items">
+                <h3 class="mb-4 billing-heading" style="color:#fe980f">Nội dung hàng</h3>
+                <div class="table-responsive cart_info">
+                    <table class="table table-condensed">
+                        <thead style="text-align:center">
+                            <tr class="cart_menu">
+                                <td class="image col-sm-2">Sản phẩm</td>
+                                <td class="description"></td>
+                                <td class="price col-sm-2">Giá</td>
+                                <td class="quantity col-sm-2">Số lượng</td>
+                                <td class="total col-sm-2">Tổng giá</td>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align:center">
+                            @for (int i = 0; i < GioHangViewModel.lstDienThoai.Count; i++)
+                            {
+                                <tr>
+                                    <td class="cart_product">
+                                        <a href=""><img src=@GioHangViewModel.lstDienThoai[i].LinkHinh alt="" class="imageincart"></a>
+                                    </td>
+                                    <td class="cart_description" style="color:#8C8C88">
+                                        <h4>@GioHangViewModel.lstDienThoai[i].Name</h4>
+                                    </td>
+                                    <td class="cart_price col-sm-offset-3">
+                                        <h4>@string.Format("{0:0,0}", GioHangViewModel.lstDienThoai[i].Gia)đ</h4>
+                                    </td>
+                                    <td class="cart_quantity">
+                                        <div class="cart_quantity_button col-sm-offset-3">
+                                            <input class="cart_quantity_input" type="text" name="quantity" value=@GioHangViewModel.lstDienThoai[i].Soluong autocomplete="off" size="2" readonly>
+                                        </div>
+                                    </td>
+                                    <td class="cart_total col-sm-offset-3">
+                                        <p class="cart_total_price">@string.Format("{0:0,0}", GioHangViewModel.lstDienThoai[i].TongGia)đ</p>
+                                    </td>
+                                </tr>
+                            }
+
+                            <tr>
+                                <td colspan="2">&nbsp;</td>
+                                <td colspan="3">
+                                    <table class="table table-condensed total-result">
+                                        <tbody>
+                                            <tr>
+                                                <td>Tổng giá đơn hàng</td>
+                                                <td>@string.Format("{0:0,0}",GioHangViewModel.TongTien)đ</td>
+                                            </tr>
+                                            <tr class="shipping-cost">
+                                                <td>Phí giao hàng</td>
+                                                <td>Free</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tổng tiền thu người nhận</td>
+                                                <td><span>@string.Format("{0:0,0}", GioHangViewModel.TongTien)đ</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                @*<div class="payment-options">
+                    <span>
+                        <label><input type="radio" checked asp-for="HinhThucThanhToan" value="TrucTiep" name="thanhtoan">Thanh toán khi nhận hàng</label>
+                    </span>
+                    <span>
+                        <label><input type="radio" asp-for="HinhThucThanhToan" value="Paypal" name="thanhtoan"> Paypal</label>
+                    </span>
+                    <button type="submit" onclick="DatHang()" name="submit" class="btn btn-primary pull-right" style="width:150px; height:50px" value="Đặt hàng">Đặt hàng</button>
+                </div>*@
+            </section>
+
+        </div>
+
+    </div>
+
+</div>
+
+<style>
+    .imageincart {
+        width: 70%;
+        height: 70%;
+    }
+</style>
+

@@ -45,7 +45,9 @@ namespace PTStore.Controllers
 
         public IActionResult LichSuMuaHang()
         {
-            return View();
+            int id = int.Parse(HttpContext.Session.GetString("UserId"));
+            var qr = _context.DonHangs.Where(x => x.UserId == id).Include(x => x.ChiTietDonHangs);
+            return View(qr.ToList());
         }
 
         public IActionResult PhanHoi()
