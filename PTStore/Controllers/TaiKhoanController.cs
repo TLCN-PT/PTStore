@@ -19,7 +19,9 @@ namespace PTStore.Controllers
         {
             if (IsCustomerLogged())
             {
-                return View();
+                int id = int.Parse(HttpContext.Session.GetString("UserId"));
+                var qr = _context.Users.Include(x => x.Account).Where(x => x.UserId == id).FirstOrDefault();
+                return View(qr);
             }
             return Redirect("/Home/Error");
         }
@@ -46,8 +48,30 @@ namespace PTStore.Controllers
         public IActionResult LichSuMuaHang()
         {
             int id = int.Parse(HttpContext.Session.GetString("UserId"));
-            var qr = _context.DonHangs.Where(x => x.UserId == id).Include(x => x.ChiTietDonHangs);
-            return View(qr.ToList());
+            var donHang = _context.DonHangs.Where(x => x.UserId == id).Include(x => x.ChiTietDonHangs).ThenInclude(x=>x.DienThoai).ToList();
+            foreach (var item in donHang)
+            {
+                switch (item.TrangTrai)
+                {
+                    case "DaGiaoHang":
+                        item.TrangTrai = "Đã giao hàng";
+                        break;
+                    case "DatHangThanhCong":
+                        item.TrangTrai = "Đặt hàng thành công";
+                        break;
+                    case "GiaoThanhCong":
+                        item.TrangTrai = "Giao thành công";
+                        break;
+                    case "BiHuy":
+                        item.TrangTrai = "Bị huỷ";
+                        break;
+                    default:
+                        item.TrangTrai = "Lỗi";
+                        break;
+                }
+            }
+            
+            return View(donHang);
         }
 
         public IActionResult PhanHoi()

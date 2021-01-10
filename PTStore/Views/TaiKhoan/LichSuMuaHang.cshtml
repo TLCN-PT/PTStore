@@ -43,21 +43,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model)
-                        {
-                            double gia = 0;
-                            //string s = "";
-                            foreach(var items in item.ChiTietDonHangs)
+                        @{
+                            foreach (var item in Model)
                             {
-                                gia += items.Gia.GetValueOrDefault();
+                                double gia = 0;
+                                string dt = "";
+                                //string s = "";
+                                foreach (var items in item.ChiTietDonHangs)
+                                {
+                                    gia += items.Gia.GetValueOrDefault();
+                                    dt += items.DienThoai.Name + "; ";
+                                }
+                                <tr>
+                                    <th scope="row">@item.MaDonHang</th>
+                                    <td>@item.NgayDatHang?.ToString("dd/MM/yyyy")</td>
+                                    <td>@dt</td>
+                                    <td>@string.Format("{0:0,0}", gia)đ</td>
+                                    <td>@item.TrangTrai</td>
+                                </tr>
                             }
-                            <tr>
-                                <th scope="row">@item.MaDonHang</th>
-                                <td>@item.NgayDatHang?.ToString("dd/MM/yyyy")</td>
-                                <td></td>
-                                <td>@gia</td>
-                                <td>@item.TrangTrai</td>
-                            </tr>
                         }
                     </tbody>
                 </table>
