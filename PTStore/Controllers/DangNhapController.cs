@@ -18,6 +18,10 @@ namespace PTStore.Controllers
         private readonly PTStoreContext _context = new PTStoreContext();
         public IActionResult Index()
         {
+            if (HttpContext.Session.GetString("UserId") != null)
+            {
+                return Redirect("/Home/Error");
+            }
             ViewData["ErrorModel"] = "";
             return View();
         }

@@ -27,7 +27,7 @@
                                                         <h2>@string.Format("{0:0,0}", Model[i].Gia)₫</h2>
                                                         <p>@Model[i].Name</p>
                                                         <a asp-controller="DienThoai" asp-action="ChiTiet" asp-route-id="@Model[i].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
-                                                        <a href="#"  onclick="ThemVaoGioHang(@Model[i].DienThoaiId)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                        <a href="#" onclick="ThemVaoGioHang(@Model[i].DienThoaiId)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
 
                                                     </div>
                                                 </div>
@@ -54,7 +54,7 @@
                                                         <h2>@string.Format("{0:0,0}", Model[i].Gia)₫</h2>
                                                         <p>@Model[i].Name</p>
                                                         <a asp-controller="DienThoai" asp-action="ChiTiet" asp-route-id="@Model[i].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
-                                                        <a href="/Home/Cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+                                                        <a href="#" onclick="ThemVaoGioHang(@Model[i].DienThoaiId)"  class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
 
                                                     </div>
                                                 </div>

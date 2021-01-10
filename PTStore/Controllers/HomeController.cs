@@ -97,17 +97,6 @@ namespace PTStore.Controllers
             return View();
         }
 
-        //get theo code
-        public IActionResult LayMaXacNhan()
-        {
-            return View();
-        }
-
-        public IActionResult XacNhanMa()
-        {
-            return View();
-        }
-
         public IActionResult DatLaiMatKhau()
         {
             return View();

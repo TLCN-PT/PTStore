@@ -24,45 +24,53 @@
     </div>
 </section>
 <div id="sorttag">
+    <a asp-controller="DienThoai" asp-action="Index" class="btn btn-default pull-left" style="margin-left: 173px;background-color: #fe980f;color: white;font-size: 16px;height: 40px;">Tất cả điện thoại</a>
     <a asp-controller="DienThoai" asp-action="Index" asp-route-sortOrder="@ViewData["sortOrderTang"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default" style="background-color: #fe980f;color: white;font-size: 16px;height: 40px;">Giá thấp tới cao</a>
     <a asp-controller="DienThoai" asp-action="Index" asp-route-sortOrder="@ViewData["sortOrderGiam"]" asp-route-thuonghieuOrder="@ViewData["thuonghieuOrder"]" class="btn btn-default" style="background-color: #fe980f;color: white;font-size: 16px;height: 40px;">Giá cao xuống thấp</a>
 </div>
 <div class="container" style="background-color:white; margin-top:2%;padding-top: 20px;">
     @{
-        int s = 0;
-        for (int j = 0; j < ((Model.lstDienThoai.Count / 4) + 1) && s < Model.lstDienThoai.Count; j++)
+        if (Model.lstDienThoai.Count == 0)
         {
-            <div class="row">
-                <div class="col-sm-12 padding-right">
-                    <div class="features_items">
-                        @for (int k = 0; k < 4 && s < Model.lstDienThoai.Count; k++)
-                        {
-                            <div class="col-sm-3">
-                                <div class="product-image-wrapper">
-                                    <div class="single-products">
-                                        <div class="productinfo text-center">
-                                            <img src="@Model.lstDienThoai[s].HinhAnh" alt="@Model.lstDienThoai[s].Name" style="height:256.75px;width:auto">
-                                            <h2 style="font-size:20px">@string.Format("{0:0,0}", Model.lstDienThoai[s].Gia)₫</h2>
-                                            <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
-
-                                        </div>
-                                        <div class="product-overlay">
-                                            <div class="overlay-content">
+            <h1 class="text-center">Không có điện thoại nào!</h1>
+        }
+        else
+        {
+            int s = 0;
+            for (int j = 0; j < ((Model.lstDienThoai.Count / 4) + 1) && s < Model.lstDienThoai.Count; j++)
+            {
+                <div class="row">
+                    <div class="col-sm-12 padding-right">
+                        <div class="features_items">
+                            @for (int k = 0; k < 4 && s < Model.lstDienThoai.Count; k++)
+                            {
+                                <div class="col-sm-3">
+                                    <div class="product-image-wrapper">
+                                        <div class="single-products">
+                                            <div class="productinfo text-center">
+                                                <img src="@Model.lstDienThoai[s].HinhAnh" alt="@Model.lstDienThoai[s].Name" style="height:256.75px;width:auto">
                                                 <h2 style="font-size:20px">@string.Format("{0:0,0}", Model.lstDienThoai[s].Gia)₫</h2>
                                                 <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
-                                                <a asp-controller="DienThoai" asp-action="ChiTiet" asp-route-id="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
-                                                <a onclick="ThemVaoGioHang(@Model.lstDienThoai[s].DienThoaiId)" href="#" data-container="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
 
+                                            </div>
+                                            <div class="product-overlay">
+                                                <div class="overlay-content">
+                                                    <h2 style="font-size:20px">@string.Format("{0:0,0}", Model.lstDienThoai[s].Gia)₫</h2>
+                                                    <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
+                                                    <a asp-controller="DienThoai" asp-action="ChiTiet" asp-route-id="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>
+                                                    <a onclick="ThemVaoGioHang(@Model.lstDienThoai[s].DienThoaiId)" href="#" data-container="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Thêm vào giỏ</a>
+
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            s++;
-                        }
+                                s++;
+                            }
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
         }
     }
 </div>

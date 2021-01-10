@@ -16,6 +16,7 @@
                     <!--login form-->
                     <h2 class="col-sm-offset-5">Đăng Nhập</h2>
                     <form asp-controller="DangNhap" asp-action="Index" method="post">
+                        
                         <div class="mb-3">
                             <label class="form-label">Tên Đăng Nhập</label>
                             <input asp-for="TenDangNhap" type="text" class="form-control" id="inputUsername">
@@ -33,10 +34,10 @@
                         <button type="submit" class="btn btn-default col-sm-offset-5">Đăng Nhập</button>
                         <div class="card-footer" style="margin-top:5%">
                             <div class="d-flex justify-content-center links col-sm-offset-4">
-                                <label style="color:#808080">Chưa có tài khoản?</label> <a href="~/Home/Signup" style="color:#fe980f"> Đăng kí</a>
+                                <label style="color:#808080">Chưa có tài khoản?</label> <a asp-controller="DangKy" asp-action="Index" style="color:#fe980f"> Đăng kí</a>
                             </div>
                             <div class="d-flex justify-content-center links col-sm-offset-5">
-                                <a href="~/Home/LayMaXacNhan" style="color:#fe980f;">Quên mật khẩu?</a>
+                                <a asp-controller="QuenMatKhau" asp-action="Index" style="color:#fe980f;">Quên mật khẩu?</a>
                                 <p></p>
                             </div>
                         </div>

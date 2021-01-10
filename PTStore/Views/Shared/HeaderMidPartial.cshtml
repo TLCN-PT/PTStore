@@ -14,9 +14,9 @@
             <div class="col-md-6 clearfix">
                 <nav class="navbar navbar-light bg-light">
                     <div class="container-fluid">
-                        <form class="d-inline pull-right">
-                            <input class="form-control me-2 col-sm-6" style="width:450px" type="search" placeholder="Nhập nội dung cần tìm kiếm..." aria-label="Search">
-                            <button class="btn btn-outline-success" style="background-color:#fe980f; color:white" type="submit">Tìm Kiếm</button>
+                        <form class="d-inline pull-right" asp-controller="DienThoai" asp-action="Index">
+                            <input name="searchOrder" class="form-control me-2 col-sm-6" style="width:450px" type="search" placeholder="Nhập nội dung cần tìm kiếm..." id="searchinput" aria-label="Search">
+                            <button id="searchbtn" class="btn btn-outline-success" style="background-color:#fe980f; color:white">Tìm Kiếm</button>
                         </form>
                     </div>
                 </nav>

@@ -1,5 +1,6 @@
 ﻿@using PTStore.Models;
 @using Microsoft.AspNetCore.Http;
+@model PTStore.Models.User
 @{
     ViewData["Title"] = "Account";
     Layout = "~/Views/Shared/Layout.cshtml";
@@ -22,7 +23,7 @@
                         </div>
                         <div class="col-sm-8">
                             <h5>Tài khoản của</h5>
-                            <strong style="">@name.HoVaTen</strong>
+                            <strong style="">@Model.HoVaTen</strong>
                         </div>
                     </div>
                 </li>
@@ -42,46 +43,76 @@
                             <form action="#">
                                 <div class="mb-3">
                                     <label class="form-label">Họ và Tên</label>
-                                    <input type="text" value="@name.HoVaTen" class="form-control" id="inputName">
+                                    <input type="text" asp-for="HoVaTen" value="@Model.HoVaTen" class="form-control" id="inputName">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Email</label>
-                                    <input type="email" value="@name.Email" class="form-control" id="inputEmail" readonly>
+                                    <input type="email" value="@Model.Email" class="form-control" id="inputEmail" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Số điện thoại</label>
-                                    <input type="text" value="@name.SoDienThoai" class="form-control" id="inputPhone" readonly>
+                                    <input type="text" value="@Model.SoDienThoai" class="form-control" id="inputPhone" readonly>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Ngày sinh</label>
-                                    <input value="@name.NgaySinh?.ToString("dd/M/yyyy")" type="date" class="form-control" id="inputBirthdate">
+                                    <input asp-for="NgaySinh" value=@Model.NgaySinh?.Date.ToString("MM-dd-yyyy") type="date" class="form-control" id="inputBirthdate">
                                 </div>
                                 <div class="mb-3" style="margin-top:1%">
-                                    <div class="form-check col-sm-4">
-                                        <div class="col-sm-3">
-                                            <label class="form-check-label" for="checkMale">
-                                                Nam
-                                            </label>
-                                        </div>
-                                        <div class="col-sm-6">
-                                            <input class="form-check-input" type="radio" style="height: 20px" id="checkMale" name="gioitinh">
-                                        </div>
+                                    @{
+                                        if (Model.GioiTinh == "Nam")
+                                        {
+                                            <div class="form-check col-sm-4">
+                                                <div class="col-sm-3">
+                                                    <label class="form-check-label" for="checkMale">
+                                                        Nam
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input class="form-check-input" value="Nam" type="radio" style="height: 20px" id="checkMale" asp-for="GioiTinh" name="GioiTinh" checked>
+                                                </div>
 
-                                    </div>
-                                    <div class="form-check col-sm-8">
-                                        <div class="col-sm-1">
-                                            <label for="checkFemale">
-                                                Nữ
-                                            </label>
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <input class="form-check-input" type="radio" style="height: 20px" id="checkFemale" name="gioitinh" checked>
-                                        </div>
-                                    </div>
+                                            </div>
+                                            <div class="form-check col-sm-8">
+                                                <div class="col-sm-1">
+                                                    <label for="checkFemale">
+                                                        Nữ
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input class="form-check-input" value="Nữ" type="radio" style="height: 20px" id="checkFemale" asp-for="GioiTinh" name="GioiTinh">
+                                                </div>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="form-check col-sm-4">
+                                                <div class="col-sm-3">
+                                                    <label class="form-check-label" for="checkMale">
+                                                        Nam
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input class="form-check-input" value="Nam" type="radio" style="height: 20px" id="checkMale" asp-for="GioiTinh" name="GioiTinh">
+                                                </div>
+
+                                            </div>
+                                            <div class="form-check col-sm-8">
+                                                <div class="col-sm-1">
+                                                    <label for="checkFemale">
+                                                        Nữ
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <input class="form-check-input" value="Nữ" type="radio" style="height: 20px" id="checkFemale" asp-for="GioiTinh" name="GioiTinh" checked>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Địa chỉ</label>
-                                    <input type="text" class="form-control" id="inputAddress">
+                                    <input value="@Model.DiaChi" type="text" class="form-control" id="inputAddress">
                                 </div>
                                 <div style="margin-top:3%">
                                     <button type="submit" class="btn btn-default pull-left" style="background-color: #fe980f; color: white; height:40px">Cập nhật tài khoản</button>
@@ -127,4 +158,6 @@
         </div>
     </div>
 </div>
-
+<script>
+    
+</script>

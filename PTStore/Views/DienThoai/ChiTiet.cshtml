@@ -123,24 +123,6 @@
         })
     }
 
-    function ThemVaoGioHang(id) {
-        $.ajax({
-            url: 'GioHang/ThemSanPham',
-            dataType: "json",
-            type: "POST",
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify({ id: id }),
-            processData: false,
-            cache: false,
-            success: function (data) {
-                alert(data);
-            },
-            error: function (xhr) {
-                alert('error');
-            }
-        });
-    }
-
     $(document).ready(function () {
         LoadDienThoaiDeXuatPartial();
     });
