@@ -15,7 +15,7 @@ namespace PTStore.Controllers
     public class DienThoaiController : Controller
     {
         private readonly PTStoreContext _context = new PTStoreContext();
-        public IActionResult Index(string sortOrder, int thuonghieuOrder)
+        public IActionResult Index(string sortOrder, int thuonghieuOrder, string searchOrder)
         {
             if (string.IsNullOrEmpty(sortOrder))
             {
@@ -54,6 +54,10 @@ namespace PTStore.Controllers
             {
                 dt.lstDienThoai = dt.lstDienThoai.FindAll(x => x.ThuongHieuId == thuonghieuOrder);
             }
+            if(searchOrder!=null)
+            {
+                dt.lstDienThoai = dt.lstDienThoai.Where(x => x.Name.Contains(searchOrder)).ToList();
+            }    
             dt.lstThuongHieu = _context.ThuongHieus.ToList();
             return View(dt);
         }
