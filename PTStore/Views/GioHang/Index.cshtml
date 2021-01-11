@@ -13,8 +13,10 @@
         <div class="table-responsive cart_info" style="margin-top:2%">
             @if (GioHangViewModel.lstDienThoai.Count == 0)
             {
-                <h1 class="text-info">Chưa có sản phẩm nào trong giỏ hàng</h1>
-                <a class="btn btn-default check_out" asp-action="Index" asp-controller="DienThoai" style="height:30px">Xem điện thoại</a>
+                <h1 class="text-info" style="text-align: -webkit-center;">Chưa có sản phẩm nào trong giỏ hàng</h1>
+                <div style="text-align: -webkit-center;">
+                    <a class="btn btn-default check_out" asp-action="Index" asp-controller="DienThoai" style="height: 30px;margin-bottom: 10px;">Xem điện thoại</a>
+                </div>
             }
             else
             {
@@ -80,7 +82,7 @@
                         <li>Tạm tính <span id="spTamTinh">@string.Format("{0:0,0}", GioHangViewModel.TongTien)đ</span></li>
                         <li>Thành tiền <span id="spThanhTien">@string.Format("{0:0,0}", GioHangViewModel.TongTien)đ</span></li>
                     </ul>
-                    <a class="btn btn-default check_out" asp-controller="DienThoai" asp-action="Index" style="height:30px; margin-left:40px">Tiến tục mua hàng </a>
+                    <a class="btn btn-default check_out" asp-controller="DienThoai" asp-action="Index" style="height:30px; margin-left:40px">Tiếp tục mua hàng </a>
                     <a class="btn btn-default check_out pull-right" asp-action="TienHanhDatHang" style="height:30px">Tiến hành đặt hàng</a>
                 </div>
             </div>
@@ -121,7 +123,6 @@
                 $(ttid).text((gia * x).format() + "đ");
                 $("#spTamTinh").text(tonggia.format() + "đ");
                 $("#spThanhTien").text(tonggia.format() + "đ");
-                document.getElementById(li).scrollIntoView(true);
             },
             error: function (xhr) {
                 alert('error');
@@ -156,7 +157,6 @@
                     $(ttid).text((gia * x).format() + "đ");
                     $("#spTamTinh").text(tonggia.format() + "đ");
                     $("#spThanhTien").text(tonggia.format() + "đ");
-                    document.getElementById(li).scrollIntoView(true);
                 },
                 error: function (xhr) {
                     alert('error');

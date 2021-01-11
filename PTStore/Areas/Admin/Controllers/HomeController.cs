@@ -26,7 +26,7 @@ namespace PTStore.Areas.Admin.Controllers
             if (IsCustomerLogged())
             {
                 HttpContext.Session.Clear();
-                return Redirect("/Home");
+                return Redirect("/Admin/Login");
             }
             return Redirect("/Home/Error");
         }
