@@ -4,5 +4,12 @@
     Layout = "~/Views/Shared/Layout.cshtml";
 }
 
-<h2>Đặt hàng thành công!</h2>
+<div class="container text-center">
+    <div class="content-404" style="margin-top:2%">
+        <img src="~/Common/tichxanh.png" style="height:200px;width:200px" class="img-responsive" alt="">
+        <h4>Đơn hàng được khởi tạo thành công</h4>
+        <h5>Đơn hàng đang trong quá trình thẩm định, kết quả thẩm định sẽ được gửi đến email của bạn</h5>
+        <a class="btn btn-default" asp-controller="TaiKhoan" asp-action="LichSuMuaHang" style="background-color: #fe980f; color:white; font-size:16px; height: 40px; width: 180px; margin-top:2%">Kiểm tra đơn hàng</a>
+    </div>
+</div>
 
