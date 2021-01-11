@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using PTStore.Common.TienIch;
 using PTStore.Common.ViewModels;
 using PTStore.Models;
 using System;
@@ -48,6 +49,34 @@ namespace PTStore.Controllers
             return Json("Đã thêm " + qr.Name + " vào Giỏ hàng!");
         }
 
+        public JsonResult TangSoLuong(int id)
+        {
+            GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Soluong++;
+            GioHangViewModel.lstDienThoai.Find(x => x.Id == id).TongGia =
+                GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Soluong
+                * GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Gia;
+            GioHangViewModel.TongTien += GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Gia;
+            //string data = string.Format("0:0,0", GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Gia) + "đ";
+            return Json("");
+        }
+
+        public JsonResult GiamSoLuong(int id)
+        {
+            GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Soluong--;
+            GioHangViewModel.lstDienThoai.Find(x => x.Id == id).TongGia =
+                GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Soluong
+                * GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Gia;
+            GioHangViewModel.TongTien -= GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Gia;
+            //string data = string.Format("0:0,0", GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Gia) + "đ";
+            return Json("");
+        }
+
+        public IActionResult XoaSP(int id)
+        {
+            GioHangViewModel.XoaSP(id);
+            return Redirect("/GioHang");
+        }
+
         public IActionResult TienHanhDatHang()
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")))
@@ -91,7 +120,7 @@ namespace PTStore.Controllers
                 dh.TrangTrai = "DatHangThanhCong";
                 context.DonHangs.Add(dh);
                 context.SaveChanges();
-
+                
                 var dhId = context.DonHangs.Where(x => x.MaDonHang == dh.MaDonHang).FirstOrDefault().DonHangId;
 
                 foreach(var item in GioHangViewModel.lstDienThoai)
@@ -105,6 +134,12 @@ namespace PTStore.Controllers
                     });
                 }
                 context.SaveChanges();
+
+                if (TIMail.GuiMailDatHangThanhCong(dh.Email))
+                {
+
+                };
+
             }
             return View();
         }

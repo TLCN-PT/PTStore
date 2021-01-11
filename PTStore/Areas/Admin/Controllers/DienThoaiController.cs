@@ -44,6 +44,34 @@ namespace PTStore.Areas.Admin.Controllers
             return View(lstDt);
         }
 
+        [HttpPost]
+        public IActionResult Index(string search)
+        {
+            var pTStoreContext = _context.DienThoais.Include(d => d.ThongSoKyThuat).Include(d => d.ThuongHieu).ToList();
+            List<DienThoaiIndexViewModel> lstDt = new List<DienThoaiIndexViewModel>();
+            foreach (var item in pTStoreContext)
+            {
+                if(item.Name.Contains(search))
+                {
+                    DienThoaiIndexViewModel dt = new DienThoaiIndexViewModel();
+                    dt.dienThoai = item;
+                    if (dt.dienThoai.TinhTrang == "DangKinhDoanh")
+                    {
+                        dt.dienThoai.TinhTrang = "Đang kinh doanh";
+                    }
+                    else
+                    {
+                        dt.dienThoai.TinhTrang = "Ngừng kinh doanh";
+                    }
+                    dt.TenThuongHieu = _context.ThuongHieus.Where(x => x.ThuongHieuId == item.ThuongHieuId).FirstOrDefault().TenThuongHieu;
+                    lstDt.Add(dt);
+                }
+                
+            }
+
+            return View(lstDt);
+        }
+
         // GET: Admin/DienThoai/Details/5
         public IActionResult Details(int? id)
         {

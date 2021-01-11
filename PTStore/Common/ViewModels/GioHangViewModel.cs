@@ -17,6 +17,13 @@ namespace PTStore.Common.ViewModels
             lstDienThoai.Clear();
             TongTien = 0;
         }
+
+        public static void XoaSP(int id)
+        {
+            int index = lstDienThoai.FindIndex(x => x.Id == id);
+            TongTien -= lstDienThoai[index].TongGia;
+            lstDienThoai.RemoveAt(index);
+        }
     }
 
     public class DienThoaiGioHang

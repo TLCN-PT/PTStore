@@ -122,7 +122,9 @@ namespace PTStore.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(donHang);
+                    //_context.Update(donHang);
+                    var qr = _context.DonHangs.Find(id);
+                    qr.TrangTrai = donHang.TrangTrai;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

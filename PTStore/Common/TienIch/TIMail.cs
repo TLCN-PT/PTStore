@@ -40,7 +40,7 @@ namespace PTStore.Common.TienIch
         {
             string _gmailsend = "ptstore.hcmute@gmail.com";
             string _gmailpassword = "ptstore.2020";
-            string _from = "ptstore.hcmute.edu.vn";
+            string _from = "ptstore.hcmute@gmail.com";
             MailMessage message = new MailMessage(
                 from: _from,
                 to: _to,
@@ -67,8 +67,22 @@ namespace PTStore.Common.TienIch
         public static bool GuiMailDoiMatKhau(string _to, string maxacnhan)
         {
             string _subject = "Mã xác nhận thay đổi mật khẩu từ PTStore";
-            string _body = "";
-            return true;
+            string _body = "<p>Mã xác nhận của bạn là:</p><h1><strong>" + maxacnhan + "</strong></h1>";
+            return SendMailGoogleSmtp(_to, _subject, _body);
+        }
+
+        public static bool GuiMailDangKy(string _to)
+        {
+            string _subject = "Đăng ký nhận tin tức từ PTStore thành công!";
+            string _body = "<p>Cảm ơn bạn đã đăng ký cập nhật thông tin từ website của chúng tôi!</p>";
+            return SendMailGoogleSmtp(_to, _subject, _body);
+        }
+
+        public static bool GuiMailDatHangThanhCong(string _to)
+        {
+            string _subject = "Đăng ký nhận tin tức từ PTStore thành công!";
+            string _body = "<p>Đặt hàng thành công!</p><p>Để xem trạng thái đơn hàng, vui lòng vào trang thái khoản, chọn lịch sử mua hàng!<p>Xin cảm ơn!</p>";
+            return SendMailGoogleSmtp(_to, _subject, _body);
         }
 
     }

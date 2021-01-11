@@ -28,6 +28,28 @@ namespace PTStore.Areas.Admin.Controllers
              on acc.AccountId equals usr.UserId
                          where usr.RoleId == 1
                          select acc);
+  
+            //into grouping;
+            //            select new { acc, acc.User, usr = grouping.Where(x => x.RoleId == 1).ToList() };
+            //List<Account> accounts = query;
+            //return View(query);
+            return View(await query.ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(string search)
+        {
+            //var pTStoreContext = _context.Accounts.Include(a => a.Users).ThenInclude(a=>a.UserRoles);
+            var query = (from acc in _context.Accounts
+                         join usr in _context.UserRoles
+             on acc.AccountId equals usr.UserId
+                         where usr.RoleId == 1
+                         select acc);
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(x => x.TenDangNhap.Contains(search));
+            }
             //into grouping;
             //            select new { acc, acc.User, usr = grouping.Where(x => x.RoleId == 1).ToList() };
             //List<Account> accounts = query;
