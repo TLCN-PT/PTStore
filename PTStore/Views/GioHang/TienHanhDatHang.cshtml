@@ -97,7 +97,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Tổng giá đơn hàng</td>
-                                                <td>@string.Format("{0:0,0}",GioHangViewModel.TongTien)đ</td>
+                                                <td>@string.Format("{0:0,0}", GioHangViewModel.TongTien)đ</td>
                                             </tr>
                                             <tr class="shipping-cost">
                                                 <td>Phí giao hàng</td>
@@ -111,20 +111,21 @@
                                     </table>
                                 </td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
                 @*<div class="payment-options">
-                    <span>
-                        <label><input type="radio" checked asp-for="HinhThucThanhToan" value="TrucTiep" name="thanhtoan">Thanh toán khi nhận hàng</label>
-                    </span>
-                    <span>
-                        <label><input type="radio" asp-for="HinhThucThanhToan" value="Paypal" name="thanhtoan"> Paypal</label>
-                    </span>
-                    <button type="submit" onclick="DatHang()" name="submit" class="btn btn-primary pull-right" style="width:150px; height:50px" value="Đặt hàng">Đặt hàng</button>
-                </div>*@
+                <span>
+                    <label><input type="radio" checked asp-for="HinhThucThanhToan" value="TrucTiep" name="thanhtoan">Thanh toán khi nhận hàng</label>
+                </span>
+                <span>
+                    <label><input type="radio" asp-for="HinhThucThanhToan" value="Paypal" name="thanhtoan"> Paypal</label>
+                </span>
+                <button type="submit" onclick="DatHang()" name="submit" class="btn btn-primary pull-right" style="width:150px; height:50px" value="Đặt hàng">Đặt hàng</button>
+            </div>*@
             </section>
-
+            <a class="btn btn-default check_out pull-right" asp-controller="DienThoai" asp-action="Index" style="height:30px; margin-top:3%">Tiến tục mua hàng </a>
         </div>
 
     </div>
