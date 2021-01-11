@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "Biểu đồ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<div id="chartContainer1" style="height: 370px; width: 100%"></div>
+<div id="chartContainer2" style="height: 370px; width: 100%; margin-top:5%"></div>
+<script>
+    window.onload = function () {
+
+        var chart1 = new CanvasJS.Chart("chartContainer1", {
+            animationEnabled: true,
+            exportEnabled: true,
+            title: {
+                text: "Thống kê doanh thu qua 6 tháng",
+                font: "Arial"
+            },
+            axisY: {
+                title: "Đơn vị: triệu đồng"
+            },
+            toolTip: {
+                shared: true
+            },
+            legend: {
+                cursor: "pointer",
+                itemclick: toggleDataSeries
+            },
+            data: [{
+                type: "spline",
+                name: "Doanh thu",
+                showInLegend: true,
+                dataPoints: [
+                    { label: "Tháng 7", y: 10.5 },
+                    { label: "Tháng 8", y: 20 },
+                    { label: "Tháng 9", y: 15 },
+                    { label: "Tháng 10", y: 40 },
+                    { label: "Tháng 11", y: 50 },
+                    { label: "Tháng 12", y: 70 }
+                ]
+            }]
+        });
+
+        chart1.render();
+
+        var chart2 = new CanvasJS.Chart("chartContainer2", {
+            animationEnabled: true,
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            title: {
+                text: "Thống kê số lượng điện thoại bán được theo Thương Hiệu"
+            },
+            axisY: {
+                title: "Số lượng: điện thoại"
+            },
+            data: [{
+                type: "column",
+                showInLegend: true,
+                legendMarkerColor: "grey",
+                legendText: "Thương hiệu",
+                dataPoints: [
+                    { y: 20, label: "iPhone" },
+                    { y: 8, label: "Samsung" },
+                    { y: 18, label: "Xiaomi" },
+                    { y: 6, label: "Oppo" },
+                    { y: 9, label: "Realmi" },
+                    { y: 6, label: "Vivo" },
+                    { y: 7, label: "Huawei" },
+                    { y: 14, label: "Nokia" },
+                    { y: 10, label: "VsMart" },
+                    { y: 4, label: "Mobell" }
+                ]
+            }]
+        });
+        chart2.render();
+
+        function toggleDataSeries(e) {
+            if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                e.dataSeries.visible = false;
+            }
+            else {
+                e.dataSeries.visible = true;
+            }
+            chart.render();
+        }
+
+    }
+</script>
+<script>
+    $(document).ready(function () {
+        document.getElementById("ahome").className = "";
+        document.getElementById("abieudo").className = "active";
+        document.getElementById("adienthoai").className = "";
+        document.getElementById("adonhang").className = "";
+        document.getElementById("agopy").className = "";
+        document.getElementById("athuonghieu").className = "";
+
+        document.getElementById("ataikhoan").className = "";
+        document.getElementById("asubcriber").className = "";
+        document.getElementById("aadmin").className = "";
+        document.getElementById("acustomer").className = "";
+    });
+</script>
