@@ -27,6 +27,26 @@ namespace PTStore.Controllers
             return Redirect("/Home/Error");
         }
 
+        [HttpPost]
+        public IActionResult Index(User user)
+        {
+            if(ModelState.IsValid)
+            {
+                int id = int.Parse(HttpContext.Session.GetString("UserId"));
+                var qr = _context.Users.Include(x => x.Account).Where(x => x.UserId == id).FirstOrDefault();
+                qr.HoVaTen = user.HoVaTen;
+                qr.GioiTinh = user.GioiTinh;
+                qr.NgaySinh = user.NgaySinh;
+                qr.DiaChi = user.DiaChi;
+                _context.SaveChanges();
+                HttpContext.Session.SetString("DoiThongTin", "ThanhCong");
+            }
+            else
+            {
+                HttpContext.Session.SetString("DoiThongTin", "ThatBai");
+            }    
+            return Redirect("/TaiKhoan");
+        }
         public IActionResult DangXuat()
         {
             if (IsCustomerLogged())

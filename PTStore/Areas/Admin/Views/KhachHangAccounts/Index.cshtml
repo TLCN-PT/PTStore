@@ -10,10 +10,10 @@
 <h2 style="color:#337ab7">Tài khoản User</h2>
 
 <div class="navbar-form navbar-left" style="padding-top:7px; padding-left:0px">
-    <form class="navbar-form navbar-left">
+    <form class="navbar-form navbar-left" asp-action="Index" method="post">
         <div class="input-group">
-            <input type="text" value="" class="form-control" placeholder="Nhập nội dung ...">
-            <span class="input-group-btn"><button type="button" class="btn btn-primary">Tìm kiếm</button></span>
+            <input type="text" name="search" class="form-control" placeholder="Nhập nội dung ...">
+            <span class="input-group-btn"><button type="submit" class="btn btn-primary">Tìm kiếm</button></span>
         </div>
     </form>
 </div>

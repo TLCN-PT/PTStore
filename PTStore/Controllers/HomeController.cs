@@ -113,11 +113,6 @@ namespace PTStore.Controllers
             return View();
         }
 
-        public IActionResult DatLaiMatKhau()
-        {
-            return View();
-        }
-
         public IActionResult TheoDoi(string email)
         {
             var qr = _context.Subcribers.Where(x => x.Email == email).FirstOrDefault();
