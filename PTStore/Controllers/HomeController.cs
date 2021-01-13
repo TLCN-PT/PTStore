@@ -45,6 +45,21 @@ namespace PTStore.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult LienHe(string phone, string email, string subject, string message)
+        {
+            _context.Gopies.Add(new GopY
+            {
+                Email = email,
+                SoDienThoai = phone,
+                ChuDe = subject,
+                NoiDung = message
+            });
+            _context.SaveChanges();
+            HttpContext.Session.SetString("GopY", "1");
+            return View();
+        }
+
         // Check session if Customer logged or not
         public bool IsCustomerLogged()
         {
@@ -94,11 +109,6 @@ namespace PTStore.Controllers
 
         // Error Message
         public IActionResult ErrorMessage()
-        {
-            return View();
-        }
-
-        public IActionResult DatLaiMatKhau()
         {
             return View();
         }

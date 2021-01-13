@@ -40,7 +40,7 @@
                 <div class="row" style="margin-top:2%; height:423px">
                     <div class="col-sm-8 col-sm-offset-2">
                         <div class="accountinfo-form">
-                            <form action="#">
+                            <form asp-action="Index" method="post">
                                 <div class="mb-3">
                                     <label class="form-label">Họ và Tên</label>
                                     <input type="text" asp-for="HoVaTen" value="@Model.HoVaTen" class="form-control" id="inputName">
@@ -55,7 +55,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Ngày sinh</label>
-                                    <input asp-for="NgaySinh" value=@Model.NgaySinh?.Date.ToString("MM-dd-yyyy") type="date" class="form-control" id="inputBirthdate">
+                                    <input asp-for="NgaySinh" value=@Model.NgaySinh?.ToString("yyyy-MM-dd") type="date" class="form-control" id="inputBirthdate">
                                 </div>
                                 <div class="mb-3" style="margin-top:1%">
                                     @{
@@ -112,10 +112,11 @@
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Địa chỉ</label>
-                                    <input value="@Model.DiaChi" type="text" class="form-control" id="inputAddress">
+                                    <input asp-for="DiaChi" value="@Model.DiaChi" type="text" class="form-control" id="inputAddress">
+                                    <span class="text-danger"></span>
                                 </div>
                                 <div style="margin-top:3%">
-                                    <button type="submit" class="btn btn-default pull-left" style="background-color: #fe980f; color: white; height:40px">Cập nhật tài khoản</button>
+                                    <button type="submit" class="btn btn-default pull-left" style="background-color: #fe980f; color: white; height:40px">Cập nhật thông tin</button>
                                     <button data-toggle="modal" data-target="#changepassword" type="submit" class="btn btn-default pull-right" style="background-color: #fe980f; color: white; height:40px">Đổi mật khẩu</button>
                                 </div>
                             </form>
@@ -140,6 +141,21 @@
         }
 
         Context.Session.SetString("DoiMatKhau", "");
+    }
+
+    string xx = Context.Session.GetString("DoiThongTin");
+    if (!string.IsNullOrEmpty(xx))
+    {
+        if (xx == "ThanhCong")
+        {
+            <script>alert("Cập nhật thông tin thành công!");</script>
+        }
+        else
+        {
+            <script>alert("Thông tin không đúng!");</script>
+        }
+
+        Context.Session.SetString("DoiThongTin", "");
     }
 }
 <!-- Modal đổi mật khẩu -->

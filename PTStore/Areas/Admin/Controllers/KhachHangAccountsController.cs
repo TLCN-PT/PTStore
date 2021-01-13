@@ -33,7 +33,25 @@ namespace PTStore.Areas.Admin.Controllers
             //return View(query);
             return View(await query.ToListAsync());
         }
+        [HttpPost]
+        public async Task<IActionResult> Index(string search)
+        {
+            var query = (from acc in _context.Accounts
+                         join usr in _context.UserRoles
+             on acc.AccountId equals usr.UserId
+                         where usr.RoleId == 2
+                         select acc);
 
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(x => x.TenDangNhap.Contains(search));
+            }
+            //into grouping;
+            //            select new { acc, acc.User, usr = grouping.Where(x => x.RoleId == 1).ToList() };
+            //List<Account> accounts = query;
+            //return View(query);
+            return View(await query.ToListAsync());
+        }
         // GET: Admin/KhachHangAccounts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -110,7 +128,8 @@ namespace PTStore.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(account);
+                    var qr = _context.Accounts.Where(x=>x.AccountId==id).FirstOrDefault();
+                    qr.TrangThai = account.TrangThai;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
