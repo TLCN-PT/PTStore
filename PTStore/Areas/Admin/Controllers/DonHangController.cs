@@ -144,36 +144,6 @@ namespace PTStore.Areas.Admin.Controllers
             return View(donHang);
         }
 
-        // GET: Admin/DonHang/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var donHang = await _context.DonHangs
-                .Include(d => d.User)
-                .FirstOrDefaultAsync(m => m.DonHangId == id);
-            if (donHang == null)
-            {
-                return NotFound();
-            }
-
-            return View(donHang);
-        }
-
-        // POST: Admin/DonHang/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var donHang = await _context.DonHangs.FindAsync(id);
-            _context.DonHangs.Remove(donHang);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool DonHangExists(int id)
         {
             return _context.DonHangs.Any(e => e.DonHangId == id);

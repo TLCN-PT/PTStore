@@ -153,36 +153,6 @@ namespace PTStore.Areas.Admin.Controllers
             return View(account);
         }
 
-        // GET: Admin/AccountAdmin/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var account = await _context.Accounts
-                .Include(a => a.User)
-                .FirstOrDefaultAsync(m => m.AccountId == id);
-            if (account == null)
-            {
-                return NotFound();
-            }
-
-            return View(account);
-        }
-
-        // POST: Admin/AccountAdmin/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var account = await _context.Accounts.FindAsync(id);
-            _context.Accounts.Remove(account);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool AccountExists(int id)
         {
             return _context.Accounts.Any(e => e.AccountId == id);

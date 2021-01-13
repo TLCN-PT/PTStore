@@ -116,35 +116,6 @@ namespace PTStore.Areas.Admin.Controllers
             return View(gopY);
         }
 
-        // GET: Admin/GopY/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var gopY = await _context.Gopies
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (gopY == null)
-            {
-                return NotFound();
-            }
-
-            return View(gopY);
-        }
-
-        // POST: Admin/GopY/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var gopY = await _context.Gopies.FindAsync(id);
-            _context.Gopies.Remove(gopY);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool GopYExists(int id)
         {
             return _context.Gopies.Any(e => e.Id == id);

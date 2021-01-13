@@ -116,35 +116,6 @@ namespace PTStore.Areas.Admin.Controllers
             return View(thuongHieu);
         }
 
-        // GET: Admin/ThuongHieu/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var thuongHieu = await _context.ThuongHieus
-                .FirstOrDefaultAsync(m => m.ThuongHieuId == id);
-            if (thuongHieu == null)
-            {
-                return NotFound();
-            }
-
-            return View(thuongHieu);
-        }
-
-        // POST: Admin/ThuongHieu/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var thuongHieu = await _context.ThuongHieus.FindAsync(id);
-            _context.ThuongHieus.Remove(thuongHieu);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool ThuongHieuExists(int id)
         {
             return _context.ThuongHieus.Any(e => e.ThuongHieuId == id);
