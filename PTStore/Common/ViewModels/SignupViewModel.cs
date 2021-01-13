@@ -31,8 +31,8 @@ namespace PTStore.Common.ViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Số điện thoại không được để trống!")]
-        [DataType(DataType.PhoneNumber)]
         [MinLength(10,ErrorMessage ="Vui lòng nhập chính xác số điện thoại!")]
+        [MaxLength(10, ErrorMessage = "Vui lòng nhập chính xác số điện thoại!")]
         public string SoDienThoai { get; set; }
 
         [Required(ErrorMessage = "Ngày sinh không được để trống!")]

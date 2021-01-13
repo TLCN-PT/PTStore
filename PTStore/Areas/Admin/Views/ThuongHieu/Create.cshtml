@@ -15,12 +15,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label class="control-label">Tên thương hiệu</label>
-                <input asp-for="TenThuongHieu" class="form-control" />
+                <input required asp-for="TenThuongHieu" class="form-control" />
                 <span asp-validation-for="TenThuongHieu" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label class="control-label">Link hình ảnh</label>
-                <input asp-for="HinhAnhThuongHieu" class="form-control" />
+                <input required asp-for="HinhAnhThuongHieu" class="form-control" />
                 <span asp-validation-for="HinhAnhThuongHieu" class="text-danger"></span>
             </div>
             <div class="form-group">

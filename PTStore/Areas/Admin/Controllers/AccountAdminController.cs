@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,10 @@ namespace PTStore.Areas.Admin.Controllers
         // GET: Admin/AccountAdmin
         public async Task<IActionResult> Index()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return Redirect("/Admin/Login");
+            }
             //var pTStoreContext = _context.Accounts.Include(a => a.Users).ThenInclude(a=>a.UserRoles);
             var query = (from acc in _context.Accounts
                          join usr in _context.UserRoles
@@ -48,7 +53,7 @@ namespace PTStore.Areas.Admin.Controllers
 
             if (!string.IsNullOrEmpty(search))
             {
-                query = query.Where(x => x.TenDangNhap.Contains(search));
+                query = query.Where(x => x.TenDangNhap.ToUpper().Contains(search.ToUpper()));
             }
             //into grouping;
             //            select new { acc, acc.User, usr = grouping.Where(x => x.RoleId == 1).ToList() };
