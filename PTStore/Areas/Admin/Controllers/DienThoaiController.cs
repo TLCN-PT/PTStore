@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PTStore.Models;
 using PTStore.Common.ViewModels.Admin;
+using Microsoft.AspNetCore.Http;
 
 namespace PTStore.Areas.Admin.Controllers
 {
@@ -23,6 +24,10 @@ namespace PTStore.Areas.Admin.Controllers
         // GET: Admin/DienThoai
         public IActionResult Index()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return Redirect("/Admin/Login");
+            }
             var pTStoreContext = _context.DienThoais.Include(d => d.ThongSoKyThuat).Include(d => d.ThuongHieu).ToList();
             List<DienThoaiIndexViewModel> lstDt = new List<DienThoaiIndexViewModel>();
             foreach(var item in pTStoreContext)
@@ -51,7 +56,7 @@ namespace PTStore.Areas.Admin.Controllers
             List<DienThoaiIndexViewModel> lstDt = new List<DienThoaiIndexViewModel>();
             foreach (var item in pTStoreContext)
             {
-                if(item.Name.Contains(search))
+                if(item.Name.ToUpper().Contains(search.ToUpper()))
                 {
                     DienThoaiIndexViewModel dt = new DienThoaiIndexViewModel();
                     dt.dienThoai = item;
@@ -136,7 +141,7 @@ namespace PTStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var dienThoai = await _context.DienThoais.FindAsync(id);
+            var dienThoai = await _context.DienThoais.Include(x => x.ThongSoKyThuat).Where(x => x.DienThoaiId == id).FirstOrDefaultAsync();
             if (dienThoai == null)
             {
                 return NotFound();

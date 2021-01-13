@@ -1,5 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
+@using Microsoft.AspNetCore.Http
 @using PTStore.Common.ViewModels
 
 @{
@@ -72,6 +73,13 @@
 
         </div>
     </div>
+    @{ 
+        if(!string.IsNullOrEmpty(Context.Session.GetString("HetHang")))
+        {
+            <script>alert("Số lượng điện thoại còn trong kho không đủ!")</script>
+            Context.Session.SetString("HetHang", "");
+        }
+    }
 </section>
 <section id="do_action">
     <div class="container" style="background-color:white">

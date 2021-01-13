@@ -79,6 +79,19 @@ namespace PTStore.Controllers
 
         public IActionResult TienHanhDatHang()
         {
+            if (GioHangViewModel.TongTien == 0)
+            {
+                return Redirect("/GioHang");
+            }
+            foreach(var item in GioHangViewModel.lstDienThoai)
+            {
+                var qr = context.DienThoais.Find(item.Id);
+                if(qr.SoLuong < item.Soluong)
+                {
+                    HttpContext.Session.SetString("HetHang", "true");
+                    return Redirect("/GioHang");
+                }    
+            }    
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")))
             {
                 HttpContext.Session.SetString("ThongBaoTuGioHang", "Bạn cần đăng nhập để đặt hàng!");
@@ -132,6 +145,9 @@ namespace PTStore.Controllers
                         SoLuong = item.Soluong,
                         Gia = item.Gia
                     });
+                    // Trừ vào Kho
+                    var dtt = context.DienThoais.Find(item.Id);
+                    dtt.SoLuong -= item.Soluong;
                 }
                 context.SaveChanges();
 

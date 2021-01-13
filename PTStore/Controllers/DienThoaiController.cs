@@ -41,13 +41,13 @@ namespace PTStore.Controllers
             switch (sortOrder)
             {
                 case "GiaCaoXuongThap":
-                    dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).OrderByDescending(s => s.Gia).ToList();
+                    dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).Where(x=>x.TinhTrang=="DangKinhDoanh").OrderByDescending(s => s.Gia).ToList();
                     break;
                 case "GiaThapToiCao":
-                    dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).OrderBy(s => s.Gia).ToList();
+                    dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).Where(x => x.TinhTrang == "DangKinhDoanh").OrderBy(s => s.Gia).ToList();
                     break;
                 default:
-                    dt.lstDienThoai = dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).OrderBy(s => s.DienThoaiId).ToList();
+                    dt.lstDienThoai = dt.lstDienThoai = _context.DienThoais.Where(x => x.TinhTrang == "DangKinhDoanh").Where(x => x.SoLuong > 0).OrderBy(s => s.DienThoaiId).ToList();
                     break;
             }
             if (thuonghieuOrder > 0)
@@ -56,7 +56,7 @@ namespace PTStore.Controllers
             }
             if(searchOrder!=null)
             {
-                dt.lstDienThoai = dt.lstDienThoai.Where(x => x.Name.Contains(searchOrder)).ToList();
+                dt.lstDienThoai = dt.lstDienThoai.Where(x => x.Name.ToUpper().Contains(searchOrder.ToUpper())).ToList();
             }    
             dt.lstThuongHieu = _context.ThuongHieus.ToList();
             return View(dt);

@@ -11,13 +11,22 @@ namespace PTStore.Areas.Admin.Controllers
     [Area("Admin")]
     public class HomeController : Controller
     {
-        //private readonly PTStoreContext _context;
+        private readonly PTStoreContext _context = new PTStoreContext();
         public IActionResult Index()
         {
             if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
             {
                 return Redirect("/Admin/Login");
             }
+            ViewData["dh"] = _context.DonHangs.Count();
+            ViewData["dt"] = _context.DienThoais.Count();
+            ViewData["kh"] = _context.Accounts.Count() - 2;
+            double x = 0;
+            foreach (var item in _context.ChiTietDonHangs)
+            {
+                x += item.Gia.GetValueOrDefault() + item.SoLuong.GetValueOrDefault();
+            }
+            ViewData["tt"] = string.Format("{0:0,0}",x);
             return View();
         }
 

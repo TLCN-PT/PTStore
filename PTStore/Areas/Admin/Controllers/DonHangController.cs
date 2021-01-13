@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,10 @@ namespace PTStore.Areas.Admin.Controllers
         // GET: Admin/DonHang
         public async Task<IActionResult> Index()
         {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return Redirect("/Admin/Login");
+            }
             var pTStoreContext = _context.DonHangs.Include(d => d.User).OrderByDescending(x=>x.NgayDatHang);
             return View(await pTStoreContext.ToListAsync());
         }

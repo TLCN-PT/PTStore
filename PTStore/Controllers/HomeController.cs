@@ -42,6 +42,18 @@ namespace PTStore.Controllers
 
         public IActionResult LienHe()
         {
+            if(!string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")))
+            {
+                int id = int.Parse(HttpContext.Session.GetString("UserId"));
+                var qr = _context.Users.Where(x => x.UserId == id).FirstOrDefault();
+                ViewData["phone"] = qr.SoDienThoai;
+                ViewData["email"] = qr.Email;
+            }
+            else
+            {
+                ViewData["phone"] = "";
+                ViewData["email"] = "";
+            }    
             return View();
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +23,21 @@ namespace PTStore.Areas.Admin.Controllers
         // GET: Admin/ThuongHieu
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ThuongHieus.ToListAsync());
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return Redirect("/Admin/Login");
+            }
+            return View(await _context.ThuongHieus.Include(x => x.DienThoais).ToListAsync());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(string search)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return Redirect("/Admin/Login");
+            }
+            return View(await _context.ThuongHieus.Include(x=>x.DienThoais).Where(x=>x.TenThuongHieu.ToUpper().Contains(search.ToUpper())).ToListAsync());
         }
 
         // GET: Admin/ThuongHieu/Details/5

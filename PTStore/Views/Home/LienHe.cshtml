@@ -14,10 +14,10 @@
                         <div class="status alert alert-success" style="display: none"></div>
                         <form id="main-contact-form" class="contact-form row" asp-controller="Home" asp-action="LienHe" method="post">
                             <div class="form-group col-md-6">
-                                <input type="text" name="phone" class="form-control" required placeholder="Số điện thoại">
+                                <input type="text" value="@ViewData["phone"]" name="phone" class="form-control" required placeholder="Số điện thoại">
                             </div>
                             <div class="form-group col-md-12">
-                                <input type="email" name="email" class="form-control" required placeholder="Email">
+                                <input type="email" value="@ViewData["email"]" name="email" class="form-control" required placeholder="Email">
                             </div>
                             <div class="form-group col-md-12">
                                 <input type="text" name="subject" class="form-control" require placeholder="Chủ đề">
