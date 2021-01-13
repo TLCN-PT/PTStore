@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using PTStore.Common.TienIch;
 
 namespace PTStore.Controllers
 {
@@ -100,6 +101,28 @@ namespace PTStore.Controllers
         public IActionResult DatLaiMatKhau()
         {
             return View();
+        }
+
+        public IActionResult TheoDoi(string email)
+        {
+            var qr = _context.Subcribers.Where(x => x.Email == email).FirstOrDefault();
+            if(qr != null)
+            {
+                HttpContext.Session.SetString("TheoDoiMess", "DaDangKy");
+            }
+            else
+            {
+                HttpContext.Session.SetString("TheoDoiMess", "ThanhCong");
+                _context.Subcribers.Add(new Subcriber
+                {
+                    Email = email,
+                    TrangThai = "DangDangKy"
+                });
+                _context.SaveChanges();
+                TIMail.GuiMailThongBaoDangKy(email);
+            }    
+            
+            return Redirect("/Home");
         }
     }
 }

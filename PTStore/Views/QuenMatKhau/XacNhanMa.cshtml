@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PTStore.Common.ViewModels.QuenMatKhauViewModel
+@{
     ViewData["Title"] = "Nhập mã xác nhận";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
@@ -6,14 +7,24 @@
 <section>
     <div class="container-fluid" style="margin-bottom: 2%">
         <div class="row">
-            <div class="col-sm-4 col-sm-offset-4" style="background-color:white; margin-top:2%; height:200px; width:430px">
+            <div class="col-sm-4 col-sm-offset-4" style="background-color:white; margin-top:2%; height:auto; width:430px">
                 <div class="login-form">
-                    <p style="font-size:14px; line-height:1.7; margin-top:2%">Vui lòng nhập mã xác nhận mà chúng tôi vừa gửi đến email của bạn ở khung bên dưới để tiến hành đặt lại mật khẩu</p>
-                    <form action="#">
+                    <p style="font-size:14px; line-height:1.7; margin-top:2%">Vui lòng nhập mã xác nhận mà chúng tôi vừa gửi đến email của bạn để tiến hành đặt lại mật khẩu</p>
+                    <form asp-controller="QuenMatKhau" asp-action="XacNhanMa" method="post">
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="inputEmail">
+                            <label class="form-label">Mã xác nhận</label>
+                            <input type="text" name="maxacnhan" class="form-control" id="inputEmail">
                         </div>
-                        <a href="/Home/DatLaiMatKhau" type="submit" class="btn btn-default col-sm-offset-5" style="height:35px; font-size:14px; background-color:#fe980f; color:white; margin-top:3%">Xác nhận</a>
+                        <div class="mb-3">
+                            <label class="form-label">Nhập mật khẩu mới</label>
+                            <input type="password" name="matkhaumoi" class="form-control" id="inputNewpass">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Nhập lại mật khẩu mới</label>
+                            <input type="password" name="nhaplai" class="form-control" id="inputNewpassagain">
+                        </div>
+                        <span class="text-danger">@ViewData["ms"]</span>
+                        <button type="submit" class="btn btn-default col-sm-offset-5" style="height:35px; font-size:14px; background-color:#fe980f; color:white; margin-top:3%; margin-bottom:2%">Xác nhận</button>
                     </form>
                 </div>
             </div>

@@ -4,86 +4,73 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace PTStore.Common.TienIch
 {
     public static class TIMail
     {
-        public static bool SendMail(string _from, string _to, string _subject, string _body, SmtpClient client)
+        public static void GuiMailMaXacNhan(string email, string mxn)
         {
-            // Tạo nội dung Email
-            MailMessage message = new MailMessage(
-                from: _from,
-                to: _to,
-                subject: _subject,
-                body: _body
-            );
-            message.BodyEncoding = System.Text.Encoding.UTF8;
-            message.SubjectEncoding = System.Text.Encoding.UTF8;
-            message.IsBodyHtml = true;
-            message.ReplyToList.Add(new MailAddress(_from));
-            message.Sender = new MailAddress(_from);
-
-            try
-            {
-                client.SendMailAsync(message);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                return false;
-            }
+            MailMessage mail = new MailMessage();
+            mail.To.Add(email);
+            mail.From = new MailAddress("ptstore.hcmute@gmail.com");
+            mail.Subject = "Lấy lại mật khẩu !!!";
+            string body = @"Yêu cầu cấp lại mật khẩu của bạn thành công !!! <br />";
+            //body += Environment.NewLine;
+            body += @"Mã xác nhận của bạn là: <br />";
+            //body += Environment.NewLine;
+            body += @"<strong>" + mxn + "</strong><br />";
+            //body += Environment.NewLine;
+            body += @"Xin cảm ơn !!!";
+            mail.Body = body;
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = Convert.ToInt16("587");
+            smtp.Credentials = new NetworkCredential("ptstore.hcmute@gmail.com", "ptstore.2020");
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
         }
 
-        public static bool SendMailGoogleSmtp(string _to, string _subject, string _body)
+        public static void GuiMailThongBaoDangKy(string email)
         {
-            string _gmailsend = "ptstore.hcmute@gmail.com";
-            string _gmailpassword = "ptstore.2020";
-            string _from = "ptstore.hcmute@gmail.com";
-            MailMessage message = new MailMessage(
-                from: _from,
-                to: _to,
-                subject: _subject,
-                body: _body
-            );
-            message.BodyEncoding = System.Text.Encoding.UTF8;
-            message.SubjectEncoding = System.Text.Encoding.UTF8;
-            message.IsBodyHtml = true;
-            message.ReplyToList.Add(new MailAddress(_from));
-            message.Sender = new MailAddress(_from);
-
-            // Tạo SmtpClient kết nối đến smtp.gmail.com
-            using (SmtpClient client = new SmtpClient("smtp.gmail.com"))
-            {
-                client.Port = 587;
-                client.Credentials = new NetworkCredential(_gmailsend, _gmailpassword);
-                client.EnableSsl = true;
-                return SendMail(_from, _to, _subject, _body, client);
-            }
-
+            MailMessage mail = new MailMessage();
+            mail.To.Add(email);
+            mail.From = new MailAddress("ptstore.hcmute@gmail.com");
+            mail.Subject = "Subscribe PTStore thành công !!!";
+            string body = "<strong>Bạn đã đăng kí nhận thông tin qua email từ PTStore !</strong>";
+            body += Environment.NewLine;
+            body += "Hãy kiểm tra email thường xuyên để cập nhật thông tin về sản phẩm cũng như các chế độ ưu đãi của chúng tôi!";
+            body += Environment.NewLine;
+            body += "Xin cảm ơn !!!";
+            mail.Body = body;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = Convert.ToInt16("587");
+            smtp.Credentials = new NetworkCredential("ptstore.hcmute@gmail.com", "ptstore.2020");
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
         }
 
-        public static bool GuiMailDoiMatKhau(string _to, string maxacnhan)
+        public static void GuiMailDatHangThanhCong(string email)
         {
-            string _subject = "Mã xác nhận thay đổi mật khẩu từ PTStore";
-            string _body = "<p>Mã xác nhận của bạn là:</p><h1><strong>" + maxacnhan + "</strong></h1>";
-            return SendMailGoogleSmtp(_to, _subject, _body);
+            MailMessage mail = new MailMessage();
+            mail.To.Add(email);
+            mail.From = new MailAddress("ptstore.hcmute@gmail.com");
+            mail.Subject = "Subscribe PTStore thành công !!!";
+            string body = "Bạn đã đăng kí nhận thông tin qua email từ PTStore !";
+            body += Environment.NewLine;
+            body += "Hãy kiểm tra email thường xuyên để cập nhật thông tin về sản phẩm cũng như các chế độ ưu đãi của chúng tôi!";
+            body += Environment.NewLine;
+            body += "Xin cảm ơn !!!";
+            mail.Body = body;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = "smtp.gmail.com";
+            smtp.Port = Convert.ToInt16("587");
+            smtp.Credentials = new NetworkCredential("ptstore.hcmute@gmail.com", "ptstore.2020");
+            smtp.EnableSsl = true;
+            smtp.Send(mail);
         }
-
-        public static bool GuiMailDangKy(string _to)
-        {
-            string _subject = "Đăng ký nhận tin tức từ PTStore thành công!";
-            string _body = "<p>Cảm ơn bạn đã đăng ký cập nhật thông tin từ website của chúng tôi!</p>";
-            return SendMailGoogleSmtp(_to, _subject, _body);
-        }
-
-        public static bool GuiMailDatHangThanhCong(string _to)
-        {
-            string _subject = "Đăng ký nhận tin tức từ PTStore thành công!";
-            string _body = "<p>Đặt hàng thành công!</p><p>Để xem trạng thái đơn hàng, vui lòng vào trang thái khoản, chọn lịch sử mua hàng!<p>Xin cảm ơn!</p>";
-            return SendMailGoogleSmtp(_to, _subject, _body);
-        }
-
     }
 }
