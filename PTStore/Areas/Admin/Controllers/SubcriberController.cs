@@ -123,35 +123,6 @@ namespace PTStore.Areas.Admin.Controllers
             return View(subcriber);
         }
 
-        // GET: Admin/Subcriber/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var subcriber = await _context.Subcribers
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (subcriber == null)
-            {
-                return NotFound();
-            }
-
-            return View(subcriber);
-        }
-
-        // POST: Admin/Subcriber/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var subcriber = await _context.Subcribers.FindAsync(id);
-            _context.Subcribers.Remove(subcriber);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
         private bool SubcriberExists(int id)
         {
             return _context.Subcribers.Any(e => e.Id == id);
