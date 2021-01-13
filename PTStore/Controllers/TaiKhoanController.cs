@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using PTStore.Common.MD5;
 
 namespace PTStore.Controllers
 {
@@ -77,6 +78,26 @@ namespace PTStore.Controllers
         public IActionResult PhanHoi()
         {
             return View();
+        }
+
+        public IActionResult DoiMatKhau(string old, string news, string newagain)
+        {
+            if(news!=newagain)
+            {
+                HttpContext.Session.SetString("DoiMatKhau", "ThatBai");
+                return Redirect("/TaiKhoan");
+            }
+            int xx = int.Parse(HttpContext.Session.GetString("UserId"));
+            var qr = _context.Users.Include(x => x.Account).Where(x => x.UserId == xx).FirstOrDefault();
+            if(qr.Account.MatKhau != GetMD5.GetHash(old))
+            {
+                HttpContext.Session.SetString("DoiMatKhau", "ThatBai");
+                return Redirect("/TaiKhoan");
+            }
+            qr.Account.MatKhau = GetMD5.GetHash(news);
+            _context.SaveChanges();
+            HttpContext.Session.SetString("DoiMatKhau", "ThanhCong");
+            return Redirect("/TaiKhoan");
         }
     }
 }

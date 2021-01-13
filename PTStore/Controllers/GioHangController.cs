@@ -135,10 +135,7 @@ namespace PTStore.Controllers
                 }
                 context.SaveChanges();
 
-                if (TIMail.GuiMailDatHangThanhCong(dh.Email))
-                {
-
-                };
+                //TIMail.GuiMailDatHangThanhCong(dh.Email);
 
             }
             return View();

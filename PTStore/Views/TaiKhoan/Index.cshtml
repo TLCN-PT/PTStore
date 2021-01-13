@@ -126,7 +126,22 @@
         </div>
     </div>
 </div>
+@{
+    string x = Context.Session.GetString("DoiMatKhau");
+    if (!string.IsNullOrEmpty(x))
+    {
+        if (x == "ThanhCong")
+        {
+            <script>alert("Đổi mật khẩu thành công!");</script>
+        }
+        else
+        {
+            <script>alert("Thông tin không đúng!");</script>
+        }
 
+        Context.Session.SetString("DoiMatKhau", "");
+    }
+}
 <!-- Modal đổi mật khẩu -->
 <div class="modal fade" id="changepassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -136,18 +151,18 @@
                     <div class="col-sm-4" style="background-color:white; margin-top:2%; height:350px">
                         <div class="changepassword-form">
                             <h3 style="color:#fe980f; text-align:center">Đổi mật khẩu</h3>
-                            <form asp-action="ChangePassword" asp-controller="Home">
+                            <form asp-action="DoiMatKhau" asp-controller="TaiKhoan" method="post">
                                 <div class="mb-3" style="margin-top:3%">
                                     <label class="form-label">Nhập mật khẩu cũ</label>
-                                    <input name="oldpassword" type="password" class="form-control" id="inputoldpassword">
+                                    <input name="old" type="password" class="form-control" id="inputoldpassword">
                                 </div>
                                 <div class="mb-3" style="margin-top:3%">
                                     <label class="form-label">Nhập mật khẩu mới</label>
-                                    <input name="newpassword" type="password" class="form-control" id="inputnewpassword">
+                                    <input name="news" type="password" class="form-control" id="inputnewpassword">
                                 </div>
                                 <div class="mb-3" style="margin-top:3%">
                                     <label class="form-label">Nhập lại mật khẩu mới</label>
-                                    <input name="newpasswordagain" type="password" class="form-control" id="inputnewpasswordagain">
+                                    <input name="newagain" type="password" class="form-control" id="inputnewpasswordagain">
                                 </div>
                                 <button type="submit" class="btn btn-default col-sm-offset-5" style="margin-top:4%; background-color:#fe980f; color:white; height:40px">Đổi mật khẩu</button>
                             </form>
@@ -159,5 +174,5 @@
     </div>
 </div>
 <script>
-    
+
 </script>

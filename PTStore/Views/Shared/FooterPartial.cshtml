@@ -1,7 +1,10 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @addTagHelper *, AuthoringTagHelpers
+@using Microsoft.AspNetCore.Http
 
 @model List<PTStore.Models.ThuongHieu>
+
+
 <footer id="footer" style="background-color:white; margin-top:2%">
     <div class="footer-widget" style="margin-bottom:0%">
         <div class="container">
@@ -43,18 +46,30 @@
                 <div class="col-sm-3 col-sm-offset-1">
                     <div class="single-widget">
                         <h2>Theo dõi Cửa hàng</h2>
-                        <form action="#" class="searchform">
-                            <input type="text" placeholder="Email của bạn">
+                        @{
+                            string x = Context.Session.GetString("TheoDoiMess");
+                            if (!string.IsNullOrEmpty(x))
+                            {
+                                if (x == "DaDangKy")
+                                {
+                                    <script>alert("Email đã đăng ký!");</script>
+                                }
+                                else
+                                {
+                                    <script>alert("Đăng ký thành công!");</script>
+                                }
+
+                                Context.Session.SetString("TheoDoiMess", "");
+                            }
+                        }
+                        <form asp-controller="Home" asp-action="TheoDoi" method="post" class="searchform">
+                            <input type="email" id="inputemail" name="email" required placeholder="Email của bạn">
                             <button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
                             <p>Nhận các cập nhật mới nhất từ của hàng<br>của chúng tôi và cập nhật bản thân của bạn</p>
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </footer>
-<script>
-
-</script>
