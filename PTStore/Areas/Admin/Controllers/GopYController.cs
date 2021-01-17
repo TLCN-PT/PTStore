@@ -29,7 +29,17 @@ namespace PTStore.Areas.Admin.Controllers
             }
             return View(await _context.Gopies.ToListAsync());
         }
-
+        [HttpPost]
+        public IActionResult Index(string search)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return Redirect("/Admin/Login");
+            }
+            var qr = _context.Gopies.Where(x => x.Email.ToUpper().Contains(search.ToUpper()) ||
+            x.SoDienThoai.Contains(search)).ToList();
+            return View(qr);
+        }
         // GET: Admin/GopY/Details/5
         public async Task<IActionResult> Details(int? id)
         {

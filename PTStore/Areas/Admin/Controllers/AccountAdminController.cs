@@ -138,7 +138,8 @@ namespace PTStore.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(account);
+                    var qr = _context.Accounts.Where(x => x.AccountId == id).FirstOrDefault();
+                    qr.TrangThai = account.TrangThai;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

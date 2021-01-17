@@ -24,6 +24,9 @@
     <thead>
         <tr>
             <th>
+                Mã khách hàng
+            </th>
+            <th>
                 Tên đăng nhập
             </th>
             <th>
@@ -38,21 +41,24 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TenDangNhap)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MatKhau)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TrangThai)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.AccountId">Sửa trạng thái</a> |
-                    <a asp-action="Details" asp-route-id="@item.AccountId">Chi tiết</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenDangNhap)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MatKhau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrangThai)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AccountId">Sửa trạng thái</a> |
+                <a asp-action="Details" asp-route-id="@item.AccountId">Chi tiết</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

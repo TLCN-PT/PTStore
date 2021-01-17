@@ -10,10 +10,10 @@
 <h2 style="color:#337ab7">Quản lý đơn hàng</h2>
 
 <div class="navbar-form navbar-left" style="padding-top:7px; padding-left:0px">
-    <form class="navbar-form navbar-left">
+    <form class="navbar-form navbar-left" asp-action="Index" method="post">
         <div class="input-group">
-            <input type="text" value="" class="form-control" placeholder="Nhập nội dung ...">
-            <span class="input-group-btn"><button type="button" class="btn btn-primary">Tìm kiếm</button></span>
+            <input type="text" name="search" value="" class="form-control" placeholder="Nhập nội dung ...">
+            <span class="input-group-btn"><button type="submit" class="btn btn-primary">Tìm kiếm</button></span>
         </div>
     </form>
 </div>
@@ -22,6 +22,9 @@
         <tr>
             <th>
                 Mã đơn
+            </th>
+            <th>
+                Mã khách hàng
             </th>
             <th>
                 Tên người nhận
@@ -47,52 +50,62 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.MaDonHang)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TenNguoiNhan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DiaChi)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SoDienThoai)
-                </td>
-                <td>
-                    @item.NgayDatHang?.ToString("dd/M/yyyy")
-                </td>
-                <td>
-                    @if(item.HinhThucThanhToan == "TrucTiep")
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaDonHang)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiaChi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoDienThoai)
+            </td>
+            <td>
+                @item.NgayDatHang?.ToString("dd/M/yyyy")
+            </td>
+            <td>
+                @if (item.HinhThucThanhToan == "TrucTiep")
+                {
+                    <div>Trực tiếp</div>
+                }
+                else
+                {
+                    <div>Paypal</div>
+                }
+            </td>
+            <td>
+                @switch (item.TrangTrai)
+                {
+                    case "DaGiaoHang":<div>Đã giao hàng</div>
+                        break;
+                    case "DatHangThanhCong": <div>Đặt hàng thành công</div>
+                        break;
+                    case "GiaoThanhCong": <div>Giao thành công</div>
+                        break;
+                    case "BiHuy": <div>Bị huỷ</div>
+                        break;
+                    default: <div>Lỗi</div>
+                        break;
+                }
+            </td>
+            <td>
+                @{ 
+                    if(item.TrangTrai != "GiaoThanhCong" && item.TrangTrai!="BiHuy")
                     {
-                        <div>Trực tiếp</div>
+                        <a asp-action="Edit" asp-route-id="@item.DonHangId">Sửa trạng thái</a>
+                        <br />
                     }
-                    else
-                    {
-                        <div>Paypal</div>
-                    }
-                </td>
-                <td>
-                    @switch(item.TrangTrai)
-                        {
-                            case "DaGiaoHang": <div>Đã giao hàng</div>
-                                break;
-                            case "DatHangThanhCong": <div>Đặt hàng thành công</div>
-                                break;
-                            case "GiaoThanhCong": <div>Giao thành công</div>
-                                break;
-                            case "BiHuy": <div>Bị huỷ</div>
-                                break;
-                            default: <div>Lỗi</div>
-                            break;
-                    }
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.DonHangId">Sửa trạng thái</a> |
-                    <a asp-action="Details" asp-route-id="@item.DonHangId">Chi tiết</a>
-                </td>
-            </tr>
+                }
+                @*<a asp-action="Edit" asp-route-id="@item.DonHangId">Sửa trạng thái</a>*@ |
+                <a asp-action="Details" asp-route-id="@item.DonHangId">Chi tiết</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>

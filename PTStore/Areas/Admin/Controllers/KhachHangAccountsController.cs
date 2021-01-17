@@ -32,6 +32,7 @@ namespace PTStore.Areas.Admin.Controllers
              on acc.AccountId equals usr.UserId
                          where usr.RoleId == 2
                          select acc);
+            query = query.Include(x => x.User);
             //into grouping;
             //            select new { acc, acc.User, usr = grouping.Where(x => x.RoleId == 1).ToList() };
             //List<Account> accounts = query;
@@ -46,10 +47,11 @@ namespace PTStore.Areas.Admin.Controllers
              on acc.AccountId equals usr.UserId
                          where usr.RoleId == 2
                          select acc);
-
+            query = query.Include(x => x.User);
             if (!string.IsNullOrEmpty(search))
             {
-                query = query.Where(x => x.TenDangNhap.Contains(search));
+                query = query.Where(x => x.TenDangNhap.Contains(search) || x.UserId == int.Parse(search));
+                
             }
             //into grouping;
             //            select new { acc, acc.User, usr = grouping.Where(x => x.RoleId == 1).ToList() };
@@ -107,7 +109,7 @@ namespace PTStore.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-
+            
             var account = await _context.Accounts.FindAsync(id);
             if (account == null)
             {
@@ -151,6 +153,7 @@ namespace PTStore.Areas.Admin.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["UserId"] = new SelectList(_context.Users, "UserId", "UserId", account.UserId);
+            
             return View(account);
         }
 
