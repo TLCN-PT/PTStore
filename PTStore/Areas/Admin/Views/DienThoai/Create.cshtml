@@ -21,7 +21,10 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Tình trạng điện thoại</label>
-                <input asp-for="TinhTrang" class="form-control" />
+                <select asp-for="TinhTrang" class="form-control">
+                    <option value="DangKinhDoanh">Đang kinh doanh</option>
+                    <option value="NgungKinhDoanh">Ngừng kinh doanh</option>
+                </select>
                 <span asp-validation-for="TinhTrang" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -30,72 +33,72 @@
                 <span asp-validation-for="HinhAnh" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Gia" class="control-label">Giá kinh doanh</label>
+                <label class="control-label">Giá kinh doanh</label>
                 <input asp-for="Gia" class="form-control" />
                 <span asp-validation-for="Gia" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="GiaGoc" class="control-label">Giá gốc</label>
+                <label class="control-label">Giá gốc</label>
                 <input asp-for="GiaGoc" class="form-control" />
                 <span asp-validation-for="GiaGoc" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="SoLuong" class="control-label">Số lượng</label>
+                <label class="control-label">Số lượng</label>
                 <input asp-for="SoLuong" class="form-control" />
                 <span asp-validation-for="SoLuong" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThuongHieuId" class="control-label">Thương Hiệu</label>
+                <label class="control-label">Thương Hiệu</label>
                 <select asp-for="ThuongHieuId" class="form-control" asp-items="ViewBag.ThuongHieuId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.ManHinh" class="control-label"></label>
+                <label class="control-label">Màn hình</label>
                 <input asp-for="ThongSoKyThuat.ManHinh" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.ManHinh" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.HeDieuHanh" class="control-label"></label>
+                <label class="control-label">Hệ điều hành</label>
                 <input asp-for="ThongSoKyThuat.HeDieuHanh" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.HeDieuHanh" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.CameraSau" class="control-label"></label>
+                <label class="control-label">Camera sau</label>
                 <input asp-for="ThongSoKyThuat.CameraSau" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.CameraSau" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.CameraTruoc" class="control-label"></label>
+                <label class="control-label">Camera trước</label>
                 <input asp-for="ThongSoKyThuat.CameraTruoc" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.CameraTruoc" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.Cpu" class="control-label"></label>
+                <label class="control-label">CPU</label>
                 <input asp-for="ThongSoKyThuat.Cpu" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.Cpu" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.Ram" class="control-label"></label>
+                <label class="control-label">Ram</label>
                 <input asp-for="ThongSoKyThuat.Ram" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.Ram" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.BoNhoTrong" class="control-label"></label>
+                <label class="control-label">Bộ nhớ trong</label>
                 <input asp-for="ThongSoKyThuat.BoNhoTrong" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.BoNhoTrong" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.TheSim" class="control-label"></label>
+                <label class="control-label">Thẻ Sim</label>
                 <input asp-for="ThongSoKyThuat.TheSim" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.TheSim" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.DungLuongPin" class="control-label"></label>
+                <label class="control-label">Dung lượng Pin</label>
                 <input asp-for="ThongSoKyThuat.DungLuongPin" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.DungLuongPin" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ThongSoKyThuat.NgayRaMat" class="control-label"></label>
-                <input asp-for="ThongSoKyThuat.NgayRaMat" class="form-control" />
+                <label class="control-label">Ngày ra mắt</label>
+                <input type="date" asp-for="ThongSoKyThuat.NgayRaMat" class="form-control" />
                 <span asp-validation-for="ThongSoKyThuat.NgayRaMat" class="text-danger"></span>
             </div>
             <div class="form-group">

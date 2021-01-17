@@ -30,22 +30,22 @@ namespace PTStore.Areas.Admin.Controllers
             }
             var pTStoreContext = _context.DienThoais.Include(d => d.ThongSoKyThuat).Include(d => d.ThuongHieu).ToList();
             List<DienThoaiIndexViewModel> lstDt = new List<DienThoaiIndexViewModel>();
-            foreach(var item in pTStoreContext)
+            foreach (var item in pTStoreContext)
             {
                 DienThoaiIndexViewModel dt = new DienThoaiIndexViewModel();
                 dt.dienThoai = item;
-                if(dt.dienThoai.TinhTrang == "DangKinhDoanh")
+                if (dt.dienThoai.TinhTrang == "DangKinhDoanh")
                 {
                     dt.dienThoai.TinhTrang = "Đang kinh doanh";
                 }
                 else
                 {
                     dt.dienThoai.TinhTrang = "Ngừng kinh doanh";
-                }    
+                }
                 dt.TenThuongHieu = _context.ThuongHieus.Where(x => x.ThuongHieuId == item.ThuongHieuId).FirstOrDefault().TenThuongHieu;
                 lstDt.Add(dt);
             }
-            
+
             return View(lstDt);
         }
 
@@ -56,7 +56,7 @@ namespace PTStore.Areas.Admin.Controllers
             List<DienThoaiIndexViewModel> lstDt = new List<DienThoaiIndexViewModel>();
             foreach (var item in pTStoreContext)
             {
-                if(item.Name.ToUpper().Contains(search.ToUpper()))
+                if (item.Name.ToUpper().Contains(search.ToUpper()))
                 {
                     DienThoaiIndexViewModel dt = new DienThoaiIndexViewModel();
                     dt.dienThoai = item;
@@ -71,7 +71,7 @@ namespace PTStore.Areas.Admin.Controllers
                     dt.TenThuongHieu = _context.ThuongHieus.Where(x => x.ThuongHieuId == item.ThuongHieuId).FirstOrDefault().TenThuongHieu;
                     lstDt.Add(dt);
                 }
-                
+
             }
 
             return View(lstDt);
@@ -120,12 +120,46 @@ namespace PTStore.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DienThoaiId,Name,TinhTrang,HinhAnh,Gia,GiaGoc,SoLuong,ThuongHieuId,ThongSoKyThuatId")] DienThoai dienThoai)
+        public async Task<IActionResult> Create([Bind("DienThoaiId,Name,TinhTrang,HinhAnh,Gia,GiaGoc,SoLuong,ThuongHieuId,ThongSoKyThuat")] DienThoai dienThoai)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(dienThoai);
-                await _context.SaveChangesAsync();
+                _context.DienThoais.Add(
+                    new DienThoai
+                    {
+                        Name = dienThoai.Name,
+                        TinhTrang = dienThoai.TinhTrang,
+                        HinhAnh = dienThoai.HinhAnh,
+                        Gia = dienThoai.Gia,
+                        GiaGoc = dienThoai.GiaGoc,
+                        SoLuong = dienThoai.SoLuong,
+                        ThuongHieuId = dienThoai.ThuongHieuId,
+                        ThongSoKyThuat = new ThongSoKyThuat
+                        {
+                            ManHinh = dienThoai.ThongSoKyThuat.ManHinh,
+                            HeDieuHanh = dienThoai.ThongSoKyThuat.HeDieuHanh,
+                            CameraSau = dienThoai.ThongSoKyThuat.CameraSau,
+                            CameraTruoc = dienThoai.ThongSoKyThuat.CameraTruoc,
+                            Cpu = dienThoai.ThongSoKyThuat.Cpu,
+                            BoNhoTrong = dienThoai.ThongSoKyThuat.BoNhoTrong,
+                            Ram = dienThoai.ThongSoKyThuat.Ram,
+                            TheSim = dienThoai.ThongSoKyThuat.TheSim,
+                            DungLuongPin = dienThoai.ThongSoKyThuat.DungLuongPin,
+                            NgayRaMat = dienThoai.ThongSoKyThuat.NgayRaMat
+                        }
+                    });
+                _context.SaveChanges();
+                var qr2 = _context.ThongSoKyThuats.Where(x => x.ManHinh == dienThoai.ThongSoKyThuat.ManHinh
+                && x.HeDieuHanh == dienThoai.ThongSoKyThuat.HeDieuHanh &&
+                            x.CameraSau == dienThoai.ThongSoKyThuat.CameraSau &&
+                            x.CameraTruoc == dienThoai.ThongSoKyThuat.CameraTruoc &&
+                            x.Cpu == dienThoai.ThongSoKyThuat.Cpu &&
+                            x.BoNhoTrong == dienThoai.ThongSoKyThuat.BoNhoTrong &&
+                            x.Ram == dienThoai.ThongSoKyThuat.Ram &&
+                            x.TheSim == dienThoai.ThongSoKyThuat.TheSim &&
+                            x.DungLuongPin == dienThoai.ThongSoKyThuat.DungLuongPin).FirstOrDefault();
+                qr2.DienThoaiId = _context.DienThoais.Where(x => x.Name == dienThoai.Name).FirstOrDefault().DienThoaiId;
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ThongSoKyThuatId"] = new SelectList(_context.ThongSoKyThuats, "ThongSoKyThuatId", "ThongSoKyThuatId", dienThoai.ThongSoKyThuatId);
@@ -156,7 +190,7 @@ namespace PTStore.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DienThoaiId,Name,TinhTrang,HinhAnh,Gia,GiaGoc,SoLuong,ThuongHieuId,ThongSoKyThuatId")] DienThoai dienThoai)
+        public async Task<IActionResult> Edit(int id, [Bind("DienThoaiId,Name,TinhTrang,HinhAnh,Gia,GiaGoc,SoLuong,ThuongHieuId,ThongSoKyThuatId,ThongSoKyThuat")] DienThoai dienThoai)
         {
             if (id != dienThoai.DienThoaiId)
             {
@@ -167,7 +201,25 @@ namespace PTStore.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(dienThoai);
+                    var qr = _context.DienThoais.Find(id);
+                    qr.Name = dienThoai.Name;
+                    qr.HinhAnh = dienThoai.HinhAnh;
+                    qr.Gia = dienThoai.Gia;
+                    qr.GiaGoc = dienThoai.GiaGoc;
+                    qr.TinhTrang = dienThoai.TinhTrang;
+                    qr.SoLuong = dienThoai.SoLuong;
+                    qr.ThuongHieuId = dienThoai.ThuongHieuId;
+                    var qr2 = _context.ThongSoKyThuats.Find(dienThoai.ThongSoKyThuatId);
+                    qr2.ManHinh = dienThoai.ThongSoKyThuat.ManHinh;
+                    qr2.HeDieuHanh = dienThoai.ThongSoKyThuat.HeDieuHanh;
+                    qr2.CameraSau = dienThoai.ThongSoKyThuat.CameraSau;
+                    qr2.CameraTruoc = dienThoai.ThongSoKyThuat.CameraTruoc;
+                    qr2.Cpu = dienThoai.ThongSoKyThuat.Cpu;
+                    qr2.BoNhoTrong = dienThoai.ThongSoKyThuat.BoNhoTrong;
+                    qr2.Ram = dienThoai.ThongSoKyThuat.Ram;
+                    qr2.TheSim = dienThoai.ThongSoKyThuat.TheSim;
+                    qr2.DungLuongPin = dienThoai.ThongSoKyThuat.DungLuongPin;
+                    qr2.NgayRaMat = dienThoai.ThongSoKyThuat.NgayRaMat;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

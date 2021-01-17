@@ -30,6 +30,31 @@ namespace PTStore.Areas.Admin.Controllers
             return View(await _context.Subcribers.ToListAsync());
         }
 
+        [HttpPost]
+        public IActionResult Index(string search)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("UserId")) || HttpContext.Session.GetString("UserRole") != "Admin")
+            {
+                return Redirect("/Admin/Login");
+            }
+
+            var qr = _context.Subcribers.ToList();
+            if(search=="DangDangKy" || "Đang đăng ký".ToUpper().Contains(search.ToUpper()))
+            {
+                qr = _context.Subcribers.Where(x => x.TrangThai == "DangDangKy").ToList();
+            }
+            else if(search == "NgungDangKy" || "Ngừng đăng ký".ToUpper().Contains(search.ToUpper()))
+            {
+                qr = _context.Subcribers.Where(x => x.TrangThai == "NgungDangKy").ToList();
+            }    
+            else
+            {
+                qr = _context.Subcribers.Where(x => x.Email.ToUpper().Contains(search.ToUpper())).ToList();
+            }    
+            
+            return View(qr);
+        }
+
         // GET: Admin/Subcriber/Details/5
         public async Task<IActionResult> Details(int? id)
         {

@@ -42,7 +42,11 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Trạng thái đơn hàng</label>
-                <input asp-for="TrangTrai" class="form-control" />
+                <select asp-for="TrangTrai" class="form-control">
+                    <option value="DatHangThanhCong">Đặt hàng thành công</option>
+                    <option value="GiaoThanhCong">Giao thành công</option>
+                    <option value="BiHuy">Bị huỷ</option>
+                </select>
                 <span asp-validation-for="TrangTrai" class="text-danger"></span>
             </div>
             <div class="form-group">

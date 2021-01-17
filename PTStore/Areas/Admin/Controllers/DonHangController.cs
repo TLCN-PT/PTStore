@@ -31,6 +31,33 @@ namespace PTStore.Areas.Admin.Controllers
             return View(await pTStoreContext.ToListAsync());
         }
 
+        [HttpPost]
+        public IActionResult Index(string search)
+        {
+            if(string.IsNullOrEmpty(search))
+            {
+                return View(_context.DonHangs.Include(x => x.ChiTietDonHangs).Include(x => x.User).ToList());
+            }    
+            if(search == "DatHangThanhCong" || "ĐẶT HÀNG THÀNH CÔNG".Contains(search.ToUpper()))
+            {
+                return View(_context.DonHangs.Where(x => x.TrangTrai == "DangHangThanhCong").ToList());
+            }
+
+            if (search == "GiaoThanhCong" || "GIAO THÀNH CÔNG".Contains(search.ToUpper()))
+            {
+                return View(_context.DonHangs.Where(x => x.TrangTrai == "GiaoThanhCong").ToList());
+            }
+
+            if (search == "BiHuy" || "BỊ HUỶ".Contains(search.ToUpper()))
+            {
+                return View(_context.DonHangs.Where(x => x.TrangTrai == "BiHuy").ToList());
+            }
+
+            var qr = _context.DonHangs.Include(x => x.ChiTietDonHangs).Include(x => x.User).Where(
+                x => x.UserId == int.Parse(search) || x.MaDonHang.ToUpper().Contains(search.ToUpper())
+                || x.SoDienThoai.Contains(search));
+            return View(qr.ToList());
+        }
         // GET: Admin/DonHang/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -129,6 +156,15 @@ namespace PTStore.Areas.Admin.Controllers
                 {
                     //_context.Update(donHang);
                     var qr = _context.DonHangs.Find(id);
+                    if(donHang.TrangTrai == "BiHuy")
+                    {
+                        var dh = _context.ChiTietDonHangs.Where(x => x.DonHangId == donHang.DonHangId);
+                        foreach(var item in dh)
+                        {
+                            var x = _context.DienThoais.Find(item.DienThoaiId);
+                            x.SoLuong += item.SoLuong;
+                        }    
+                    }    
                     qr.TrangTrai = donHang.TrangTrai;
                     await _context.SaveChangesAsync();
                 }
