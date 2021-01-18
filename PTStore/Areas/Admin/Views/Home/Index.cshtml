@@ -55,7 +55,7 @@
 <div id="chartContainer2" style="height: 370px; width: 100%; margin-top:5%"></div>
 <script>
     window.onload = function () {
-
+        console.log(@ViewBag.dataPoints1);
         var chart1 = new CanvasJS.Chart("chartContainer1", {
             animationEnabled: true,
             exportEnabled: true,
@@ -77,6 +77,7 @@
                 type: "spline",
                 name: "Doanh thu",
                 showInLegend: true,
+                //dataPoints: @*@ViewBag.dataPoints1*@
                 dataPoints: [
                     { label: "Tháng 7", y: 10.5 },
                     { label: "Tháng 8", y: 20 },

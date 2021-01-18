@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace PTStore.Areas.Admin.Controllers
 {
@@ -22,9 +23,13 @@ namespace PTStore.Areas.Admin.Controllers
             ViewData["dt"] = _context.DienThoais.Count();
             ViewData["kh"] = _context.Accounts.Count() - 2;
             double x = 0;
-            foreach (var item in _context.ChiTietDonHangs)
+            var dh = _context.DonHangs.Include(x => x.ChiTietDonHangs).Where(x => x.TrangTrai == "GiaoThanhCong");
+            foreach (var item in dh)
             {
-                x += item.Gia.GetValueOrDefault() + item.SoLuong.GetValueOrDefault();
+                foreach(var items in _context.ChiTietDonHangs.Where(x=>x.DonHangId==item.DonHangId))
+                {
+                    x += items.Gia.GetValueOrDefault() + items.SoLuong.GetValueOrDefault();
+                }
             }
             ViewData["tt"] = string.Format("{0:0,0}",x);
             return View();
