@@ -55,6 +55,15 @@
                                             </div>
                                             <div class="product-overlay">
                                                 <div class="overlay-content">
+                                                    <ul class="ulfix">
+                                                        <li>Màn hình: @Model.lstDienThoai[s].ThongSoKyThuat.ManHinh</li>
+                                                        <li>Camera trước: @Model.lstDienThoai[s].ThongSoKyThuat.CameraTruoc</li>
+                                                        <li>Camera sau: @Model.lstDienThoai[s].ThongSoKyThuat.CameraSau</li>
+                                                        <li>CPU: @Model.lstDienThoai[s].ThongSoKyThuat.Cpu</li>
+                                                        <li>RAM: @Model.lstDienThoai[s].ThongSoKyThuat.Ram</li>
+                                                        <li>Bộ nhớ trong: @Model.lstDienThoai[s].ThongSoKyThuat.BoNhoTrong</li>
+                                                        <li>Dung lượng Pin: @Model.lstDienThoai[s].ThongSoKyThuat.DungLuongPin</li>
+                                                    </ul>
                                                     <h2 style="font-size:20px">@string.Format("{0:0,0}", Model.lstDienThoai[s].Gia)₫</h2>
                                                     <p style="font-size:18px">@Model.lstDienThoai[s].Name</p>
                                                     <a asp-controller="DienThoai" asp-action="ChiTiet" asp-route-id="@Model.lstDienThoai[s].DienThoaiId" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>Chi tiết</a>

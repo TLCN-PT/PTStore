@@ -51,6 +51,11 @@ namespace PTStore.Controllers
 
         public JsonResult TangSoLuong(int id)
         {
+            if(context.DienThoais.Find(id).SoLuong ==
+                GioHangViewModel.lstDienThoai.Find(x=>x.Id==id).Soluong)
+            {
+                return Json("1");
+            }    
             GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Soluong++;
             GioHangViewModel.lstDienThoai.Find(x => x.Id == id).TongGia =
                 GioHangViewModel.lstDienThoai.Find(x => x.Id == id).Soluong

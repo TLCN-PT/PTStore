@@ -109,16 +109,27 @@ namespace PTStore.Controllers
 
         public IActionResult DienThoaiDeXuatPartial()
         {
-            var qrGetDT = _context.DienThoais.OrderByDescending(x => x.ChiTietDonHangs.Count).Take(9);
+            var qrGetDT = _context.DienThoais.Include(x=>x.ThongSoKyThuat).OrderByDescending(x => x.ChiTietDonHangs.Count).Take(9);
             return PartialView(qrGetDT.ToList());
         }
 
         public IActionResult DienThoaiGanDayPartial()
         {
-            var qrGetDT = _context.DienThoais.OrderByDescending(x => x.ThongSoKyThuat.NgayRaMat).Take(4);
+            var qrGetDT = _context.DienThoais.Include(x => x.ThongSoKyThuat).OrderByDescending(x => x.ThongSoKyThuat.NgayRaMat).Take(4);
             return PartialView(qrGetDT.ToList());
         }
 
+        public IActionResult DienThoaiTrongTamGiaPartial()
+        {
+            int id = TIMail.idienthoai;
+            var qrGetDT = _context.DienThoais.Include(x => x.ThongSoKyThuat).OrderBy(x => x.Gia).ToList();
+            int index = qrGetDT.FindIndex(x => x.DienThoaiId == id);
+            if (index == 0)
+                return PartialView(qrGetDT.GetRange(0, 4));
+            if (index == qrGetDT.Count-1)
+                return PartialView(qrGetDT.GetRange(qrGetDT.Count - 5, 4));
+            return PartialView(qrGetDT.GetRange(index-1,4));
+        }
         // Error Message
         public IActionResult ErrorMessage()
         {

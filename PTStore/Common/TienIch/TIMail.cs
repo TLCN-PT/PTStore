@@ -10,6 +10,7 @@ namespace PTStore.Common.TienIch
 {
     public static class TIMail
     {
+        public static int idienthoai { get; set; }
         public static void GuiMailMaXacNhan(string email, string mxn)
         {
             MailMessage mail = new MailMessage();

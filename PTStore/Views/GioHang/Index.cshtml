@@ -127,10 +127,16 @@
             processData: false,
             cache: false,
             success: function (data) {
-                $(slid).val(x);
-                $(ttid).text((gia * x).format() + "đ");
-                $("#spTamTinh").text(tonggia.format() + "đ");
-                $("#spThanhTien").text(tonggia.format() + "đ");
+                if (data == "1") {
+                    alert("Số lượng điện thoại còn trong kho không đủ!")
+                }
+                else {
+                    $(slid).val(x);
+                    $(ttid).text((gia * x).format() + "đ");
+                    $("#spTamTinh").text(tonggia.format() + "đ");
+                    $("#spThanhTien").text(tonggia.format() + "đ");
+                }
+                
             },
             error: function (xhr) {
                 alert('error');

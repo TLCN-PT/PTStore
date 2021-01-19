@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using PTStore.Common.TienIch;
 
 namespace PTStore.Controllers
 {
@@ -41,13 +42,13 @@ namespace PTStore.Controllers
             switch (sortOrder)
             {
                 case "GiaCaoXuongThap":
-                    dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).Where(x=>x.TinhTrang=="DangKinhDoanh").OrderByDescending(s => s.Gia).ToList();
+                    dt.lstDienThoai = _context.DienThoais.Include(x=>x.ThongSoKyThuat).Where(x => x.SoLuong > 0).Where(x=>x.TinhTrang=="DangKinhDoanh").OrderByDescending(s => s.Gia).ToList();
                     break;
                 case "GiaThapToiCao":
-                    dt.lstDienThoai = _context.DienThoais.Where(x => x.SoLuong > 0).Where(x => x.TinhTrang == "DangKinhDoanh").OrderBy(s => s.Gia).ToList();
+                    dt.lstDienThoai = _context.DienThoais.Include(x => x.ThongSoKyThuat).Where(x => x.SoLuong > 0).Where(x => x.TinhTrang == "DangKinhDoanh").OrderBy(s => s.Gia).ToList();
                     break;
                 default:
-                    dt.lstDienThoai = dt.lstDienThoai = _context.DienThoais.Where(x => x.TinhTrang == "DangKinhDoanh").Where(x => x.SoLuong > 0).OrderBy(s => s.DienThoaiId).ToList();
+                    dt.lstDienThoai = dt.lstDienThoai = _context.DienThoais.Include(x => x.ThongSoKyThuat).Where(x => x.TinhTrang == "DangKinhDoanh").Where(x => x.SoLuong > 0).OrderBy(s => s.DienThoaiId).ToList();
                     break;
             }
             if (thuonghieuOrder > 0)
@@ -64,6 +65,7 @@ namespace PTStore.Controllers
 
         public IActionResult ChiTiet(int id)
         {
+            TIMail.idienthoai = id;
             var qr = _context.DienThoais.Include(d=>d.ThongSoKyThuat).Where(x => x.DienThoaiId == id);
             if (qr == null)
                 return Redirect("Home/Error");
