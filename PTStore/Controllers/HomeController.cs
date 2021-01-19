@@ -125,10 +125,24 @@ namespace PTStore.Controllers
             var qrGetDT = _context.DienThoais.Include(x => x.ThongSoKyThuat).OrderBy(x => x.Gia).ToList();
             int index = qrGetDT.FindIndex(x => x.DienThoaiId == id);
             if (index == 0)
-                return PartialView(qrGetDT.GetRange(0, 4));
+                return PartialView(qrGetDT.GetRange(1, 4));
+            if (index == 1)
+            {
+                var s1 = qrGetDT.GetRange(0, 1);
+                s1.AddRange(qrGetDT.GetRange(2, 3));
+                return PartialView(s1);
+            }
+            if (index == qrGetDT.Count - 2)
+            {
+                var s1 = qrGetDT.GetRange(qrGetDT.Count - 1, 1);
+                s1.AddRange(qrGetDT.GetRange(qrGetDT.Count - 5, 3));
+                return PartialView(s1);
+            }
             if (index == qrGetDT.Count-1)
                 return PartialView(qrGetDT.GetRange(qrGetDT.Count - 5, 4));
-            return PartialView(qrGetDT.GetRange(index-1,4));
+            var s = qrGetDT.GetRange(index - 2, 2);
+            s.AddRange(qrGetDT.GetRange(index +1, 2));
+            return PartialView(s);
         }
         // Error Message
         public IActionResult ErrorMessage()
