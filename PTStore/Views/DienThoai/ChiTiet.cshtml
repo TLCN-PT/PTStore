@@ -104,6 +104,7 @@
             </div>
         </div>
     </div>
+    <div id="DienThoaiTrongTamGiaPartial"></div>
     <div id="DienThoaiDeXuatPartial"></div>
 </section>
 <script>
@@ -123,8 +124,25 @@
         })
     }
 
+    function LoadDienThoaiTrongTamGiaPartial() {
+        $.ajax({
+            url: "/Home/DienThoaiTrongTamGiaPartial",
+            contentType: "application/html; charset=utf-8",
+            type: "GET",
+            cache: !0,
+            dataType: "html",
+            success: function (t) {
+                $("#DienThoaiTrongTamGiaPartial").html(t)
+            },
+            error: function () {
+                $("#DienThoaiTrongTamGiaPartial").html("Error when loading DienThoaiTrongTamGia")
+            }
+        })
+    }
+
     $(document).ready(function () {
         LoadDienThoaiDeXuatPartial();
+        LoadDienThoaiTrongTamGiaPartial();
     });
 </script>
 
