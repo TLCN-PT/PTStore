@@ -22,12 +22,17 @@ namespace PTStore.Controllers
         [HttpPost]
         public IActionResult Index(string email)
         {
-            var qr = context.Users.Where(x => x.Email == email).FirstOrDefault();
+            var qr = context.Users.Include(x=>x.Account).Where(x => x.Email == email).FirstOrDefault();
             if(qr==null)
             {
                 ViewData["Message"] = "Email chưa được đăng ký!";
                 return View();
             }
+            if(qr.Account.TrangThai=="Disable")
+            {
+                ViewData["Message"] = "Tài khoản đã bị khoá! Vui lòng liên hệ quản trị viên để kích hoạt lại!";
+                return View();
+            }    
             Random rd = new Random();
             string x = rd.Next(10000, 99999).ToString();
             HttpContext.Session.SetString("MaXacNhan", x);

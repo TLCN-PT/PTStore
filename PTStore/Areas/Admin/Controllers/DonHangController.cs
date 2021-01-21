@@ -52,11 +52,23 @@ namespace PTStore.Areas.Admin.Controllers
             {
                 return View(_context.DonHangs.Where(x => x.TrangTrai == "BiHuy").ToList());
             }
-
-            var qr = _context.DonHangs.Include(x => x.ChiTietDonHangs).Include(x => x.User).Where(
-                x => x.UserId == int.Parse(search) || x.MaDonHang.ToUpper().Contains(search.ToUpper())
-                || x.SoDienThoai.Contains(search));
-            return View(qr.ToList());
+            try
+            {
+                var qr = _context.DonHangs.Include(x => x.ChiTietDonHangs).Include(x => x.User).Where(x => x.MaDonHang == search);
+                if (qr == null)
+                {
+                    qr = _context.DonHangs.Include(x => x.ChiTietDonHangs).Include(x => x.User).Where(x => x.SoDienThoai == search);
+                }
+                else
+                {
+                    qr = _context.DonHangs.Include(x => x.ChiTietDonHangs).Include(x => x.User).Where(x => x.UserId == int.Parse(search));
+                }    
+                return View(qr.ToList());
+            }
+            catch(Exception ex)
+            {
+                return View(_context.DonHangs.Include(x => x.ChiTietDonHangs).Include(x => x.User).ToList());
+            }
         }
         // GET: Admin/DonHang/Details/5
         public async Task<IActionResult> Details(int? id)
